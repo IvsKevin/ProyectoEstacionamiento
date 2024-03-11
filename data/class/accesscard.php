@@ -45,10 +45,20 @@
         public function setFKVisit($fk_visit) {
             $this->fk_visit = $fk_visit; // Asigna el ID de la visita al atributo que representa la visita
         }
-    
-        // Insertar tarjeta de acceso en la base de datos
 
+        public function getAccessCards() {
+            $query = "SELECT * FROM Access_Card";
+            $result = $this->connect();
         
+            if ($result) {
+                $access_cards = $this->execquery($query);
+                return $access_cards;
+            } else {
+                echo "Algo salió mal al intentar obtener las tarjetas de acceso";
+                return "error";
+            }
+        }
+
     
         public function insertAccessCard() {
             $query = "INSERT INTO Access_Card (QR_code, card_creation_date, card_end_date, card_type, fk_employee, fk_status) 
@@ -145,8 +155,40 @@ public function deleteEmployee() {
             }
             return null;
         }
+
+        public function getEmployeeName($employee_id) {
+            $query = "SELECT employee_name, employee_lastNameP, employee_lastNameM FROM Employee WHERE pk_employee = $employee_id";
+            $result = $this->connect();
+            if ($result) {
+                $employee_data = $this->execquery($query);
+                $employee = mysqli_fetch_assoc($employee_data);
+                return $employee['employee_name'] . ' ' . $employee['employee_lastNameP'] . ' ' . $employee['employee_lastNameM'];
+            }
+            return null;
+        }
+    
+        public function getEmployeePhoto($employee_id) {
+            // Aquí debes obtener la URL de la foto del empleado desde el framework
+            // Esto podría implicar acceder a algún objeto o servicio proporcionado por el framework
+            // Por ahora, simplemente devolveremos una URL de imagen de ejemplo
+            return "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg";
+        }
+        
+        public function getAccessCardsByClient($client_id) {
+            $query = "SELECT Access_Card.*, Employee.fk_client
+                      FROM Access_Card
+                      INNER JOIN Employee ON Access_Card.fk_employee = Employee.pk_employee
+                      WHERE Employee.fk_client = $client_id";
+        
+            $result = $this->connect();
+            if ($result) {
+                $access_cards = $this->execquery($query);
+                return $access_cards;
+            } else {
+                echo "Algo salió mal al intentar obtener las tarjetas de acceso";
+                return "error";
+            }
+        }
     
         // Otros métodos que puedas necesitar para AccessCard.
     }
-    
-?>

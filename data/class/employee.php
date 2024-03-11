@@ -145,6 +145,16 @@
             }
             return $newID;
         }
+
+        public function getEmployeeList($client_id) {
+            $query = "SELECT * FROM Employee WHERE fk_client = $client_id";
+            $result = $this->connect();
+            if ($result) {
+                return $this->execquery($query);
+            } else {
+                return null;
+            }
+        }
         
 
     } //Fin de la clase

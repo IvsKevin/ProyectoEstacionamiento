@@ -1,8 +1,5 @@
-<?php //user.php 
-    //Incluimos la conexion.
-    include_once(PROJECT_ROOT.'/data/conexion.php');
+<?php include_once(__DIR__.'/../conexion.php');
 
-    //creamos la clase para nuestra tabla
     class Car extends conexion{
         
         private $id;
@@ -14,8 +11,6 @@
         private $fk_status;
         private $fk_client;
 
-        //METODOS: GET && SETTERS
-        //Nueva funcion, vamos a ver como funciona.
         public function __set($property, $value) {
             if (property_exists($this, $property)) {
                 $this->$property = $value;
@@ -23,10 +18,6 @@
                 throw new Exception("Property {$property} does not exist on this object.");
             }
         }
-  
-        //METODOS 
-
-        //GET
         public function getCarInformation() {
             $query = "SELECT c.*, 
                 e.employee_name, 
@@ -45,7 +36,6 @@
             WHERE c.fk_client = ".$this->fk_client."";
             $result = $this->connect();
             if ($result == true){
-                //echo "vammos bien";
                 $dataset = $this->execquery($query);
             }
             else{
@@ -58,7 +48,6 @@
             $query = "SELECT * FROM Brand";
             $result = $this->connect();
             if ($result == true){
-                //echo "vammos bien";
                 $dataset = $this->execquery($query);
             }
             else{
@@ -71,17 +60,12 @@
             $query = "SELECT pk_brand FROM Brand WHERE brand_name = '".$brand_name."'";
             $result = $this->connect();
             if ($result == true){
-                //echo "vammos bien";
                 $consultado = $this->execquery($query);
-                // Verificar si la consulta fue exitosa y si obtuvo algún resultado
                 if ($consultado) {
-                    // Obtener el resultado de la consulta
                     $row = mysqli_fetch_assoc($consultado);
                     if ($row) {
-                        // Devolver el id de la marca
                         return $row['pk_brand'];
                     } else {
-                        // Si no hay resultados, devolver null
                         return null;
                     }
                 } 
@@ -96,7 +80,6 @@
             $query = "SELECT * FROM Model";
             $result = $this->connect();
             if ($result == true){
-                //echo "vammos bien";
                 $dataset = $this->execquery($query);
             }
             else{
@@ -109,7 +92,6 @@
             $query = "SELECT * FROM Model WHERE fk_brand = $fk_brand";
             $result = $this->connect();
             if ($result == true){
-                //echo "vammos bien";
                 $dataset = $this->execquery($query);
             }
             else{
@@ -122,7 +104,6 @@
             $query = "SELECT * FROM Model_Color";
             $result = $this->connect();
             if ($result == true){
-                //echo "vammos bien";
                 $dataset = $this->execquery($query);
             }
             else{
@@ -131,11 +112,9 @@
             }
             return $dataset;
         }
-
-        //INSERT
         public function setCarInformation() {
             $query = "INSERT INTO Car_Information (matricula, model_year, fk_employee, fk_model, fk_color, fk_status, fk_client) 
-            VALUES ('".$this->matricula."',".$this->model_year.", ".$this->fk_employee.", ".$this->fk_model.",".$this->fk_color.", ".$this->fk_status.", ".$this->fk_client.")";
+            VALUES ('".$this->matricula."', ".$this->model_year.", ".$this->fk_employee.", ".$this->fk_model.", ".$this->fk_color.", ".$this->fk_status.", ".$this->fk_client.")";
             $result = $this->connect();
             if($result) {
                 $newID = $this->execquery($query);
@@ -146,8 +125,6 @@
             }
             return $newID;
         }
-
-        //UPDATE
         public function updateCar() {
             $query = 'UPDATE Car_Information SET fk_status = "'.$this->fk_status.'" WHERE pk_car = '.$this->id.'';
             $result = $this->connect();
@@ -160,6 +137,5 @@
             }
             return $newID;
         }
-
-    } //Fin de la clase
+    }
 ?>
