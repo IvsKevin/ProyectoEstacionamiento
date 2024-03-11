@@ -1,12 +1,6 @@
 <?php
-include_once(__DIR__.'/../../../data/conexion.php');
 include(__DIR__.'/../../../data/class/car.php');
-if (!defined('PROJECT_ROOT')) {
-    define('PROJECT_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/ProyectoEstacionamientos_3B/');
-    define('PROJECT_URL_ROOT', '/ProyectoEstacionamientos_3B/');
-}
 
-include(PROJECT_ROOT.'/data/class/car.php');
 
 session_start();
 $car = new Car();
@@ -26,4 +20,3 @@ if($id > 0) {
 } else {
     echo 'no ha funcionado el registro del empleado';
 }
-?>
