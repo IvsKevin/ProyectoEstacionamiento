@@ -1,5 +1,5 @@
 <?php
-include_once(PROJECT_ROOT.'/data/conexion.php');
+include_once(__DIR__.'/../conexion.php');
 class Parking extends conexion {
     private $parking_number;
     private $parking_location;

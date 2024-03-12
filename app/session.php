@@ -33,4 +33,3 @@
         $licenciaVigente = false;
         $user = '';
     }
- 

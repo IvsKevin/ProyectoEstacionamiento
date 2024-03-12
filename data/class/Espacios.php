@@ -1,6 +1,6 @@
 <?php 
-    include_once(PROJECT_ROOT.'/data/conexion.php');
-    class Espacios extends conexion{
+    include_once(__DIR__.'/../conexion.php');
+    class Espacios extends conexion {
     private $pk_spaces;
     private $spaces_number;
     private $fk_status;
@@ -195,4 +195,3 @@
             return $newID;
     }
 }
-?>

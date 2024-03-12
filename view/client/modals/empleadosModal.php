@@ -66,7 +66,9 @@
 <script>
     function cambiarColor() {
         var empleadosLink = document.getElementById("empleadosLink");
-        empleadosLink.classList.add("text-pink-500");
+        var empleadosLink = document.getElementById("empleadosContainer");
+        empleadosLink.classList.add("text-gray-100");
+        empleadosLink.classList.add("bg-gris-clarito");
     }
 
     // Llamada a la función para cambiar el color
@@ -111,8 +113,8 @@
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 class="font-bold text-lg">Actualizar empleado</h3>
-        <div class="modal-action flex flex-col items-center">
-            <form method="post" action="../../app/client/empleados/editEmployee.php">
+        <div class="modal-action flex flex-col justify-content">
+            <form class="flex flex-col items-center" method="post" action="../../app/client/empleados/editEmployee.php">
                 <div>
                     <input name="idEmpleado" type="number" class="grow hidden" value="${id}" />
                 </div>
@@ -148,14 +150,14 @@
                             <span class="label-text">Rol del empleado</span>
                         </div>
                         <select class="select select-bordered" name="rolEmpleado">
-                        <option value="1" ${rol === 'Gerente de Planta' ? 'selected' : ''}>Gerente de Planta</option>
+                        <option value="1" ${rol === 'Gerente de planta' ? 'selected' : ''}>Gerente de Planta</option>
                         <option value="2" ${rol === 'Gerente de produccion' ? 'selected' : ''}>Gerente de produccion</option>
                         <option value="3" ${rol === 'Gerente de recursos' ? 'selected' : ''}>Gerente de recursos</option>
                         <option value="4" ${rol === 'Secretaria' ? 'selected' : ''}>Secretaria</option>
                         <option value="5" ${rol === 'Supervisor' ? 'selected' : ''}>Supervisor</option>
                         <option value="6" ${rol === 'Empleado' ? 'selected' : ''}>Empleado</option>
                         <option value="7" ${rol === 'Administrador' ? 'selected' : ''}>Administrador</option>
-                        <option value="8" ${rol === 'Recursos HUmanos' ? 'selected' : ''}>Recursos HUmanos</option>
+                        <option value="8" ${rol === 'Recursos Humanos' ? 'selected' : ''}>Recursos HUmanos</option>
                         <option value="9" ${rol === 'Finanzas' ? 'selected' : ''}>Finanzas</option>
                         <option value="10" ${rol === 'Mantenimiento' ? 'selected' : ''}>Mantenimiento</option>
                         <option value="11" ${rol === 'Seguridad' ? 'selected' : ''}>Seguridad</option>
@@ -163,8 +165,17 @@
                         </select>
                     </label>
                 </div>
-                <div class="flex justify-end">
-                    <input type="submit" value="Enviar" class="cursor-pointer mt-5 btn btn-outline btn-info p-2 pl-4 pr-4">
+                <div>
+                    <input type="submit" value="Actualizar datos" class="cursor-pointer mt-5 btn btn-outline btn-info p-2 pl-4 pr-4">
+                </div>
+            </form>
+
+            <form class="flex flex-col items-center mt-8" method="post" action="../../app/client/empleados/deleteEmployee.php">
+                <div>
+                    <input name="idEmpleado" type="number" class="grow hidden" value="${id}" />
+                </div>
+                <div class="w-full flex justify-end">
+                    <input type="submit" value="Eliminar empleado" class="cursor-pointer mt-5 btn btn-outline btn-error p-0 pl-4 pr-4">
                 </div>
             </form>
         </div>`;
