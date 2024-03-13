@@ -1,13 +1,7 @@
 <?php
-//Si no se ha definido root, lo defino.
-if (!defined('PROJECT_ROOT')) {
-    //Definimos nuestro carpeta principal.
-    define('PROJECT_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/ProyectoEstacionamientos_3B/');
-    define('PROJECT_URL_ROOT', '/ProyectoEstacionamientos_3B/');
-}
 
 //Incluimos la clase Espacios para crear el objeto.
-include(PROJECT_ROOT.'/data/class/parking.php');
+include(__DIR__.'/../../../data/class/parking.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['parking_id']) && isset($_POST['location'])) {
     $parkingID = $_POST['parking_id'];
@@ -27,11 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['parking_id']) && isset
     // Lógica para actualizar el estacionamiento
     if ($parkingHandler->updateParking($parkingID, $location, $status)) {
         echo "Estacionamiento actualizado correctamente";
-        header('Location: '.PROJECT_URL_ROOT.'view/client/parking.php');
+        header('Location: ../../../view/client/parking.php');
     } else {
         echo "Error al actualizar estacionamiento";
-        header('Location: '.PROJECT_URL_ROOT.'view/client/parking.php');
+        header('Location:  ../../../view/client/parking.php');
     }
+} else {
+    header('Location:  ../../../view/client/parking.php');
 }
 
 // if (isset($_GET['id'])) {

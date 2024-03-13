@@ -49,43 +49,60 @@
         agregarParkingModal.showModal();
     }
 
-    function actualizarParking(id, ubicacion, status) {
+    function actualizarParking(id, parking, ubicacion, capacidad, status) {
         var modal = document.getElementById('actualizarParkingModal');
         var modalContent = modal.querySelector('.modal-box');
 
         modalContent.innerHTML = `
-        <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="font-bold text-lg">Actualizar Estacionamiento</h3>
+    <div class="modal-action flex flex-col items-center">
+        <form method="post" action="../../app/client/parking/editParking.php">
+            <div>
+                <input name="parking_id" type="number" class="grow hidden" value="${id}" />
+            </div>
+
+            <div class="m-2">
+                <label class="input input-bordered flex items-center gap-2">
+                    Numero de Parking:
+                    <input name="parking" type="text" class="grow" value="${parking}" />
+                </label>
+            </div>
+
+            <!-- Aquí coloca los campos necesarios para actualizar un estacionamiento -->
+            <div class="m-2">
+                <label class="input input-bordered flex items-center gap-2">
+                    Ubicación:
+                    <input name="location" type="text" class="grow" value="${ubicacion}" />
+                </label>
+            </div>
+
+            <div class="m-2">
+                <label class="input input-bordered flex items-center gap-2">
+                    Capacidad:
+                    <input name="capacity" type="number" class="grow" value="${capacidad}" />
+                </label>
+            </div>
+
+            <div class="m-2">
+                <label class="input input-bordered flex items-center gap-2">
+                    Estado:
+                    <select name="status" class="grow">
+                        <option value="1" ${status === 'Activo' ? 'selected' : ''}>Accesible</option>
+                        <option value="2" ${status === 'Inactivo' ? 'selected' : ''}>Lleno</option>
+                    </select>
+                </label>
+            </div>
+            <!-- Otros campos que puedas necesitar -->
+
+            <div class="flex justify-end">
+                <input type="submit" value="Actualizar" class="cursor-pointer mt-5 btn btn-outline btn-info p-2 pl-4 pr-4">
+            </div>
         </form>
-        <h3 class="font-bold text-lg">Actualizar Estacionamiento</h3>
-        <div class="modal-action flex flex-col items-center">
-            <form method="post" action="../../app/client/parking/editParking.php">
-                <div>
-                    <input name="idParking" type="number" class="grow hidden" value="${id}" />
-                </div>
+    </div>`;
 
-                <!-- Aquí coloca los campos necesarios para actualizar un estacionamiento -->
-                <div class="m-2">
-                    <label class="input input-bordered flex items-center gap-2">
-                        Ubicación:
-                        <input name="location" type="text" class="grow" value="${ubicacion}" />
-                    </label>
-                </div>
-
-
-                <div class="m-2">
-                    <label class="input input-bordered flex items-center gap-2">
-                        Esatado:
-                        <input name="status" type="number" class="grow" value="${status}" />
-                    </label>
-                </div>
-                <!-- Otros campos que puedas necesitar -->
-
-                <div class="flex justify-end">
-                    <input type="submit" value="Actualizar" class="cursor-pointer mt-5 btn btn-outline btn-info p-2 pl-4 pr-4">
-                </div>
-            </form>
-        </div>`;
 
         actualizarParkingModal.showModal();
     }
