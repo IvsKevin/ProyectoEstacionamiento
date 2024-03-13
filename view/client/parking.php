@@ -1,9 +1,12 @@
+
 <?php include_once "navbar.php"; ?>
 <?php include_once "modals/parkingModal.php"; ?>
 
 <?php
 include_once("../../data/class/parking.php");
 include_once("../../data/class/Espacios.php");
+
+//Perdomo gay
 
 // Mostrar la lista de estacionamientos
 $parkingHandler = new Parking();
