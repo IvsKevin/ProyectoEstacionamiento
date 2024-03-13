@@ -45,7 +45,7 @@ $accessCards = $accessCard->getAccessCardsByClient($_SESSION['client_id']);
                                     <th>Fecha de Creación</th>
                                     <th>Fecha de Vencimiento</th>
                                     <th>Tipo de Tarjeta</th>
-                                    <th>Empleado</th>
+                                    <th>Nombre</th>
                                     <th>Foto</th>
                                 </tr>
                             </thead>
@@ -58,12 +58,18 @@ $accessCards = $accessCard->getAccessCardsByClient($_SESSION['client_id']);
                                         <td><?php echo $row['card_creation_date']; ?></td>
                                         <td><?php echo $row['card_end_date']; ?></td>
                                         <td><?php echo $row['card_type']; ?></td>
-                                        <?php
-                                        $employeeName = $accessCard->getEmployeeName($row['fk_employee']);
-                                        $employeePhoto = $accessCard->getEmployeePhoto($row['fk_employee']);
-                                        ?>
-                                        <td><?php echo $employeeName; ?></td>
-                                        <td><img src="<?php echo $employeePhoto; ?>" class="w-10 h-10 rounded-full"></td>
+                                        <?php if (isset($row['employee_name'])) { ?>
+                                            <td><?php echo $row['employee_name']; ?></td>
+                                        <?php } else { ?>
+                                            <td><?php echo $row['visit_name']; ?></td>
+                                        <?php } ?>
+                                        <td>
+                                            <div class="avatar online">
+                                                <div class="w-16 rounded-full">
+                                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
