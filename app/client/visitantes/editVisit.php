@@ -2,6 +2,7 @@
 include_once(__DIR__.'/../../../data/class/visit.php');
 
 $visit = new Visit();
+$visit->setID($_POST["pk_visit"]);
 $visit->setCompany($_POST["visit_company"]);
 $visit->setReason($_POST["visit_reason"]);
 $visit->setName($_POST["visit_name"]);
@@ -11,6 +12,7 @@ $visit->setFkClient($_POST["fk_client"]);
 // Verifica que todos los datos se hayan establecido correctamente antes de realizar la actualización
 if ($visit->getCompany() && $visit->getReason() && $visit->getName() && $visit->getLastName() && $visit->getFkClient()) {
     $id = $visit->updateVisit();
+    echo $id;
     
     if ($id > 0) {
         header('Location: ../../../view/client/visitantes.php');
@@ -21,4 +23,4 @@ if ($visit->getCompany() && $visit->getReason() && $visit->getName() && $visit->
 } else {
     echo "Error: Datos incompletos para la actualización de la visita.";
 }
-?>
+

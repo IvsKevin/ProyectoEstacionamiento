@@ -12,6 +12,9 @@ class Visit extends conexion {
     private $fk_client;
 
     // Setters
+    public function setID($id) {
+        $this->id = $id;
+    }
     public function setCompany($company) {
         $this->company = $company;
     }
@@ -63,8 +66,9 @@ class Visit extends conexion {
     // Actualizar información de visita
     public function updateVisit() {
         $query = 'UPDATE Visit SET visit_company = "'.$this->company.'", visit_reason = "'.$this->reason.'", visit_name = "'.$this->name.'", visit_lastName = "'.$this->last_name.'" WHERE pk_visit = '.$this->id.'';
-        $result = $this->execquery($query);
+        $result = $this->connect();
         if ($result) {
+            $result = $this->execquery($query);
             echo "Actualización de visita exitosa"; 
             return $this->id;
         } else {
