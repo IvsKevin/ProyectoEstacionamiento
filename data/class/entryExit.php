@@ -1,5 +1,5 @@
 <?php
-include_once(PROJECT_ROOT . "data/conexion.php");
+include_once(__DIR__.'/../conexion.php');
 
 class carentry extends conexion {
     private $pk_check;
@@ -84,11 +84,10 @@ class carentry extends conexion {
                 $errorMessage = "No has registrado tu salida, por lo tanto, no puedes volver a entrar.";
                 return $errorMessage;
             }
-    
-            // Verificar si el empleado tiene un carro registrado
+
             if($selectedCardEmployee != null) {
-            $carCheckQuery = "SELECT pk_car FROM Car_Information WHERE fk_employee = $selectedCardEmployee";
-            $carCheckResult = $conexion->execquery($carCheckQuery);
+                $carCheckQuery = "SELECT pk_car FROM Car_Information WHERE fk_employee = $selectedCardEmployee";
+                $carCheckResult = $conexion->execquery($carCheckQuery);
             }
     
             if ($selectedCardEmployee !== null && (!$carCheckResult || mysqli_num_rows($carCheckResult) === 0)) {
@@ -119,11 +118,7 @@ class carentry extends conexion {
                         $resultAssignSpace = $conexion->execquery($assignSpaceQuery);
     
                         if ($resultAssignSpace) {
-                            $ticket = "<div class='ticket'><h1>¡Gracias por su visita!</h1><br>";
-                            $ticket .= "<h2>Número de Boleto: $lastEntryId</h2><br>";
-                            $ticket .= "<h2>Fecha: $entryDate</h2>";
-                            $ticket .= "</div>";
-                            return $ticket;
+                            return $lastEntryId;
                         } else {
                             $errorMessage = "Error al asignar el espacio al vehículo.";
                             return $errorMessage;
@@ -146,7 +141,6 @@ class carentry extends conexion {
         }
     }
     
-
     private function verificarSalidaPendiente($selectedCard) {
         $conexion = new conexion();
         $conexion->connect();
@@ -173,11 +167,7 @@ class carentry extends conexion {
             $spaceId = $row['fk_space'];
     
             if ($existingExitDate !== null) {
-                //$ticket = "<div class='ticket'>";
-                $ticket = "<h1 style='margin-left: 20px; font-size: 20px;'>Esta entrada ya tiene fecha de salida: $existingExitDate</h1>";
-                //$ticket .= "<a href='javascript:history.go(-1)' class='back-button'>Volver atrás</a>";
-                //$ticket .= "</div>";
-                return $ticket;
+                return "Esta entrada ya tiene fecha de salida: $existingExitDate";
             }
     
             $exitDate = new DateTime('now', new DateTimeZone('America/Tijuana'));
@@ -191,34 +181,39 @@ class carentry extends conexion {
                 $resultReleaseSpace = mysqli_query($conexion->getConnection(), $releaseSpaceQuery);
     
                 if ($resultReleaseSpace) {
-                    $ticket = "<div class='ticket' style='font-size: 24px; margin: 0px 35px;'><h1>¡Gracias por su visita!</h1><br>";
-                    $ticket .= "<h1>Número de Boleto: $entryId</h1><br>";
-                    $ticket .= "<h1>Fecha de salida: $formattedExitDate</h1>";
-                    //$ticket .= "<a href='javascript:history.go(-1)' class='back-button'>Volver atrás</a>";
-                    $ticket .= "</div>";
-                    return $ticket;
+                    return $formattedExitDate;
                 } else {
-                    //$ticket = "<div class='ticket'>";
-                    $ticket = "<h1 style='margin-left: 20px;'>Error al liberar el espacio del estacionamiento: " . mysqli_error($conexion->getConnection()) . "</h1>";
-                    //$ticket .= "<a href='javascript:history.go(-1)' class='back-button'>Volver atrás</a>";
-                    //$ticket .= "</div>";
-                    return $ticket;
+                    return "Error al liberar el espacio del estacionamiento: " . mysqli_error($conexion->getConnection());
                 }
             } else {
-                //$ticket = "<div class='ticket'>";
-                $ticket = "<h1 style='margin-left: 20px;'>Error al registrar la salida del vehículo: " . mysqli_error($conexion->getConnection()) . "</h1>";
-                //$ticket .= "<a href='javascript:history.go(-1)' class='back-button'>Volver atrás</a>";
-                //$ticket .= "</div>";
-                return $ticket;
+                return "Error al registrar la salida del vehículo: " . mysqli_error($conexion->getConnection());
             }
         } else {
-            //$ticket = "<div class='ticket'>";
-            $ticket = "<h1 style='margin-left: 20px;'>La entrada no existe.</h1>";
-            //$ticket .= "<a href='javascript:history.go(-1)' class='back-button'>Volver atrás</a>";
-            //$ticket .= "</div>";
-            return $ticket;
+            return "La entrada no existe.";
         }
     }
+
+    public function getCheckInOutData($client_id) {
+        $conexion = new conexion();
+        $conexion->connect();
+
+        $query = "SELECT CI.date_in, CI.date_out, 
+                         CONCAT(E.employee_name, ' (Empleado)') AS person_name, 
+                         CONCAT(V.visit_name, ' (Visitante)') AS visit_name, 
+                         CI.fk_parking, CI.pk_check, CI.fk_card, C.matricula, P.parking_location
+                  FROM Check_In_Out AS CI
+                  LEFT JOIN Access_Card AS AC ON CI.fk_card = AC.pk_card
+                  LEFT JOIN Employee AS E ON AC.fk_employee = E.pk_employee
+                  LEFT JOIN Visit AS V ON AC.fk_visit = V.pk_visit
+                  LEFT JOIN Car_Information AS C ON E.pk_employee = C.fk_employee
+                  LEFT JOIN Parking AS P ON CI.fk_parking = P.pk_parking
+                  WHERE (E.fk_client = $client_id OR V.fk_client = $client_id) AND CI.fk_status = 1";
+
+        $result = $conexion->execquery($query);
+
+        return $result;
+    }
+    
     
     
     
