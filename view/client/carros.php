@@ -25,7 +25,7 @@ $empleados = $employee->getEmployee();
                         <button class="btn h-8 min-h-8h-8 min-h-8 btn-outline btn-primary" onclick="">Ultimos 30 dias</button>
                     </div>
                     <div class="flex-1 px-2 lg:flex-none">
-                        <button class="btn h-8 min-h-8 btn-outline btn-primary" onclick="">Filtrar por</button>
+                        <button class="btn h-8 min-h-8 btn-outline btn-primary" onclick="abrirFiltrosModal()">Filtrar por</button>
                     </div>
                     <div class="flex justify-end flex-1 px-2">
                         <div class="flex items-stretch">
