@@ -1,4 +1,3 @@
-
 <?php include_once "navbar.php"; ?>
 <?php include_once "modals/parkingModal.php"; ?>
 
@@ -45,46 +44,45 @@ $myEspacios = new Espacios();
                 </div>
                 <?php
                 // Verifica si $parkingList está definida y es un resultado válido
-                if (isset($parkingList) && $parkingList !== "error") {
-                    // Itera sobre los resultados de la consulta
-                    while ($row = mysqli_fetch_assoc($parkingList)) {
-                        // Obtenemos la cantidad de espacios disponibles para este estacionamiento
-                        $myEspacios->setFk_parking($row['pk_parking']);
-                        $espaciosDisponibles = $myEspacios->getEspaciosDisponibles();
-                ?>
-                        <div class="overflow-x-auto">
-                            <div class="relative rounded-lg overflow-hidden shadow-md border bg-gray-800 border-blue-500 text-blue-600 mt-6">
-                                <!-- Número de estacionamiento en esquina superior izquierda -->
-                                <div class="absolute top-0 left-0 bg-blue-500 text-white py-1 px-2 text-sm rounded-tr-md">
-                                    <?php echo $row['parking_number']; ?>
-                                </div>
-                                <div class="p-4 mt-6">
-                                    <span class="font-bold block mt-2">Espacios disponibles:</span>
-                                    <p class="text-black-700 text-gray-300"><?php echo $espaciosDisponibles; ?></p>
-                                    <span class="font-bold block mt-2">Ubicación:</span>
-                    <p class="text-black-700 text-gray-300"><?php echo $row['parking_location']; ?></p>
-                                    <span class="font-bold">Capacidad:</span>
-                                    <p class="text-black-700 text-gray-300"><?php echo $row['parking_capacity']; ?></p>
-                                    <span class="font-bold">Estado:</span>
-                                    <p class="text-black-700 text-gray-300"><?php echo $row['status_name']; ?></p>
-                                </div>
-                                <a class="p-4 block border-blue-900 bg-blue-500 text-white text-center" href="cajones.php?idParking=<?php echo $row["pk_parking"]; ?>">Ver parking</a>
-                                <button class="btn btn-outline btn-success btn-xs" onclick="actualizarParking(
-                                    '<?php echo $row['pk_parking']; ?>',
+                if (isset($parkingList) && $parkingList !== "error") { ?>
+                    <div class="overflow-x-auto">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <?php
+                            // Verifica si $parkingList está definida y es un resultado válido
+                            if (isset($parkingList) && $parkingList !== "error") {
+                                // Itera sobre los resultados de la consulta
+                                while ($row = mysqli_fetch_assoc($parkingList)) {
+                                    $myEspacios->setFk_parking($row['pk_parking']);
+                                    $espaciosDisponibles = $myEspacios->getEspaciosDisponibles(); ?>
+
+                                    <div class="overflow-hidden rounded-lg shadow-md border bg-gray-800 border-blue-500 text-blue-600">
+                                        <div class="p-6">
+                                            <h2>No. <?php echo $row['parking_number']; ?></h2>
+                                            <p class="text-gray-300 mt-2">Estacionamientos disponibles: <?php echo $espaciosDisponibles; ?></p>
+                                            <p class="text-gray-300 mt-2">Ubicación: <?php echo $row['parking_location']; ?></p>
+                                            <p class="text-gray-300">Capacidad: <?php echo $row['parking_capacity']; ?></p>
+                                            <p class="text-gray-300">Estado: <?php echo $row['status_name']; ?></p>
+                                        </div>
+                                        <div class="p-4 bg-gray-700">
+                                            <a href='cajones.php?idParking=<?php echo $row["pk_parking"]; ?>' class="w-full btn btn-outline btn-info btn-xs rounded-md">Ver parking</a>
+                                            <button class="block w-full mt-4 btn btn-outline btn-success btn-xs" onclick="actualizarParking(
+                        '<?php echo $row['pk_parking']; ?>',
                                     '<?php echo $row['parking_number']; ?>',
                                     '<?php echo $row['parking_location']; ?>',
                                     '<?php echo $row['parking_capacity']; ?>',
                                     '<?php echo $row['status_name']; ?>'
-                                )">Editar</button>
-                            </div>
+                    )">Editar</button>
+                                        </div>
+                                    </div>
+                            <?php }
+                            } ?>
                         </div>
-                <?php
-                    }
+                    <?php
                 }
-                ?>
+                    ?>
+                    </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 </body>

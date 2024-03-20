@@ -21,10 +21,10 @@ if (isset($_SESSION['client_id'])) {
             <h1 class="text-2xl font-bold mb-4">Registro de entradas y salidas de visitantes</h1>
             <div class="navbar rounded-box">
                 <div class="flex-1 px-2 lg:flex-none">
-                    <button class="btn h-8 min-h-8 btn-outline btn-info" onclick="agregarEntrada()">Entrada</button>
+                    <button class="btn h-8 min-h-8 btn-outline btn-info" onclick="agregarEntrada()">Registrar entrada</button>
                 </div>
                 <div class="flex-1 px-2 lg:flex-none">
-                    <button class="btn h-8 min-h-8 btn-outline btn-error" onclick="agregarSalida()">Salida</button>
+                    <button class="btn h-8 min-h-8 btn-outline btn-error" onclick="agregarSalida()">Registar salida</button>
                 </div>
             </div>
             <div class="overflow-x-auto mt-4">
