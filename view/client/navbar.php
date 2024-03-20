@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <?php include_once(__DIR__ . '/../../app/session.php'); ?>
+<?php if(!isset($_SESSION['client_id'])) {
+  header('Location:../../index.php');
+}?>
+
 
 <head>
   <meta charset="utf-8" />
