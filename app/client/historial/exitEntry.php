@@ -1,13 +1,19 @@
 <?php 
-if (!defined('PROJECT_ROOT')) {
-    define('PROJECT_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/ProyectoEstacionamientos_3B/');
-    define('PROJECT_URL_ROOT', '/ProyectoEstacionamientos_3B/');
+include(__DIR__.'/../../../data/class/entryExit.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['entry_id'])) {
+    //Creamos un objeto.
+    $carentry = new carentry();
+    $resultadoEntrada = $carentry->registrarSalidaVehiculo($_POST['entry_id']);
+
+    if ($resultadoEntrada) {
+        // Construye la URL con los parámetros de la entrada
+        $url = '../../../view/client/historial.php?resultadoSalida=' . urlencode($resultadoEntrada);
+        // Redirecciona a la página historial.php
+        header('Location: ' . $url);
+    } else { // Indicar que no se pudo completar el registro de la entrada.
+        echo "No se pudo completar la salida correctamente";
+    }
+} else {
+    echo "No se pudo completar la salida debido a la falta de parametros necesarios";
 }
-include_once(PROJECT_ROOT . 'app/session.php');
-include(PROJECT_ROOT."view/navBar.php");
-include(PROJECT_ROOT.'/data/class/entryExit.php');
-
-$carentry = new carentry();
-$resultadoEntrada = $carentry->registrarSalidaVehiculo($_POST['entry_id']);
-
-echo "<p>Resultado de la entrada:</p> $resultadoEntrada";
