@@ -45,16 +45,18 @@ $consulta = $cajones->getEspacios($_SESSION['pk_parking']);
                 </div>
                 <!--Contenedor-->
                 <div class="overflow-x-auto">
-                    <?php if ($consulta != "error" && mysqli_num_rows($consulta) > 0) { ?>
-                        <?php while ($tupla = mysqli_fetch_assoc($consulta)) { ?>
-                            <section class="bg-gris-oscurito m-2"> <!--Contenedor de cada espacio-->
-                                <div><?php $tupla['pk_spaces'] ?></div>
-                                <div><?php echo $tupla['spaces_number'] ?></div>
-                                <div><?php echo $tupla['fk_employee'] ?></div>
-                                <div><?php echo $tupla['status_name'] ?></div>
-                            </section>
-                    <?php }
-                    } ?>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+                        <?php if ($consulta != "error" && mysqli_num_rows($consulta) > 0) { ?>
+                            <?php while ($tupla = mysqli_fetch_assoc($consulta)) { ?>
+                                <section class="bg-gris-oscurito m-2"> <!--Contenedor de cada espacio-->
+                                    <div><?php echo $tupla['pk_spaces'] ?></div>
+                                    <div><?php echo $tupla['spaces_number'] ?></div>
+                                    <div><?php echo $tupla['fk_employee'] ?></div>
+                                    <div><?php echo $tupla['status_name'] ?></div>
+                                </section>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
                 </div>
                 <div class="navbar rounded-box">
                     <div class="flex-1 px-2 lg:flex-none">

@@ -54,7 +54,6 @@ $myEspacios = new Espacios();
                                 while ($row = mysqli_fetch_assoc($parkingList)) {
                                     $myEspacios->setFk_parking($row['pk_parking']);
                                     $espaciosDisponibles = $myEspacios->getEspaciosDisponibles(); ?>
-
                                     <div class="overflow-hidden rounded-lg shadow-md border bg-gray-800 border-blue-500 text-blue-600">
                                         <div class="p-6">
                                             <h2>No. <?php echo $row['parking_number']; ?></h2>
