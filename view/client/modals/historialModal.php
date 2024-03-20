@@ -64,15 +64,15 @@
 <!--==============================SCRIPTS PARA AGREGAR EMPLEAODS================================-->
 <script>
     function cambiarColor() {
-        var empleadosLink = document.getElementById("empleadosLink");
-        var empleadosLink = document.getElementById("empleadosContainer");
-        empleadosLink.classList.add("text-gray-100");
-        empleadosLink.classList.add("bg-gris-clarito");
+        var historialLink = document.getElementById("historialLink");
+        var historialLink = document.getElementById("historialContainer");
+        historialLink.classList.add("text-gray-100");
+        historialLink.classList.add("bg-gris-clarito");
     }
 
     // Llamada a la función para cambiar el color
     cambiarColor();
-
+    
     function agregarEntrada() {
         agregarEntradaModal.showModal();
     }

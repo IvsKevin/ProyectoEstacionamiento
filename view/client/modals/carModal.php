@@ -118,6 +118,16 @@
 
 
 <script>
+    function cambiarColor() {
+        var carrosLink = document.getElementById("carrosLink");
+        var carrosLink = document.getElementById("carrosContainer");
+        carrosLink.classList.add("text-gray-100");
+        carrosLink.classList.add("bg-gris-clarito");
+    }
+
+    // Llamada a la función para cambiar el color
+    cambiarColor();
+
     // Función para abrir el modal de filtros
     function abrirFiltrosModal() {
         var modal = document.getElementById('filtrarCarrosModal');

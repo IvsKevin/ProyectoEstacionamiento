@@ -42,10 +42,10 @@
 
 <script>
     function cambiarColor() {
-        var visitantesLink = document.getElementById("visitantesLink");
-        var visitantesLink = document.getElementById("visitantesContainer");
-        visitantesLink.classList.add("text-gray-100");
-        visitantesLink.classList.add("bg-gris-clarito");
+        var tarjetasLink = document.getElementById("tarjetasLink");
+        var tarjetasLink = document.getElementById("tarjetasContainer");
+        tarjetasLink.classList.add("text-gray-100");
+        tarjetasLink.classList.add("bg-gris-clarito");
     }
 
     // Llamada a la función para cambiar el color

@@ -1,4 +1,5 @@
 <?php include_once "navbar.php"; ?>
+<?php include_once "modals/tarjetasModal.php"; ?>
 <?php
 include_once(__DIR__ . '/../../data/class/accesscard.php');
 

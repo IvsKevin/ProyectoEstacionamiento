@@ -46,6 +46,16 @@
 </dialog>
 
 <script>
+    function cambiarColor() {
+        var parkingLink = document.getElementById("parkingLink");
+        var parkingLink = document.getElementById("parkingContainer");
+        parkingLink.classList.add("text-gray-100");
+        parkingLink.classList.add("bg-gris-clarito");
+    }
+
+    // Llamada a la función para cambiar el color
+    cambiarColor();
+
     function agregarParking() {
         agregarParkingModal.showModal();
     }

@@ -28,31 +28,31 @@
         <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden" id="example-collapse-sidebar">
           <ul class="md:flex-col md:min-w-full flex flex-col list-none">
             <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="dashboard.php" class="hover:text-gray-100 text-xs uppercase py-3 font-bold block"><i class="fas fa-tv opacity-75 mr-2 text-sm"></i>
+              <a href="dashboard.php" id="dashboardLink" class="hover:text-gray-100 text-xs uppercase py-3 font-bold block"><i class="fas fa-tv opacity-75 mr-2 text-sm"></i>
                 Dashboard</a>
             </li>
-            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="parking.php" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
+            <li id="parkingContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="parking.php" id="parkingLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
                 Parking</a>
             </li>
-            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="carros.php" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>
+            <li id="carrosContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="carros.php" id="carrosLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>
                 Carros</a>
             </li>
-            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito" id="empleadosContainer">
+            <li id="empleadosContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
               <a href="empleados.php" id="empleadosLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Empleados</a>
             </li>
-            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="tarjetas.php" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
+            <li id="tarjetasContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="tarjetas.php" id="tarjetasLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Tarjetas</a>
             </li>
-            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="visitantes.php" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
+            <li id="visitantesContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="visitantes.php" id="visitantesLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Visitantes</a>
             </li>
-            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="historial.php" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
+            <li id="historialContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="historial.php" id="historialLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Historial</a>
             </li>
           </ul>
