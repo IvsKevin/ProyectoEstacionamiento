@@ -42,22 +42,27 @@ $consulta = $cajones->getEspacios($_SESSION['pk_parking']);
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
                         <?php if ($consulta != "error" && mysqli_num_rows($consulta) > 0) { ?>
                             <?php while ($tupla = mysqli_fetch_assoc($consulta)) { ?>
-                                <section class="bg-gris-oscurito flex flex-col items-center justify-center m-2 pt-3 pb-3 h-40"> <!--Contenedor de cada espacio-->
-                                    <div>Status: <?php echo $tupla['status_name'] ?></div>
-                                    <div>Espacio: <?php echo $tupla['spaces_number'] ?></div>
+                                <section class="overflow-hidden relative flex flex-col items-center justify-center m-2 pt-3 pb-3 h-40 rounded-lg shadow-md border bg-gris-clarito border-blue-500 text-gray-300"> <!--Contenedor de cada espacio-->
+                                    <?php if ($tupla['fk_employee'] != null) { ?>
+                                        <h2 class="flex items-center justify-center bg-red-900 text-white w-1/5 h-6 absolute left-0 top-0"><?php echo $tupla['spaces_number']; ?></h2>
+                                    <?php } else { ?>
+                                        <h2 class="flex items-center justify-center bg-blue-900 text-white w-1/5 h-6 absolute left-0 top-0"><?php echo $tupla['spaces_number']; ?></h2>
+                                    <?php } ?>
+                                    <!-- <div>Status: <?php // echo $tupla['status_name'] ?></div> -->
                                     <?php
                                     if ($tupla['fk_employee'] != null) {
                                         echo "<div>";
-                                        echo "Empleado: ";
-                                        echo $tupla['fk_employee'];
+                                        // echo "Estado:";
+                                        echo "<div class='mt-2 text-xl'>Ocupado</div>";
+                                        // echo $tupla['fk_employee'];
                                         echo "</div>";
-                                        echo '<button type="button" class="btn h-8 min-h-8 btn-outline btn-info" onclick="verEmpleado(' . $tupla["fk_employee"] . ')">Ver empleado</button>';
+                                        echo '<button type="button" class="m-2 btn h-8 min-h-8 btn-outline btn-info" onclick="verEmpleado(' . $tupla["fk_employee"] . ')">Ver empleado</button>';
                                     }
                                     ?>
                                     <div>
                                         <form action="../../app/client/parking/eliminarEspacio.php" method="POST">
                                             <input type="hidden" name="idespacio" value="<?php echo $tupla['pk_spaces']; ?>">
-                                            <button type="submit" class="btn h-8 min-h-8 btn-outline btn-warning">Eliminar Espacio</button>
+                                            <button type="submit" class="m-2 btn h-8 min-h-8 btn-outline btn-warning">Eliminar Espacio</button>
                                         </form>
                                     </div>
                                 </section>
