@@ -1,24 +1,30 @@
-<?php 
-    // Definimos nuestro carpeta principal.
-    define('PROJECT_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/ProyectoEstacionamientos_3B/');
-    define('PROJECT_URL_ROOT', '/ProyectoEstacionamientos_3B/');
+<?php
+// Incluimos la clase empleado.
+include(__DIR__ . '/../../../data/class/visit.php');
 
-    // Incluimos la clase empleado.
-    include(PROJECT_ROOT . '/data/class/employee.php');
-    include(PROJECT_ROOT . '/data/class/accesscard.php');
-
+try {
     // Creamos nuestro objeto
-    $employee = new Employee();
-    $employee->setID($_POST['id']);
+    $visit = new Visit();
+    $visit->setID($_POST['idVisitante']);
 
     // Llamamos al método de eliminación del empleado y su tarjeta de acceso asociada
-    $deleted = $employee->deleteEmployee();
+    $result = $visit->deleteVisit();
 
     // Hacemos una validación rápida para saber si se ha ejecutado correctamente.
-    if ($deleted) {
-        header('Location: ' . PROJECT_URL_ROOT . 'view/client/empleados.php');
+    if ($result != "error") {
+        $result = "Se completado la elimacion de la visita y se ha desactivado su tarjeta de acceso...";
+        // Construye la URL con los parámetros de la entrada
+        $url = '../../../view/client/visitantes.php?resultado=' . urlencode($result);
+        header('Location: ' . $url);
     } else {
         // Manejo del error
-        echo "Hubo un problema al eliminar al empleado y su tarjeta de acceso asociada.";
+        $result = "Hubo un problema al eliminar a la visita y su tarjeta de acceso asociada.";
+        $url = '../../../view/client/visitantes.php?resultado=' . urlencode($result);
+        header('Location: ' . $url);
     }
-?>
+} catch (\Throwable $th) {
+    // Manejo del error
+    $result = "Hubo un problema con el servidor.";
+    $url = '../../../view/client/visitantes.php?resultado=' . urlencode($result);
+    header('Location: ' . $url);
+}

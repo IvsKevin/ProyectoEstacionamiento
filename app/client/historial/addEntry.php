@@ -17,5 +17,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['QR_code'])) {
         echo "No se pudo completar el registro";
     }
 } else {
-    echo "No se pudo completar el registro debido a la falta de parametros necesiarios";
+    echo "No se pudo completar el registro debido a la falta de parametros necesarios";
 }

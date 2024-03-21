@@ -124,6 +124,7 @@
         document.getElementById('update_visit_reason').value = reason;
         document.getElementById('update_visit_name').value = name;
         document.getElementById('update_visit_lastName').value = lastName;
+        document.getElementById('delete_idVisitante').value = id;
 
         modal.showModal();
     }

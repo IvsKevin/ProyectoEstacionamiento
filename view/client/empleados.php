@@ -135,6 +135,31 @@ $employees = $employee->getEmployee();
 </div>
 </body>
 
+<?php
+// Verifica si el parámetro 'eliminacion' está presente en la URL
+if (isset($_GET['eliminacion'])) {
+    // Recupera el valor del parámetro 'eliminacion'
+    $eliminacion = $_GET['eliminacion'];
+    // Muestra los detalles de la entrada al usuario
+    echo "<dialog id='eliminacionModal' class='modal bg-black-300 text-white'>
+            <div class='modal-box'>
+                <form method='dialog'>
+                    <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
+                </form>
+                <h3 class='font-bold text-lg'>Resultado de la eliminacion del empleado</h3>
+                <div class='modal-action  flex flex-col items-center'>";
+    if ($eliminacion != '') {
+        echo "<p>$eliminacion</p>";
+    }
+    echo "</div>
+            </div>
+        </dialog>";
+?>
+    <script>
+        eliminacionModal.showModal();
+    </script>
+<?php } ?>
+
 <!-- Script para cambiar entre la vista de tabla y tarjetas -->
 <script>
     function toggleView() {

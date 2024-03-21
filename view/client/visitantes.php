@@ -58,14 +58,13 @@ $visits = $visit->getVisit();
                                         <td><?php echo $row['visit_lastName'] ?></td>
                                         <!-- Botones de acciones -->
                                         <td>
-                                            <button class="btn btn-outline btn-info btn-xs" onclick="actualizarVisitante(
+                                            <button class="btn btn-outline btn-success btn-xs" onclick="actualizarVisitante(
                                                 '<?php echo $row['pk_visit']; ?>',
                                                 '<?php echo $row['visit_company']; ?>',
                                                 '<?php echo $row['visit_reason']; ?>',
                                                 '<?php echo $row['visit_name']; ?>',
                                                 '<?php echo $row['visit_lastName']; ?>'
                                             )">Actualizar</button>
-                                            <button class="btn btn-outline btn-error btn-xs" onclick="eliminarVisitante(<?php echo $row['pk_visit']; ?>)">Eliminar</button>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -100,3 +99,28 @@ $visits = $visit->getVisit();
 
 <!-- Incluimos el modal de visitantes -->
 <?php include_once "modals/visitantesModal.php"; ?>
+
+<?php
+// Verifica si el parámetro 'resultado' está presente en la URL
+if (isset($_GET['resultado'])) {
+    // Recupera el valor del parámetro 'resultado'
+    $resultado = $_GET['resultado'];
+    // Muestra los detalles de la entrada al usuario
+    echo "<dialog id='resultadoModal' class='modal bg-black-300 text-white'>
+            <div class='modal-box'>
+                <form method='dialog'>
+                    <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
+                </form>
+                <h3 class='font-bold text-lg'>Resultado de la eliminacion de la visita</h3>
+                <div class='modal-action  flex flex-col items-center'>";
+    if ($resultado != '') {
+        echo "<p>$resultado</p>";
+    }
+    echo "</div>
+            </div>
+        </dialog>";
+?>
+    <script>
+        resultadoModal.showModal();
+    </script>
+<?php }

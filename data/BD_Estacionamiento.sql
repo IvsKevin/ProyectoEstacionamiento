@@ -276,7 +276,9 @@ CREATE TABLE Visit (
     visit_name VARCHAR(30) not null,
     visit_lastName VARCHAR(30),
     fk_client INT,
-    FOREIGN KEY (fk_client) REFERENCES Client(pk_client)
+    fk_status INT,
+    FOREIGN KEY (fk_client) REFERENCES Client(pk_client),
+    FOREIGN KEY (fk_status) REFERENCES General_Status(pk_status)
 );
 
 CREATE TABLE Access_Card (

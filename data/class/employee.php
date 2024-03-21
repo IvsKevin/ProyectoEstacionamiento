@@ -143,7 +143,7 @@
                 echo "algo salio mal";
                 $newID = "error";
             }
-            return $newID;
+            return $newID = "okey";
         }
 
         public function getEmployeeList($client_id) {
