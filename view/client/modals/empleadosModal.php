@@ -18,19 +18,19 @@
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Nombre:
-                        <input name="nombreEmpleado" type="text" class="grow" />
+                        <input name="nombreEmpleado" type="text" class="grow" required />
                     </label>
                 </div>
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Apellido paterno:
-                        <input name="apPaternoEmpleado" type="text" class="grow" />
+                        <input name="apPaternoEmpleado" type="text" class="grow" required />
                     </label>
                 </div>
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Apellido materno:
-                        <input name="apMaternoEmpleado" type="text" class="grow" />
+                        <input name="apMaternoEmpleado" type="text" class="grow" required />
                     </label>
                 </div>
                 <div class="m-2">
@@ -38,8 +38,8 @@
                         <div class="label">
                             <span class="label-text">Rol del empleado</span>
                         </div>
-                        <select class="select select-bordered" name="rolEmpleado">
-                            <option disabled selected>Selecciona un rol</option>
+                        <select class="select select-bordered" name="rolEmpleado" required>
+                            <!-- <option disabled selected>Selecciona un rol</option> -->
                             <option value="1">Gerente de Planta</option>
                             <option value="2">Gerente de produccion</option>
                             <option value="3">Gerente de recursos</option>
@@ -70,7 +70,7 @@
         empleadosLink.classList.add("text-gray-100");
         empleadosLink.classList.add("bg-gris-clarito");
     }
-
+    
     // Llamada a la función para cambiar el color
     cambiarColor();
 
@@ -129,19 +129,19 @@
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Nombre:
-                        <input name="nombreEmpleado" type="text" class="grow" value="${nombre}" />
+                        <input name="nombreEmpleado" type="text" class="grow" value="${nombre}" required/>
                     </label>
                 </div>
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Apellido paterno:
-                        <input name="apPaternoEmpleado" type="text" class="grow" value="${apPaterno}" />
+                        <input name="apPaternoEmpleado" type="text" class="grow" value="${apPaterno}" required/>
                     </label>
                 </div>
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Nombre:
-                        <input name="apMaternoEmpleado" type="text" class="grow" value="${apMaterno}" />
+                        <input name="apMaternoEmpleado" type="text" class="grow" value="${apMaterno}" required/>
                     </label>
                 </div>
                 <div>
@@ -149,19 +149,19 @@
                         <div class="label">
                             <span class="label-text">Rol del empleado</span>
                         </div>
-                        <select class="select select-bordered" name="rolEmpleado">
-                        <option value="1" ${rol === 'Gerente de planta' ? 'selected' : ''}>Gerente de Planta</option>
-                        <option value="2" ${rol === 'Gerente de produccion' ? 'selected' : ''}>Gerente de produccion</option>
-                        <option value="3" ${rol === 'Gerente de recursos' ? 'selected' : ''}>Gerente de recursos</option>
-                        <option value="4" ${rol === 'Secretaria' ? 'selected' : ''}>Secretaria</option>
-                        <option value="5" ${rol === 'Supervisor' ? 'selected' : ''}>Supervisor</option>
-                        <option value="6" ${rol === 'Empleado' ? 'selected' : ''}>Empleado</option>
-                        <option value="7" ${rol === 'Administrador' ? 'selected' : ''}>Administrador</option>
-                        <option value="8" ${rol === 'Recursos Humanos' ? 'selected' : ''}>Recursos HUmanos</option>
-                        <option value="9" ${rol === 'Finanzas' ? 'selected' : ''}>Finanzas</option>
-                        <option value="10" ${rol === 'Mantenimiento' ? 'selected' : ''}>Mantenimiento</option>
-                        <option value="11" ${rol === 'Seguridad' ? 'selected' : ''}>Seguridad</option>
-                        <option value="12" ${rol === 'Maquinado' ? 'selected' : ''}>Maquinado</option>
+                        <select class="select select-bordered" name="rolEmpleado" required>
+                            <option value="1" ${rol === 'Gerente de Planta' ? 'selected' : ''}>Gerente de Planta</option>
+                            <option value="2" ${rol === 'Gerente de produccion' ? 'selected' : ''}>Gerente de producción</option>
+                            <option value="3" ${rol === 'Gerente de recursos' ? 'selected' : ''}>Gerente de recursos</option>
+                            <option value="4" ${rol === 'Secretaria' ? 'selected' : ''}>Secretaria</option>
+                            <option value="5" ${rol === 'Supervisor' ? 'selected' : ''}>Supervisor</option>
+                            <option value="6" ${rol === 'Empleado' ? 'selected' : ''}>Empleado</option>
+                            <option value="7" ${rol === 'Administrador' ? 'selected' : ''}>Administrador</option>
+                            <option value="8" ${rol === 'Recursos Humanos' ? 'selected' : ''}>Recursos Humanos</option>
+                            <option value="9" ${rol === 'Finanzas' ? 'selected' : ''}>Finanzas</option>
+                            <option value="10" ${rol === 'Mantenimiento' ? 'selected' : ''}>Mantenimiento</option>
+                            <option value="11" ${rol === 'Seguridad' ? 'selected' : ''}>Seguridad</option>
+                            <option value="12" ${rol === 'Maquinado' ? 'selected' : ''}>Maquinado</option>
                         </select>
                     </label>
                 </div>
