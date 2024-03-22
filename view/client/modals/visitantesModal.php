@@ -9,7 +9,7 @@
             <form method="post" action="../../app/client/visitantes/addVisita.php">
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
-                        Nombre de la empresa visitada:
+                        Nombre de la empresa que visita:
                         <input name="visit_company" type="text" class="grow" />
                     </label>
                 </div>

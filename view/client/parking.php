@@ -66,7 +66,7 @@ $myEspacios = new Espacios();
                                             <p class="text-gray-300">Capacidad: <?php echo $row['parking_capacity']; ?></p>
                                             <p class="text-gray-300">Estado: <?php echo $row['status_name']; ?></p>
                                         </div>
-                                        <div class="p-4 bg-gris-oscurito">
+                                        <div class="p-4 bg-gray-800">
                                             <a href='cajones.php?idParking=<?php echo $row["pk_parking"]; ?>' class="w-full btn btn-outline btn-info btn-md rounded-md">Ver parking</a>
                                             <button class="block w-full mt-4 btn btn-outline btn-success btn-sm" onclick="actualizarParking(
                                                 '<?php echo $row['pk_parking']; ?>',

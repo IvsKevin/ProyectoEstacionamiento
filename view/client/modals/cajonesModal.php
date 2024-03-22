@@ -1,4 +1,4 @@
-<!--===============MODAL PARA AGREGAR EMPLEADO========================================-->
+<!--===============MODAL PARA AGREGAR CAJONES========================================-->
 <dialog id="agregarCajonesModal" class="modal bg-black-300 text-white">
     <div class="modal-box">
         <form method="dialog">
@@ -20,92 +20,160 @@
         </div>
     </div>
 </dialog>
-<!--==============================TERMINA EL MODAL PARA AGREGAR EMPLEAODS================================-->
+<!--==============================TERMINA EL MODAL PARA AGREGAR CAJONES================================-->
+<script>
+    function agregarCajones() {
+        agregarCajonesModal.showModal();
+    }
 
-<!--============================== MODAL PARA ACTUALIZAR EMPLEAODS=======================================-->
-<dialog id="actualizarEmpleadoModal" class="modal bg-black-300 text-white">
-    <div class="modal-box">
+    function cambiarColor() {
+        var parkingLink = document.getElementById("parkingLink");
+        var parkingLink = document.getElementById("parkingContainer");
+        parkingLink.classList.add("text-gray-100");
+        parkingLink.classList.add("bg-gris-clarito");
+    }
 
-    </div>
+    // Llamada a la función para cambiar el color
+    cambiarColor();
+</script>
+
+<?php
+// Verifica si el parámetro 'resultado' está presente en la URL
+if (isset($_GET['limite'])) {
+    // Recupera el valor del parámetro 'resultado'
+    $limite = $_GET['limite'];
+    // Muestra los detalles de la entrada al usuario
+    echo "<dialog id='resultadoLimiteModal' class='modal bg-black-300 text-white'>
+            <div class='modal-box'>
+                <form method='dialog'>
+                    <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
+                </form>
+                <h3 class='font-bold text-lg'>Añadir cajón mensaje</h3>
+                <div class='modal-action  flex flex-col items-center'>";
+    if ($limite != '') {
+        echo "<p>$limite</p>";
+    }
+    echo "</div>
+            </div>
+        </dialog>";
+?>
+    <script>
+        resultadoLimiteModal.showModal();
+    </script>
+<?php }
+// Verifica si el parámetro 'resultado' está presente en la URL
+if (isset($_GET['errorEliminacion'])) {
+    // Recupera el valor del parámetro 'resultado'
+    $errorEliminacion = $_GET['errorEliminacion'];
+    // Muestra los detalles de la entrada al usuario
+    echo "<dialog id='resultadoEliminacion' class='modal bg-black-300 text-white'>
+            <div class='modal-box'>
+                <form method='dialog'>
+                    <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
+                </form>
+                <h3 class='font-bold text-lg'>Eliminar cajón mensaje</h3>
+                <div class='modal-action  flex flex-col items-center'>";
+    if ($errorEliminacion != '') {
+        echo "<p>$errorEliminacion</p>";
+    }
+    echo "</div>
+            </div>
+        </dialog>";
+?>
+    <script>
+        resultadoEliminacion.showModal();
+    </script>
+<?php } ?>
+<!--==============================SCRIPTS PARA VER EL EMPLEADO EN EL CAJON OCUPANTE================================-->
+<?php if (isset($_GET['idEmpleado'])) { ?>
+    <?php
+    include_once(__DIR__ . "/../../../data/class/employee.php");
+    $empleado = new Employee();
+    // Suponiendo que $idEmpleado está definido o se pasa como parámetro a esta página
+    $idEmpleado = $_GET['idEmpleado']; // Suponiendo que se pasa como parámetro GET
+    $consulta = $empleado->getEmployeeById($idEmpleado);
+    if ($consulta) {
+        $nombre = $consulta['employee_name']; // Ajusta esto según la estructura de tu tabla de empleados
+        $apellidoPaterno = $consulta['employee_lastNameP']; // Ajusta esto según la estructura de tu tabla de empleados
+        $apellidoMaterno = $consulta['employee_lastNameM']; // Ajusta esto según la estructura de tu tabla de empleados
+    }
+    ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            verEmpleado();
+        });
+    </script>
+<?php } ?>
+
+<dialog id="verEmpleadoModal" class="modal bg-black-300 text-white">
+    <div class="modal-box"></div>
 </dialog>
 
 <script>
-    function actualizarEmpleado(id, nombre, apPaterno, apMaterno, rol) {
-        var modal = document.getElementById('actualizarEmpleadoModal');
+    function verEmpleado() {
+        var modal = document.getElementById('verEmpleadoModal');
         var modalContent = modal.querySelector('.modal-box');
 
         modalContent.innerHTML = `
-        <form method="dialog">
-            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-        </form>
-        <h3 class="font-bold text-lg">Actualizar empleado</h3>
-        <div class="modal-action flex flex-col justify-content">
-            <form class="flex flex-col items-center" method="post" action="../../app/client/empleados/editEmployee.php">
-                <div>
-                    <input name="idEmpleado" type="number" class="grow hidden" value="${id}" />
-                </div>
-                <div class="avatar flex justify-center items-center relative">
-                    <input type="file" id="imagenEmpleado" class="hidden" accept="image/*" onchange="mostrarImagen(this)">
-                    <label for="imagenEmpleado" class="cursor-pointer">
-                        <div class="mask mask-squircle w-15 h-15 bg-white text-black relative">
-                            <img id="previewImagen" class="w-full h-full object-cover" src="" alt="Foto del empleado" />
-                        </div>
-                    </label>
-                </div>
-                <div class="m-2">
-                    <label class="input input-bordered flex items-center gap-2">
-                        Nombre:
-                        <input name="nombreEmpleado" type="text" class="grow" value="${nombre}" />
-                    </label>
-                </div>
-                <div class="m-2">
-                    <label class="input input-bordered flex items-center gap-2">
-                        Apellido paterno:
-                        <input name="apPaternoEmpleado" type="text" class="grow" value="${apPaterno}" />
-                    </label>
-                </div>
-                <div class="m-2">
-                    <label class="input input-bordered flex items-center gap-2">
-                        Nombre:
-                        <input name="apMaternoEmpleado" type="text" class="grow" value="${apMaterno}" />
-                    </label>
-                </div>
-                <div>
-                    <label class="form-control w-full max-w-xs">
-                        <div class="label">
-                            <span class="label-text">Rol del empleado</span>
-                        </div>
-                        <select class="select select-bordered" name="rolEmpleado">
-                        <option value="1" ${rol === 'Gerente de planta' ? 'selected' : ''}>Gerente de Planta</option>
-                        <option value="2" ${rol === 'Gerente de produccion' ? 'selected' : ''}>Gerente de produccion</option>
-                        <option value="3" ${rol === 'Gerente de recursos' ? 'selected' : ''}>Gerente de recursos</option>
-                        <option value="4" ${rol === 'Secretaria' ? 'selected' : ''}>Secretaria</option>
-                        <option value="5" ${rol === 'Supervisor' ? 'selected' : ''}>Supervisor</option>
-                        <option value="6" ${rol === 'Empleado' ? 'selected' : ''}>Empleado</option>
-                        <option value="7" ${rol === 'Administrador' ? 'selected' : ''}>Administrador</option>
-                        <option value="8" ${rol === 'Recursos Humanos' ? 'selected' : ''}>Recursos HUmanos</option>
-                        <option value="9" ${rol === 'Finanzas' ? 'selected' : ''}>Finanzas</option>
-                        <option value="10" ${rol === 'Mantenimiento' ? 'selected' : ''}>Mantenimiento</option>
-                        <option value="11" ${rol === 'Seguridad' ? 'selected' : ''}>Seguridad</option>
-                        <option value="12" ${rol === 'Maquinado' ? 'selected' : ''}>Maquinado</option>
-                        </select>
-                    </label>
-                </div>
-                <div>
-                    <input type="submit" value="Actualizar datos" class="cursor-pointer mt-5 btn btn-outline btn-info p-2 pl-4 pr-4">
-                </div>
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
+            <h3 class="font-bold text-lg">Datos del empleado ocupante</h3>
+            <div class="modal-action  flex flex-col items-center">
+                <section>
+                    <p>Nombre del empleado: <?php echo $nombre . ' ' . $apellidoPaterno . ' ' . $apellidoMaterno; ?></p>
+                </section>
+            </div>
+        `;
+        verEmpleadoModal.showModal();
+    }
+</script>
+<!--==============================SCRIPTS PARA VER LA VISITA EN EL CAJON OCUPANTE================================-->
+<?php if (isset($_GET['idVisita'])) { ?>
+    <?php
+    include_once(__DIR__ . "/../../../data/class/visit.php");
+    $visita = new Visit();
+    // Suponiendo que $idVisita está definido o se pasa como parámetro a esta página
+    $idVisita = $_GET['idVisita']; // Suponiendo que se pasa como parámetro GET
+    $consultaVisita = $visita->getVisitById($idVisita);
+    if ($consultaVisita) {
+        $visitCompany = $consultaVisita['visit_company']; // Ajusta esto según la estructura de tu tabla de visitas
+        $visitReason = $consultaVisita['visit_reason']; // Ajusta esto según la estructura de tu tabla de visitas
+        $visitName = $consultaVisita['visit_name']; // Ajusta esto según la estructura de tu tabla de visitas
+        $visitLastName = $consultaVisita['visit_lastName']; // Ajusta esto según la estructura de tu tabla de visitas
+        // Otros campos de la visita que quieras mostrar
+    }
+    ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            verVisita();
+        });
+    </script>
+<?php } ?>
 
-            <form class="flex flex-col items-center mt-8" method="post" action="../../app/client/empleados/deleteEmployee.php">
-                <div>
-                    <input name="idEmpleado" type="number" class="grow hidden" value="${id}" />
-                </div>
-                <div class="w-full flex justify-end">
-                    <input type="submit" value="Eliminar empleado" class="cursor-pointer mt-5 btn btn-outline btn-error p-0 pl-4 pr-4">
-                </div>
+<dialog id="verVisitaModal" class="modal bg-black-300 text-white">
+    <div class="modal-box"></div>
+</dialog>
+
+<script>
+    function verVisita() {
+        var modal = document.getElementById('verVisitaModal');
+        var modalContent = modal.querySelector('.modal-box');
+
+        modalContent.innerHTML = `
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
-        </div>`;
-
-        actualizarEmpleadoModal.showModal();
+            <h3 class="font-bold text-lg">Datos de la visita ocupante</h3>
+            <div class="modal-action  flex flex-col items-center">
+                <section>
+                    <p>Compania: <?php echo $visitCompany; ?></p>
+                    <p>Razon de visita: <?php echo $visitReason; ?></p>
+                    <p>Nombre de la visita: <?php echo $visitName . ' ' . $visitLastName; ?></p>
+                    <p>Datos del vehiculo: Sin carro asociado </p>
+                </section>
+            </div>
+        `;
+        verVisitaModal.showModal();
     }
 </script>
