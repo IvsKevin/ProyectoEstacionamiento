@@ -281,6 +281,11 @@ CREATE TABLE Visit (
     FOREIGN KEY (fk_status) REFERENCES General_Status(pk_status)
 );
 
+ALTER TABLE Visit
+ADD COLUMN fk_status INT,
+ADD CONSTRAINT fk_status FOREIGN KEY (fk_status) REFERENCES General_Status(pk_status);
+
+
 CREATE TABLE Access_Card (
     pk_card INT AUTO_INCREMENT PRIMARY KEY,
     QR_code VARCHAR(12),
