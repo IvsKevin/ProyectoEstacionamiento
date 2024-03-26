@@ -19,15 +19,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['parking_id']) && isset
     $parkingHandler -> parking_capacity = $capacity;
     
     // Lógica para actualizar el estacionamiento
-    if ($parkingHandler->updateParking($parkingID, $location, $status)) {
+// Verificar si el número de espacios disponibles no supera la capacidad
+if ($espaciosDisponibles <= $capacity) {
+    if ($parkingHandler->updateParking($parkingID, $location, $capacity, $status)) {
         echo "Estacionamiento actualizado correctamente";
         header('Location: ../../../view/client/parking.php');
     } else {
         echo "Error al actualizar estacionamiento";
-        header('Location:  ../../../view/client/parking.php');
+        $errorElimiacion = 'No se puede actualizar la capacidad a un valor menor que los espacios ocupados.';
+    header('Location: ../../../view/client/parking.php?errorEliminacion=' . urlencode($errorElimiacion) . '');
     }
 } else {
-    header('Location:  ../../../view/client/parking.php');
+    echo "Error: El número de espacios disponibles supera la capacidad del estacionamiento.";
+}
+
 }
 
 // if (isset($_GET['id'])) {

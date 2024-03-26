@@ -106,26 +106,66 @@ class Parking extends conexion {
     }
     
 
-    public function updateParking($parkingID, $location, $status) {
-        // Verifica que el estado sea válido (1 para disponible, 2 para lleno)
-        // if ($status != 1 && $status != 2) {
-        //     return false;
-        // }
-    
+    public function updateParking($parkingID, $location, $capacity, $status) {
         // Asegurarse de que la conexión está establecida
         $this->connect();
-    
+        
+        // Obtener la capacidad actual del estacionamiento para compararla después
+        $oldCapacity = $this->getParkingDetails($parkingID)['parking_capacity'];
+        
+        // Obtener el número de espacios ocupados en el estacionamiento
+        $occupiedSpacesCount = $this->getOccupiedSpacesCount($parkingID);
+        
+        // Verificar si la nueva capacidad es menor que el número de espacios ocupados
+        if ($capacity < $occupiedSpacesCount) {
+            return false; // Devolver false si la nueva capacidad es insuficiente
+        }
+        
         // Realizar la actualización sin sentencia preparada
-        $sql = "UPDATE Parking SET parking_number = $this->parking_number, parking_capacity = $this->parking_capacity, parking_location = '$location', fk_status = $status WHERE pk_parking = $parkingID";
+        $sql = "UPDATE Parking SET parking_number = $this->parking_number, parking_capacity = $capacity, parking_location = '$location', fk_status = $status WHERE pk_parking = $parkingID";
         $this->execquery($sql);
-    
+        
         // Verificar si la actualización fue exitosa
         if ($this->getConnection()->affected_rows > 0) {
+            // Si la capacidad ha cambiado
+            if ($oldCapacity != $capacity) {
+                // Obtener los números de espacio actuales del estacionamiento
+                $existingSpacesResult = $this->execquery("SELECT spaces_number FROM Parking_Spaces WHERE fk_parking = $parkingID");
+                $existingSpaces = [];
+                while ($row = $existingSpacesResult->fetch_assoc()) {
+                    $existingSpaces[] = $row['spaces_number'];
+                }
+                
+                // Eliminar los espacios que exceden la nueva capacidad
+                if ($capacity < $oldCapacity) {
+                    $deleteCount = $oldCapacity - $capacity;
+                    $this->execquery("DELETE FROM Parking_Spaces WHERE fk_parking = $parkingID AND spaces_number > $capacity LIMIT $deleteCount");
+                }
+                
+                // Agregar nuevos espacios que no existan previamente
+                for ($i = 1; $i <= $capacity; $i++) {
+                    // Verificar si el espacio ya existe
+                    if (!in_array($i, $existingSpaces)) {
+                        // Insertar el espacio si no existe
+                        $this->execquery("INSERT INTO Parking_Spaces (spaces_number, fk_status, fk_parking) VALUES ($i, 1, $parkingID)");
+                    }
+                }
+            }
             return true;
         } else {
             return false;
         }
     }
+    
+    // Función para obtener el número de espacios ocupados en un estacionamiento
+    private function getOccupiedSpacesCount($parkingID) {
+        $occupiedSpacesResult = $this->execquery("SELECT COUNT(*) AS count FROM Parking_Spaces WHERE fk_parking = $parkingID AND fk_status = 2");
+        $row = $occupiedSpacesResult->fetch_assoc();
+        return $row['count'];
+    }
+    
+    
+    
     
 }
 ?>

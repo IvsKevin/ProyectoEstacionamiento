@@ -144,19 +144,36 @@
         }
     }
 
-    public function crearEspacio($space_number) {
-        $query = "INSERT INTO parking_spaces (spaces_number, fk_status, fk_parking) 
-        VALUES ($space_number, 1, $this->fk_parking)";
-        $result = $this->connect();
-        if($result) {
-            $newID = $this->execinsert($query);
-            echo "Ha funcionado el registro del pago"; 
-        } else {
-            echo "algo salio mal";
-            $newID = "error";
+    public function crearEspacio() {
+        // Obtener la capacidad actual del estacionamiento
+        $capacidad = $this->getCapacidad();
+    
+        // Obtener el número máximo de espacio actualmente utilizado
+        $maxSpaceNumberResult = $this->execquery("SELECT MAX(spaces_number) AS max_space_number FROM Parking_Spaces WHERE fk_parking = $this->fk_parking");
+        $maxSpaceNumberRow = $maxSpaceNumberResult->fetch_assoc();
+        $maxSpaceNumber = $maxSpaceNumberRow['max_space_number'];
+    
+        // Comprobar si el estacionamiento está lleno
+        if ($maxSpaceNumber >= $capacidad) {
+            echo "El estacionamiento está lleno, no se pueden agregar más espacios.";
+            return false;
         }
-        return $newID;
+    
+        // Generar un nuevo número de espacio único
+        $newSpaceNumber = $maxSpaceNumber + 1;
+    
+        // Insertar el nuevo espacio en la base de datos
+        $query = "INSERT INTO parking_spaces (spaces_number, fk_status, fk_parking) VALUES ($newSpaceNumber, 1, $this->fk_parking)";
+        $result = $this->execquery($query);
+        if ($result) {
+            echo "Espacio creado exitosamente.";
+            return true;
+        } else {
+            echo "Ha ocurrido un error al crear el espacio.";
+            return false;
+        }
     }
+    
 
     public function updateEspacio($pk_spaces) {
         $query = "UPDATE Parking_Spaces SET fk_status = $this->fk_status WHERE pk_spaces = $pk_spaces";
