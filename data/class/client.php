@@ -50,7 +50,19 @@
 
         //METODOS
 
-        //SELECT 
+        //SELECT
+        public function getAllClientsC(){
+            $result = $this->connect();
+            if ($result == true){
+                //echo "vammos bien";
+                $dataset = $this->execquery("SELECT * FROM Client inner join user on client.fk_user = user.pk_user WHERE user.category = 'C'");
+            }
+            else{
+                echo "algo fallo";
+                $dataset = "error";
+            }
+            return $dataset;
+        }
         public function getAllClients(){
             $result = $this->connect();
             if ($result == true){

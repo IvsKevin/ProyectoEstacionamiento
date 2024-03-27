@@ -42,19 +42,83 @@
 
         //METODOS
 
+        public function sumBasicPayment(){
+            $result = $this->connect();
+            if($result){
+                $dataset = $this->execquery("SELECT COUNT(pk_payment) AS basic
+                FROM payment
+                where payment_description = 'Licencia Basica'");
+                if ($basic = mysqli_fetch_assoc($dataset)) {
+                    return $basic['basic']; // Corregido aquí
+                } else {
+                    return 0;
+                }
+            }else{
+                echo "algo fallo";
+                return 0;
+            }
+        }
+
+        public function sumProPayment(){
+            $result = $this->connect();
+            if($result){
+                $dataset = $this->execquery("SELECT COUNT(pk_payment) AS pro
+                FROM payment
+                where payment_description = 'Licencia Pro'");
+                if ($basic = mysqli_fetch_assoc($dataset)) {
+                    return $basic['pro']; // Corregido aquí
+                } else {
+                    return 0;
+                }
+            }else{
+                echo "algo fallo";
+                return 0;
+            }
+        }
+        public function sumRegularPayment(){
+            $result = $this->connect();
+            if($result){
+                $dataset = $this->execquery("SELECT COUNT(pk_payment) AS regular
+                FROM payment
+                where payment_description = 'Licencia Regular'");
+                if ($basic = mysqli_fetch_assoc($dataset)) {
+                    return $basic['regular']; // Corregido aquí
+                } else {
+                    return 0;
+                }
+            }else{
+                echo "algo fallo";
+                return 0;
+            }
+        }
+
+        public function sumPayment(){
+            $result = $this->connect();
+            if($result){
+                $dataset = $this->execquery("SELECT SUM(payment_amount) AS Total FROM payment");
+                if ($row = mysqli_fetch_assoc($dataset)) {
+                    return $row['Total'];
+                } else {
+                    return 0;
+                }
+            }else{
+                echo "algo fallo";
+                return 0;
+            }
+        }
         //SELECT 
         public function getAllPayments(){
             $result = $this->connect();
             if ($result == true){
                 //echo "vammos bien";
-                $dataset = $this->execquery("SELECT * FROM Payment");
+                $dataset = $this->execquery("SELECT * FROM Payment INNER JOIN client ON payment.pk_payment = client.pk_client INNER JOIN payment_method ON payment.pk_payment = payment_method.pk_method");
             }
             else{
                 echo "algo fallo";
                 $dataset = "error";
             }
             return $dataset;
-        } 
+        }
         
         //INSERT
         public function setPayment() {
@@ -71,5 +135,4 @@
             return $newID;
         }
 
-    } //Fin de la clase
-?>
+    }
