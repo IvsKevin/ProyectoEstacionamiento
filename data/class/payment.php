@@ -42,6 +42,8 @@
 
         //METODOS
 
+        
+
         public function sumBasicPayment(){
             $result = $this->connect();
             if($result){
