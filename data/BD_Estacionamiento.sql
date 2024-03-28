@@ -281,9 +281,6 @@ CREATE TABLE Visit (
     FOREIGN KEY (fk_status) REFERENCES General_Status(pk_status)
 );
 
-ALTER TABLE Visit
-ADD COLUMN fk_status INT,
-ADD CONSTRAINT fk_status FOREIGN KEY (fk_status) REFERENCES General_Status(pk_status);
 
 
 CREATE TABLE Access_Card (

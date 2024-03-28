@@ -137,4 +137,25 @@
             return $newID;
         }
 
+        public function getEarningsByMonth() {
+            $result = $this->connect();
+            if ($result) {
+                $query = "SELECT MONTH(payment_date) AS month, YEAR(payment_date) AS year, SUM(payment_amount) AS total_earnings FROM Payment GROUP BY YEAR(payment_date), MONTH(payment_date) ORDER BY year ASC, month ASC";
+                $dataset = $this->execquery($query);
+                if ($dataset) {
+                    $earnings = array();
+                    while ($row = mysqli_fetch_assoc($dataset)) {
+                        $earnings[] = $row;
+                    }
+                    return $earnings;
+                } else {
+                    echo "Error al ejecutar la consulta";
+                    return array();
+                }
+            } else {
+                echo "Error al conectar con la base de datos";
+                return array();
+            }
+        }
+        
     }

@@ -1,8 +1,4 @@
 <?php include_once "navbarAdmin.php"; ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,60 +7,97 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100">
-    <div id="dashboard-content" class="container mx-auto p-4 mt-16" style="margin-left: 250px;">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="bg-white p-4 rounded shadow">
-                <canvas class="chart w-full h-64" id="membershipChart"></canvas>
+<body>
+    <div class="main-content mt-navbarAdmin">
+        <div class="relative md:pt-32 pb-32 pt-12">
+            <div class="px-4 md:px-10 mx-auto w-full lg:w-3/4 xl:w-2/3">
+                <div class="navbar rounded-box">
+                    <div class="flex-1 px-2 lg:flex-none">
+                        <!-- Aquí puedes agregar contenido adicional del navbar si es necesario -->
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <!-- Contenido del dashboard -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <canvas class="chart w-full h-64" id="membershipChart"></canvas>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <canvas class="chart w-full h-64" id="clientChart"></canvas>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <canvas class="chart w-full h-64" id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="bg-white p-4 rounded shadow">
-                <canvas class="chart w-full h-64" id="clientChart"></canvas>
-            </div>
-            <div class="bg-white p-4 rounded shadow">
-                <canvas class="chart w-full h-64" id="revenueChart"></canvas>
-            </div>
-        </div>
-
-        <div class="mt-8">
-            <h2 class="text-xl font-bold">Historial</h2>
-            <table class="mt-4 w-full table-fixed">
-                <thead>
-                    <tr>
-                        <th class="w-1/3">Fecha</th>
-                        <th class="w-1/3">Descripción</th>
-                        <th class="w-1/3">Monto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border px-4 py-2">2024-01-01</td>
-                        <td class="border px-4 py-2">Licencia básica</td>
-                        <td class="border px-4 py-2">$100</td>
-                    </tr>
-                    <tr>
-                        <td class="border px-4 py-2">2024-01-05</td>
-                        <td class="border px-4 py-2">Licencia pro</td>
-                        <td class="border px-4 py-2">$150</td>
-                    </tr>
-                    <tr>
-                        <td class="border px-4 py-2">2024-01-10</td>
-                        <td class="border px-4 py-2">Licencia regular</td>
-                        <td class="border px-4 py-2">$80</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 
     <script>
-        var membershipData = { labels: ['Básica', 'Pro', 'Regular'], datasets: [{ data: [50, 30, 20], backgroundColor: ['blue', 'green', 'orange'] }] };
-        var clientData = { labels: ['Nuevos', 'Recurrentes'], datasets: [{ data: [70, 30], backgroundColor: ['blue', 'green'] }] };
-        var revenueData = { labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'], datasets: [{ label: 'Ganancias', data: [500, 600, 700, 800, 900, 1000], backgroundColor: 'blue' }] };
+        <?php
+        // Importamos las clases de Client y Payment
+        include_once(__DIR__ . "/../../data/class/client.php");
+        include_once(__DIR__ . "/../../data/class/payment.php");
 
-        var membershipChart = new Chart(document.getElementById('membershipChart').getContext('2d'), { type: 'pie', data: membershipData });
-        var clientChart = new Chart(document.getElementById('clientChart').getContext('2d'), { type: 'doughnut', data: clientData });
-        var revenueChart = new Chart(document.getElementById('revenueChart').getContext('2d'), { type: 'line', data: revenueData });
+        // Creamos instancias de las clases
+        $client = new Client();
+        $payment = new Payment();
+
+        // Obtenemos los datos para las gráficas
+        $basicCount = $payment->sumBasicPayment();
+        $proCount = $payment->sumProPayment();
+        $regularCount = $payment->sumRegularPayment();
+
+        // Obtenemos el total de clientes
+        $totalClients = $client->countTotalClients();
+
+        // Obtenemos los datos de ganancias por mes
+        $earningsByMonth = $payment->getEarningsByMonth();
+        ?>
+
+        // Datos para la gráfica de membresías
+        var membershipData = {
+            labels: ['Básica', 'Pro', 'Regular'],
+            datasets: [{
+                data: [<?php echo $basicCount; ?>, <?php echo $proCount; ?>, <?php echo $regularCount; ?>],
+                backgroundColor: ['blue', 'green', 'orange']
+            }]
+        };
+
+        // Datos para la gráfica de clientes
+        var clientData = {
+            labels: ['Clientes nuevos'],
+            datasets: [{
+                data: [<?php echo $totalClients; ?>, 0], // Usamos el total de clientes como primer dato
+                backgroundColor: ['blue']
+            }]
+        };
+
+        // Datos para la gráfica de ingresos
+        var revenueData = {
+            labels: [<?php foreach ($earningsByMonth as $earnings) { echo "'" . $earnings['month'] . "/" . $earnings['year'] . "', "; } ?>],
+            datasets: [{
+                label: 'Ganancias',
+                data: [<?php foreach ($earningsByMonth as $earnings) { echo $earnings['total_earnings'] . ", "; } ?>],
+                backgroundColor: 'blue'
+            }]
+        };
+
+        // Creación de las gráficas
+        var membershipChart = new Chart(document.getElementById('membershipChart').getContext('2d'), {
+            type: 'pie',
+            data: membershipData
+        });
+
+        var clientChart = new Chart(document.getElementById('clientChart').getContext('2d'), {
+            type: 'doughnut',
+            data: clientData
+        });
+
+        var revenueChart = new Chart(document.getElementById('revenueChart').getContext('2d'), {
+            type: 'line',
+            data: revenueData
+        });
     </script>
 </body>
-
-</html>
