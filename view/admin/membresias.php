@@ -51,3 +51,14 @@ $resultadoLicenciasRegulares = $tuObjeto->sumRegularPayment();
         </div>
     </div>
 <?php } ?>
+<script>
+    function cambiarColor() {
+        var membresiasLink = document.getElementById("membresiasLink");
+        var membresiasLink = document.getElementById("membresiasContainer");
+        membresiasLink.classList.add("text-gray-100");
+        membresiasLink.classList.add("bg-gris-clarito");
+    }
+
+    // Llamada a la función para cambiar el color
+    cambiarColor();
+</script>

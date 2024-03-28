@@ -47,3 +47,15 @@ $payments = $payment->getAllPayments();
         </div>
     </div>
 <?php } ?>
+<script>
+    function cambiarColor() {
+        var historialLink = document.getElementById("historialLink");
+        var historialLink = document.getElementById("historialContainer");
+        historialLink.classList.add("text-gray-100");
+        historialLink.classList.add("bg-gris-clarito");
+    }
+
+    // Llamada a la función para cambiar el color
+    cambiarColor();
+</script>
+

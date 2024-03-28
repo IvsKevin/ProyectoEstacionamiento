@@ -12,9 +12,9 @@ $clientes = $client->getAllClientsC();
         <div class="relative md:pt-32 pb-32 pt-12">
             <div class="px-4 md:px-10 mx-auto w-full lg:w-3/4 xl:w-2/3">
                 <div class="navbar rounded-box">
-                    <div class="flex-1 px-2 lg:flex-none">
+                    <!-- <div class="flex-1 px-2 lg:flex-none">
                         <button class="btn h-8 min-h-8 btn-outline btn-info" onclick="agregarCliente()"> + Añadir cliente</button>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="overflow-x-auto">
                     <div class="table-wrapper">
@@ -60,3 +60,14 @@ $clientes = $client->getAllClientsC();
         </div>
     </div>
 <?php } ?>
+<script>
+    function cambiarColor() {
+        var clientLink = document.getElementById("clientLink");
+        var clientLink = document.getElementById("clientContainer");
+        clientLink.classList.add("text-gray-100");
+        clientLink.classList.add("bg-gris-clarito");
+    }
+
+    // Llamada a la función para cambiar el color
+    cambiarColor();
+</script>

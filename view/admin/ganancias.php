@@ -64,3 +64,14 @@ $totalAmount = $sum->sumPayment();
         </div>
     </div>
 <?php } ?>
+<script>
+    function cambiarColor() {
+        var gananciasLink = document.getElementById("gananciasLink");
+        var gananciasLink = document.getElementById("gananciasContainer");
+        gananciasLink.classList.add("text-gray-100");
+        gananciasLink.classList.add("bg-gris-clarito");
+    }
+
+    // Llamada a la función para cambiar el color
+    cambiarColor();
+</script>

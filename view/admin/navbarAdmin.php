@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <?php include_once(__DIR__ . '/../../app/session.php'); ?>
-<?php if(!isset($_SESSION['client_id'])) {
+<?php if (!isset($_SESSION['client_id'])) {
   header('Location:../../index.php');
-}?>
+} ?>
 
 
 <head>
@@ -12,16 +12,16 @@
   <meta name="theme-color" content="#000000" />
   <link rel="stylesheet" href="../../css/output.css">
   <title>Dashboard | Parking Manager</title>
-  
+
 </head>
 <style>
-    /* Añade estilos CSS adicionales aquí si es necesario */
-    .main-content {
-      margin-left: 250px; /* Ajusta este valor según sea necesario para evitar superposiciones */
-    }
-    
-  </style>
-  
+  /* Añade estilos CSS adicionales aquí si es necesario */
+  .main-content {
+    margin-left: 250px;
+    /* Ajusta este valor según sea necesario para evitar superposiciones */
+  }
+</style>
+
 
 <body class="bg-gris-clarito antialiased">
   <div id="root">
@@ -36,24 +36,24 @@
 
         <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden" id="example-collapse-sidebar">
           <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+            <li id="dashboardContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
               <a href="dashboard.php" id="dashboardLink" class="hover:text-gray-100 text-xs uppercase py-3 font-bold block"><i class="fas fa-tv opacity-75 mr-2 text-sm"></i>
                 Dashboard</a>
             </li>
-            <li id="empleadosContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="clientes.php" id="empleadosLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
+            <li id="clientContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="clientes.php" id="clientLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Clientes</a>
             </li>
-            <li id="tarjetasContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="ganancias.php" id="tarjetasLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
+            <li id="gananciasContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="ganancias.php" id="gananciasLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Ganancias</a>
             </li>
-            <li id="visitantesContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="historial.php" id="visitantesLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
+            <li id="historialContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="historial.php" id="historialLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Historial</a>
             </li>
-            <li id="historialContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="membresias.php" id="historialLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
+            <li id="membresiasContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="membresias.php" id="membresiasLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Membresias</a>
             </li>
           </ul>
@@ -62,13 +62,13 @@
             Settings
           </h6>
           <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"><i class="fas fa-paint-brush mr-2 text-blueGray-400 text-base"></i>
+            <li id="configuracionContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="configuracion.php" id="configuracionLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Configuracion</a>
             </li>
             <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
               <?php include_once "../components/modals.php"; ?>
-              <button onclick="cerrarSesion()" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"><i class="fas fa-paint-brush mr-2 text-blueGray-400 text-base"></i>
+              <button onclick="cerrarSesion()" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block w-full text-left"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Logout</button>
             </li>
           </ul>
@@ -111,6 +111,7 @@
           </ul>
         </div>
       </nav>
-  </div>
+    </div>
 </body>
+
 </html>

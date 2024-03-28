@@ -1,4 +1,5 @@
 <?php include_once "navbarAdmin.php"; ?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,10 +77,14 @@
 
         // Datos para la gráfica de ingresos
         var revenueData = {
-            labels: [<?php foreach ($earningsByMonth as $earnings) { echo "'" . $earnings['month'] . "/" . $earnings['year'] . "', "; } ?>],
+            labels: [<?php foreach ($earningsByMonth as $earnings) {
+                            echo "'" . $earnings['month'] . "/" . $earnings['year'] . "', ";
+                        } ?>],
             datasets: [{
                 label: 'Ganancias',
-                data: [<?php foreach ($earningsByMonth as $earnings) { echo $earnings['total_earnings'] . ", "; } ?>],
+                data: [<?php foreach ($earningsByMonth as $earnings) {
+                            echo $earnings['total_earnings'] . ", ";
+                        } ?>],
                 backgroundColor: 'blue'
             }]
         };
@@ -99,5 +104,15 @@
             type: 'line',
             data: revenueData
         });
+
+        function cambiarColor() {
+            var dashboardLink = document.getElementById("dashboardLink");
+            var dashboardLink = document.getElementById("dashboardContainer");
+            dashboardLink.classList.add("text-gray-100");
+            dashboardLink.classList.add("bg-gris-clarito");
+        }
+
+        // Llamada a la función para cambiar el color
+        cambiarColor();
     </script>
 </body>
