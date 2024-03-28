@@ -12,7 +12,7 @@ Notification.requestPermission().then(permission => {
 });
 
 setTimeout(function() {
-    window.location.href = '../view/client/empleados.php';
+    window.location.href = '../view/client/parking.php';
 }, 2); // espera 5 segundos antes de redirigir
 
 
