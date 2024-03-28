@@ -54,11 +54,14 @@
 
         // Obtenemos los datos de ganancias por mes
         $earningsByMonth = $payment->getEarningsByMonth();
+
+        // Obtenemos las ganancias totales
+        $totalEarnings = $payment->sumPayment();
         ?>
 
         // Datos para la gráfica de membresías
         var membershipData = {
-            labels: ['Básica', 'Pro', 'Regular'],
+            labels: ['Básica (<?php echo $basicCount; ?>)', 'Pro (<?php echo $proCount; ?>)', 'Regular (<?php echo $regularCount; ?>)'],
             datasets: [{
                 data: [<?php echo $basicCount; ?>, <?php echo $proCount; ?>, <?php echo $regularCount; ?>],
                 backgroundColor: ['blue', 'green', 'orange']
@@ -67,7 +70,7 @@
 
         // Datos para la gráfica de clientes
         var clientData = {
-            labels: ['Clientes nuevos'],
+            labels: ['Clientes nuevos (<?php echo $totalClients; ?>)'],
             datasets: [{
                 data: [<?php echo $totalClients; ?>, 0], // Usamos el total de clientes como primer dato
                 backgroundColor: ['blue']
@@ -78,7 +81,7 @@
         var revenueData = {
             labels: [<?php foreach ($earningsByMonth as $earnings) { echo "'" . $earnings['month'] . "/" . $earnings['year'] . "', "; } ?>],
             datasets: [{
-                label: 'Ganancias',
+                label: 'Ganancias totales (<?php echo $totalEarnings; ?>)',
                 data: [<?php foreach ($earningsByMonth as $earnings) { echo $earnings['total_earnings'] . ", "; } ?>],
                 backgroundColor: 'blue'
             }]
