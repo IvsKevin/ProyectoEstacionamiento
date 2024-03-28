@@ -1,67 +1,55 @@
-<!--Incluimos el navbar-->
 <?php include_once "navbarAdmin.php"; ?>
 <?php include_once "modals/clientes.php"; ?>
 
 <?php
-//Agregamos la clase del empleados.
 include_once(__DIR__ . "/../../data/class/client.php");
-
-//Creamos un objeto que sea de nuestro cliente para obtener todos sus valores.
 $client = new Client();
-$clientes = $client->getAllClients();
+$clientes = $client->getAllClientsC();
 ?>
-<?php if ($clientes != "error") { ?>
 
-    <div>
+<?php if ($clientes != "error") { ?>
+    <div class="main-content">
         <div class="relative md:pt-32 pb-32 pt-12">
-            <div class="px-4 md:px-10 mx-auto w-full">
-                <div>
-                    <section class=" w-full">
-                        <div class="">
-                            <button class="text-white" onclick="agregarEmpleado()"> + Añadir cliente</button>
-                        </div>
-                    </section>
-                    <div class="overflow-x-auto">
-                        <table class="table bg-gray-600">
-                            <!-- head -->
+            <div class="px-4 md:px-10 mx-auto w-full lg:w-3/4 xl:w-2/3">
+                <div class="navbar rounded-box">
+                    <div class="flex-1 px-2 lg:flex-none">
+                        <button class="btn h-8 min-h-8 btn-outline btn-info" onclick="agregarCliente()"> + Añadir cliente</button>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <div class="table-wrapper">
+                        <table class="table bg-gris-oscurito shadow-xl text-center items-center w-full max-w-screen-md">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th></th>
+                                <tr class="text-gray-200 font-semibold text-sm">
+                                    <th class="border-b border-gray-300">ID</th>
+                                    <th class="border-b border-gray-300">Logo</th>
+                                    <th class="border-b border-gray-300">Nombre</th>
+                                    <th class="border-b border-gray-300">Correo</th>
+                                    <th class="border-b border-gray-300">Dirección</th>
+                                    <th class="border-b border-gray-300">País</th>
+                                    <th class="border-b border-gray-300">Ciudad</th>
+                                    <th class="border-b border-gray-300">Estado</th>
+                                    <th class="border-b border-gray-300">Código Postal</th>
+                                    <th class="border-b border-gray-300">Teléfono</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- row 1 -->
                                 <?php while ($row = mysqli_fetch_assoc($clientes)) { ?>
-                                    <tr>
-                                        <!--ID del empleado-->
-                                        <td><?php echo $row['pk_client'] ?></td>
-                                        <!--Foto del empleado-->
-                                        <td>
-                                            <div class="flex items-center gap-3">
-                                                <div class="avatar">
-                                                    <div class="mask mask-squircle w-12 h-12">
-                                                        <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                                    </div>
-                                                </div>
+                                    <tr class="text-sm">
+                                        <td class="border-b border-gray-300"><?php echo $row['pk_client'] ?></td>
+                                        <td class="border-b border-gray-300">
+                                            <div class="w-16 h-16 rounded-full overflow-hidden">
+                                                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Logo del cliente" class="w-full h-full object-cover">
                                             </div>
                                         </td>
-                                        <!--Nombre de la empresa-->
-                                        <td>
-                                            <?php echo $row['client_name'] ?>
-                                            <br />
-                                            <!--Email de la empresa-->
-                                            <span class="badge badge-ghost badge-sm"><?php echo $row['client_email'] ?></span>
-                                        </td>
-                                        <!--Ubicacion de la empresa-->
-                                        <td><?php echo $row['client_address'] ?></td>
-                                        <!--Ver detalles de la empresa-->
-                                        <td>
-                                            <button class="btn btn-ghost btn-xs" onclick="actualizarEmpresa()">Detalles</button>
-                                        </td>
+                                        <td class="border-b border-gray-300"><?php echo $row['client_name'] ?></td>
+                                        <td class="border-b border-gray-300"><?php echo $row['client_email'] ?></td>
+                                        <td class="border-b border-gray-300"><?php echo $row['client_address'] ?></td>
+                                        <td class="border-b border-gray-300"><?php echo $row['client_country'] ?></td>
+                                        <td class="border-b border-gray-300"><?php echo $row['client_city'] ?></td>
+                                        <td class="border-b border-gray-300"><?php echo $row['client_state'] ?></td>
+                                        <td class="border-b border-gray-300"><?php echo $row['client_zip_code'] ?></td>
+                                        <td class="border-b border-gray-300"><?php echo $row['client_tel'] ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -71,8 +59,4 @@ $clientes = $client->getAllClients();
             </div>
         </div>
     </div>
-
 <?php } ?>
-
-</div>
-</body>

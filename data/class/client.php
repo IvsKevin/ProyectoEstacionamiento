@@ -50,7 +50,19 @@
 
         //METODOS
 
-        //SELECT 
+        //SELECT
+        public function getAllClientsC(){
+            $result = $this->connect();
+            if ($result == true){
+                //echo "vammos bien";
+                $dataset = $this->execquery("SELECT * FROM Client inner join user on client.fk_user = user.pk_user WHERE user.category = 'C'");
+            }
+            else{
+                echo "algo fallo";
+                $dataset = "error";
+            }
+            return $dataset;
+        }
         public function getAllClients(){
             $result = $this->connect();
             if ($result == true){
@@ -76,7 +88,25 @@
                 $dataset = "error";
             }
             return $dataset;
-        } 
+        }
+
+        // Método para contar el total de clientes excluyendo al administrador
+public function countTotalClients()
+{
+    $result = $this->connect();
+    if ($result) {
+        $dataset = $this->execquery("SELECT COUNT(pk_client) AS total_clients FROM Client WHERE fk_user <> 1");
+        if ($row = mysqli_fetch_assoc($dataset)) {
+            return $row['total_clients'];
+        } else {
+            return 0;
+        }
+    } else {
+        echo "Algo falló";
+        return 0;
+    }
+}
+
         
         //Metdoo para obtener el id del cliente.
         public function getClientById($client_id) {
