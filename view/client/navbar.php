@@ -61,13 +61,18 @@
             Settings
           </h6>
           <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+
             <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"><i class="fas fa-paint-brush mr-2 text-blueGray-400 text-base"></i>
+              <a href="documentacion.php" id="documentacionLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
+                Documentacion</a>
+            </li>
+            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="configuracion.php" id="configuracionLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Configuracion</a>
             </li>
             <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
               <?php include_once "../components/modals.php"; ?>
-              <button onclick="cerrarSesion()" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-sm block mb-4 no-underline font-semibold"><i class="fas fa-paint-brush mr-2 text-blueGray-400 text-base"></i>
+              <button onclick="cerrarSesion()" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block w-full text-left"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Logout</button>
             </li>
           </ul>
