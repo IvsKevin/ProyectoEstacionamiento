@@ -22,25 +22,32 @@ $employees = $employee->getEmployee();
                     <div class="flex-1 px-2 lg:flex-none">
                         <button class="btn h-8 min-h-8 btn-outline btn-info" onclick="agregarEmpleado()"> + Añadir empleado</button>
                     </div>
-                    <div class="flex-1 px-2 lg:flex-none">
+                    <label class="relative flex items-center">
+                        <input type="text" id="searchInput" placeholder="Buscar por nombre..." class="ml-2 pl-4 pr-10 py-1 bg-gris-oscurito border border-gray-600 rounded-lg focus:outline-none focus:ring focus:border-blue-400 transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="absolute right-3 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400">
+                            <path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" />
+                        </svg>
+                    </label>
+
+                    <!-- <div class="flex-1 px-2 lg:flex-none">
                         <button class="btn h-8 min-h-8h-8 min-h-8 btn-outline btn-primary" onclick="">Ultimos 30 dias</button>
                     </div>
                     <div class="flex-1 px-2 lg:flex-none">
                         <button class="btn h-8 min-h-8 btn-outline btn-primary" onclick="">Filtrar por</button>
-                    </div>
+                    </div> -->
                     <div class="flex justify-end flex-1 px-2">
                         <div class="flex items-stretch">
                             <a class="btn h-8 min-h-8 btn-ghost rounded-btn">Button</a>
                             <div class="dropdown dropdown-end">
-                                <div id="cambiarVista" tabindex="0" role="button" class="btn h-8 min-h-8 btn-ghost rounded-btn" onclick="toggleView()">Tabla</div>
+                                <div id="cambiarVista" tabindex="0" role="button" class="btn h-8 min-h-8 btn-ghost rounded-btn" onclick="toggleView()">Tarjeta</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <?php if ($employees != "error") { ?>
                     <!--Contenido en tabla-->
-                    <div class="overflow-x-auto" id="table-view">
-                        <table class="table bg-gris-oscurito shadow-xl text-center items-center">
+                    <div class="overflow-x-auto hidden" id="table-view">
+                        <table id="employeeTable" class="table bg-gris-oscurito shadow-xl text-center items-center">
                             <!-- head -->
                             <thead>
                                 <tr class="text-gray-200 font-semibold text-base">
@@ -97,22 +104,28 @@ $employees = $employee->getEmployee();
                         </table>
                     </div>
                     <!--Contenido en tarjetas-->
-                    <div class="overflow-x-auto hidden" id="card-view">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div class="overflow-x-auto" id="card-view">
+                        <div id="employeeCardContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             <?php // Iteramos sobre el array para generar las filas de la tabla
                             foreach ($employeeData as $row) { ?>
-                                <div class="bg-gris-oscurito p-6 rounded-xl shadow-md">
+                                <div class="bg-gris-oscurito p-6 rounded-xl shadow-md relative">
+                                    <!--ID y Tipo de tarjtea del propietario-->
+                                    <span class="absolute top-0 left-0 w-1/5 h-5 bg-blue-900 text-white rounded-sm flex items-center justify-center">
+                                        <?= $row['pk_employee'] ?>
+                                    </span>
+                                    <span class="absolute top-0 right-0 w-4/5 h-5 bg-gris-oscurito border-b border-blue-900 text-white rounded-sm text-sm flex items-center justify-center">
+                                        <?= $row['rol_name'] ?>
+                                    </span>
                                     <!--Foto del empleado-->
-                                    <div class="mb-4">
+                                    <div class="mb-4 mt-5">
                                         <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Employee Photo" class="w-full rounded-full">
                                     </div>
                                     <!--Nombre y rol del empleado-->
                                     <div class="mb-2">
-                                        <p class="text-lg font-semibold"><?php echo $row['employee_name']; ?></p>
-                                        <p class="text-sm text-gray-500"><?php echo $row['rol_name']; ?></p>
+                                        <p class="text-sm font-semibold">Nombre: <?php echo $row['employee_name']; ?></p>
                                     </div>
                                     <!--Apellidos del empleado-->
-                                    <p class="text-sm text-gray-700 mb-4"><?php echo $row['employee_lastNameP'] . ' ' . $row['employee_lastNameM']; ?></p>
+                                    <p class="text-sm text-gray-500 mb-4">Apellidos: <?php echo $row['employee_lastNameP'] . ' ' . $row['employee_lastNameM']; ?></p>
                                     <!--Detalles del empleado-->
                                     <button class="btn btn-outline btn-success btn-xs" onclick="actualizarEmpleado(
                         '<?php echo $row['pk_employee']; ?>',
@@ -133,6 +146,23 @@ $employees = $employee->getEmployee();
     </div>
 </div>
 </div>
+<?php if (isset($_GET['insercionExitosa'])) { ?>
+    <div id="insercionExitosa" role="alert" class="alert alert-success absolute z-20 bottom-5 left-5 w-2/5 transition-opacity duration-1000">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>La inserccion del empleado ha sido exitosa!</span>
+    </div>
+    <script>
+        // Obtener el elemento del mensaje de éxito
+        var insercionExitosa = document.getElementById('insercionExitosa');
+
+        // Función para ocultar el mensaje después de 3 segundos
+        setTimeout(function() {
+            insercionExitosa.style.opacity = '0';
+        }, 3000);
+    </script>
+<?php } ?>
 </body>
 
 <?php
@@ -160,6 +190,7 @@ if (isset($_GET['eliminacion'])) {
     </script>
 <?php } ?>
 
+
 <!-- Script para cambiar entre la vista de tabla y tarjetas -->
 <script>
     function toggleView() {
@@ -167,15 +198,60 @@ if (isset($_GET['eliminacion'])) {
         var tableView = document.getElementById('table-view');
         var cardView = document.getElementById('card-view');
 
-        // Si la vista de tabla está visible, ocúltala y muestra la vista de tarjetas (y viceversa)
-        if (tableView.style.display === 'block' || tableView.style.display === '') {
-            tableView.style.display = 'none';
-            cardView.style.display = 'block';
-            cambiarVista.innerText = "Tarjeta";
-        } else {
-            tableView.style.display = 'block';
+        // Si la vista de tarjetas está visible, ocúltala y muestra la vista de tabla (y viceversa)
+        if (cardView.style.display === 'block' || cardView.style.display === '') {
             cardView.style.display = 'none';
+            tableView.style.display = 'block';
             cambiarVista.innerText = "Tabla";
+        } else {
+            cardView.style.display = 'block';
+            tableView.style.display = 'none';
+            cambiarVista.innerText = "Tarjeta";
         }
     }
+    // Función para buscar empleados por nombre en tiempo real
+    function searchEmployees() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("employeeTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2]; // La tercera columna contiene el nombre del empleado
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    // Llamar a la función de búsqueda cada vez que el usuario escribe algo en el campo de búsqueda
+    document.getElementById("searchInput").addEventListener("input", searchEmployees);
+
+    // Función para buscar empleados por nombre en tiempo real en la vista de tarjetas
+    function searchEmployeesCards() {
+        var input, filter, cards, card, name, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        cards = document.getElementById("employeeCardContainer").getElementsByClassName("bg-gris-oscurito"); // Obtenemos todas las tarjetas de empleado
+        for (i = 0; i < cards.length; i++) {
+            card = cards[i];
+            name = card.getElementsByClassName("text-sm font-semibold")[0]; // Obtenemos el elemento que contiene el nombre del empleado
+            if (name) {
+                txtValue = name.textContent || name.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    }
+
+    // Llamar a la función de búsqueda cada vez que el usuario escribe algo en el campo de búsqueda
+    document.getElementById("searchInput").addEventListener("input", searchEmployeesCards);
 </script>

@@ -54,24 +54,23 @@ $myEspacios = new Espacios();
                                 while ($row = mysqli_fetch_assoc($parkingList)) {
                                     $myEspacios->setFk_parking($row['pk_parking']);
                                     $espaciosDisponibles = $myEspacios->getEspaciosDisponibles();
-                                    
+
                                     // Calcula la mitad de la capacidad del estacionamiento
-        $mitadCapacidad = ceil($row['parking_capacity'] / 2);
+                                    $mitadCapacidad = ceil($row['parking_capacity'] / 2);
 
-        // Asigna un color según la cantidad de espacios disponibles
-        $color = '';
-        if ($espaciosDisponibles == 0) {
-            $color = 'bg-red-600';
-        } elseif ($espaciosDisponibles <= $mitadCapacidad) {
-            $color = 'bg-yellow-600';
-        } else {
-            $color = 'bg-green-700';
-        }
-
-                                ?>
-                                    <div class="overflow-hidden relative rounded-lg shadow-md border bg-gris-clarito border-sky-500 text-blue-600">
+                                    // Asigna un color según la cantidad de espacios disponibles
+                                    $color = '';
+                                    if ($espaciosDisponibles == 0) {
+                                        $color = 'bg-red-600';
+                                    } elseif ($espaciosDisponibles <= $mitadCapacidad) {
+                                        $color = 'bg-yellow-600';
+                                    } else {
+                                        $color = 'bg-green-700';
+                                    }
+                            ?>
+                                    <div class="overflow-hidden relative rounded-lg shadow-xl border border-gray-700 bg-gris-clarito">
                                         <div class="p-6">
-                                        <h2 class="flex items-center justify-center <?php echo $color; ?>  text-white w-1/5 h-6 absolute left-0 top-0"><?php echo $row['parking_number']; ?></h2>
+                                            <h2 class="flex items-center justify-center <?php echo $color; ?>  text-white w-1/5 h-6 absolute left-0 top-0"><?php echo $row['parking_number']; ?></h2>
 
                                             <p class="text-gray-300 mt-2 font-bold w-full">Estacionamientos disponibles
                                             <div class="flex items-center justify-center shadow w-full h-12 text-2xl text-gray-300 bg-gris-oscurito rounded-lg">
@@ -80,22 +79,22 @@ $myEspacios = new Espacios();
                                             </p>
 
                                             <p class="text-gray-300 mt-3">
-                                            <img src="../../assets/iconos/ubi.png" alt="Icono de ubicación" class="inline-block w-7 h-7 mr-3" />Ubicación: <?php echo $row['parking_location']; ?>
+                                                <img src="../../assets/iconos/ubi.png" alt="Icono de ubicación" class="inline-block w-7 h-7 mr-3" />Ubicación: <?php echo $row['parking_location']; ?>
                                             </p>
 
                                             <p class="text-gray-300 mt-3 ">
-                                            <img src="../../assets/iconos/capacidad.png" alt="Icono de capacidad" class="inline-block w-7 h-7 mr-3" />Capacidad: <?php echo $row['parking_capacity']; ?>
+                                                <img src="../../assets/iconos/capacidad.png" alt="Icono de capacidad" class="inline-block w-7 h-7 mr-3" />Capacidad: <?php echo $row['parking_capacity']; ?>
                                             </p>
 
                                             <p class="text-gray-300 mt-3">
-                                            <img src="../../assets/iconos/status.png" alt="Icono de status" class="inline-block w-7 h-7 mr-3" />Estado: <?php echo $row['status_name']; ?>
+                                                <img src="../../assets/iconos/status.png" alt="Icono de status" class="inline-block w-7 h-7 mr-3" />Estado: <?php echo $row['status_name']; ?>
                                             </p>
 
 
                                         </div>
                                         <div class="p-4 bg-gray-800">
-                                            <a href='cajones.php?idParking=<?php echo $row["pk_parking"]; ?>' class="w-full btn btn-outline btn-info btn-md rounded-md">Ver parking</a>
-                                            <button class="block w-full mt-4 btn btn-outline btn-success btn-sm" onclick="actualizarParking(
+                                            <a href='cajones.php?idParking=<?php echo $row["pk_parking"]; ?>' class="w-full btn btn-outline btn-md rounded-md">Ver parking</a>
+                                            <button class="block w-full mt-4 btn btn-outline  btn-sm" onclick="actualizarParking(
                                                 '<?php echo $row['pk_parking']; ?>',
                                                             '<?php echo $row['parking_number']; ?>',
                                                             '<?php echo $row['parking_location']; ?>',
