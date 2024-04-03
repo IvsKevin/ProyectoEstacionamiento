@@ -1,6 +1,12 @@
 <!--Incluimos el header de la pagina-->
 <?php include_once "components/header_2.php"; ?>
+<?php
+  // require('../includes/app.php');
+  // use App\User;
 
+  //  // Implementar un método para obtener todas las propiedades
+  //  $propiedades = User::all();
+?>
 <main>
   <section class="absolute w-full h-full">
     <div class="absolute top-0 w-full h-full bg-gray-900"></div>
@@ -59,7 +65,7 @@
       </div>
     </div>
     <!--Incluimos el cambio de visibilidad de la contraseña-->
-    <script src="../js/validarPassword.js"></script> 
+    <script src="../js/validarPassword.js"></script>
     <!--Inclumos los modales-->
     <?php include_once "components/modals.php"; ?>
     <!--Inclumos los footers de los logins-->

@@ -5,6 +5,7 @@
   header('Location:../../index.php');
 }?>
 
+<?php require(__DIR__.'/../../includes/app.php'); ?>
 
 <head>
   <meta charset="utf-8" />
