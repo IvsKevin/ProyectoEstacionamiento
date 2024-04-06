@@ -13,9 +13,7 @@ $accessCards = $accessCard->getAccessCardsByClient($_SESSION['client_id']);
             <div>
                 <!--Inicio de la barrita de navegacion-->
                 <div class="navbar rounded-box">
-                    <div class="flex-1 px-2 lg:flex-none">
-                        <button class="btn h-8 min-h-8 btn-outline btn-info" onclick="agregarTarjeta()"> + Añadir tarjeta</button>
-                    </div>
+                    
                     <div class="flex-1 px-2 lg:flex-none">
                         <button class="btn h-8 min-h-8h-8 min-h-8 btn-outline btn-primary" onclick="">Ultimos 30 dias</button>
                     </div>

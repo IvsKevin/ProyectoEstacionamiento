@@ -219,6 +219,4 @@ class carentry extends conexion {
     
         return $result;
     }
-    
-    
 }
