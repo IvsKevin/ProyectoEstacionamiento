@@ -93,7 +93,7 @@ if (isset($_GET['resultadoSalida'])) {
                 <form method='dialog'>
                     <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
                 </form>
-                <h3 class='font-bold text-lg'>Resultado de la salida</h3>
+                <h3 class='font-bold text-lg'>Hora de salida:</h3>
                 <div class='modal-action  flex flex-col items-center'>";
     if ($resultadoSalida != '') {
         echo "<p>$resultadoSalida</p>";

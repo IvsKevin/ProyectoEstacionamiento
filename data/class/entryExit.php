@@ -196,13 +196,13 @@ class carentry extends conexion {
             return "La entrada no existe o ya tiene fecha de salida.";
         }
     }
-    
-
     public function getCheckInOutData($client_id) {
         $conexion = new conexion();
         $conexion->connect();
     
-        $query = "SELECT CI.pk_check, CI.date_in, CI.date_out, 
+        $query = "SELECT CI.pk_check, 
+                         DATE_FORMAT(CI.date_in, '%d-%m-%Y') AS date_in, 
+                         DATE_FORMAT(CI.date_out, '%d-%m-%Y') AS date_out, 
                          CONCAT(E.employee_name, ' (Empleado)') AS person_name, 
                          CONCAT(V.visit_name, ' (Visitante)') AS visit_name, 
                          CI.fk_parking, CI.fk_card, C.matricula, P.parking_location
@@ -221,11 +221,4 @@ class carentry extends conexion {
     }
     
     
-    
-    
-    
-    
 }
-
-
-?>
