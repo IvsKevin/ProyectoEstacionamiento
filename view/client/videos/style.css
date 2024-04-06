@@ -1,0 +1,51 @@
+h1 {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+img {
+    width: 150px;
+    height: 100px;
+    border-radius: 15px;
+}
+a:link {
+    color: black;
+}
+a:visited {
+    color: blue;
+}
+a:hover {
+    font-size: 20px;
+    transition: 1s;
+}
+.canales {
+    display: grid;
+    place-items: center;
+    grid-column: center; 
+    grid-template-columns: repeat(3, 1fr);
+    height: auto;
+    padding: 20px;
+    gap: 15px;
+    margin: 10px;
+    background: darkgray;
+    border-radius: 15px;
+}
+.title:hover {
+    font-size: 24px;
+    background-color: rebeccapurple;
+}
+.videos {
+    background: white;
+    box-shadow: 0px 0px 2px 2px blueviolet;
+    margin: 5px;
+    padding: 70px;
+    border-radius: 15px;
+}
+.videos:hover {
+    padding: 80px;
+    box-shadow: 0px 0px 2px 5px blueviolet;
+    transition: 0.5s;
+}

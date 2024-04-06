@@ -27,54 +27,105 @@
 
         <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden" id="example-collapse-sidebar">
           <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="dashboard.php" id="dashboardLink" class="hover:text-gray-100 font-mono text-xs uppercase py-3 font-bold block"><i class="fas fa-tv opacity-75 mr-2 text-sm"></i>
-                Dashboard</a>
-            </li>
+
+          <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+            <a href="dashboard.php" id="dashboardLink" class="hover:text-gray-100 text-xs uppercase py-3 font-bold block">
+    <img src="../../assets/iconos/dashboard.png" alt="Dashboard Icon" class="inline-block w-6 h-6 mr-3">
+    Dashboard
+        </a>
+        </li>
+
             <li id="parkingContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="parking.php" id="parkingLink" class="hover:text-gray-100 font-mono text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>
-                Parking</a>
+            <a href="parking.php" id="parkingLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+      <img src="../../assets/iconos/parking.png" alt="Parking Icon" class="inline-block w-6 h-6 mr-2">
+      Parking
+        </a>
+      </li>
+
+
+<li id="carrosContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+            <a href="carros.php" id="carrosLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+    <img src="../../assets/iconos/carros.png" alt="Carros Icon" class="inline-block w-6 h-6 mr-2">
+    Carros
+</a>
             </li>
-            <li id="carrosContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="carros.php" id="carrosLink" class="hover:text-gray-100 font-mono text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>
-                Carros</a>
-            </li>
+
             <li id="empleadosContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="empleados.php" id="empleadosLink" class="hover:text-gray-100 font-mono text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
-                Empleados</a>
-            </li>
-            <li id="tarjetasContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="tarjetas.php" id="tarjetasLink" class="hover:text-gray-100 font-mono text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
-                Tarjetas</a>
-            </li>
-            <li id="visitantesContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="visitantes.php" id="visitantesLink" class="hover:text-gray-100 font-mono text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
-                Visitantes</a>
-            </li>
-            <li id="historialContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="historial.php" id="historialLink" class="hover:text-gray-100 font-mono text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
-                Historial</a>
-            </li>
+    <a href="empleados.php" id="empleadosLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+        <img src="../../assets/iconos/empleados.png" alt="Empleados Icon" class="inline-block w-6 h-6 mr-2">
+        Empleados
+    </a>
+</li>
+
+
+
+
+<li id="tarjetasContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+    <a href="tarjetas.php" id="tarjetasLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+        <img src="../../assets/iconos/tarjetas.png" alt="Tarjetas Icon" class="inline-block w-6 h-6 mr-2">
+        Tarjetas
+    </a>
+</li>
+
+
+
+<li id="visitantesContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+    <a href="visitantes.php" id="visitantesLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+        <img src="../../assets/iconos/visitantes.png" alt="Visitantes Icon" class="inline-block w-6 h-6 mr-2">
+        Visitantes
+    </a>
+</li>
+
+
+
+<li id="historialContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+    <a href="historial.php" id="historialLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+        <img src="../../assets/iconos/historial.png" alt="Historial Icon" class="inline-block w-6 h-6 mr-2">
+        Historial
+    </a>
+</li>
+
+
+
           </ul>
           <hr class="my-4 md:min-w-full" />
-          <h6 class="font-mono md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+          <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
             Settings
           </h6>
           <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
 
-            <li id="documentacionContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="documentacion.php" id="documentacionLink" class="hover:text-gray-100 font-mono text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
-                Documentacion</a>
-            </li>
-            <li id="configuracionContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <a href="configuracion.php" id="configuracionLink" class="hover:text-gray-100 font-mono text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
-                Configuracion</a>
-            </li>
-            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
-              <?php include_once "../components/modals.php"; ?>
-              <button onclick="cerrarSesion()" class="hover:text-red-500 font-mono text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block w-full text-left"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
-                Logout</button>
-            </li>
+          <li id="videosContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+    <a href="videos.php" id="videosLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+        <img src="../../assets/iconos/videos.png" alt="videos Icon" class="inline-block w-5 h-5 mr-2">
+        Videos relacionados
+    </a>
+</li>
+
+          <li id="documentacionContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+    <a href="documentacion.php" id="documentacionLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+        <img src="../../assets/iconos/documentacion.png" alt="Documentacion Icon" class="inline-block w-5 h-5 mr-2">
+        Documentacion
+    </a>
+</li>
+
+
+<li id="configuracionContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+    <a href="configuracion.php" id="configuracionLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
+        <img src="../../assets/iconos/configuracion.png" alt="Configuracion Icon" class="inline-block w-5 h-5 mr-2">
+        Configuracion
+    </a>
+</li>
+
+
+            <li class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito" onmouseover="document.getElementById('logoutIcon').src='../../assets/iconos/logout_rojo.png'" onmouseout="document.getElementById('logoutIcon').src='../../assets/iconos/logout.png'">
+    <?php include_once "../components/modals.php"; ?>
+    <button onclick="cerrarSesion()" class="hover:text-red-500 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block w-full text-left">
+        <img id="logoutIcon" src="../../assets/iconos/logout.png" alt="Logout Icon" class="inline-block w-5 h-5 mr-2">
+        Cerrar Sesion
+    </button>
+</li>
+
+
           </ul>
         </div>
       </div>
