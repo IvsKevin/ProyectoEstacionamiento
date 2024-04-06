@@ -50,8 +50,8 @@
             <form method="post" action="../../app/client/historial/exitEntry.php">
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
-                        Numero de Boleto:
-                        <input name="entry_id" type="text" class="grow" required />
+                        Código QR:
+                        <input name="QR_code" type="text" class="grow" required />
                     </label>
                 </div>
                 <div class="flex justify-end">
@@ -61,6 +61,7 @@
         </div>
     </div>
 </dialog>
+
 <!--==============================SCRIPTS PARA AGREGAR EMPLEAODS================================-->
 <script>
     function cambiarColor() {

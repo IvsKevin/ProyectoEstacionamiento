@@ -68,18 +68,14 @@ if (isset($_GET['resultado'])) {
     $resultadoEntrada = $_GET['resultado'];
     // Muestra los detalles de la entrada al usuario
     echo "<dialog id='resultadoEntradaModal' class='modal bg-black-300 text-white'>
-            <div class='modal-box'>
-                <form method='dialog'>
-                    <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
-                </form>
-                <h3 class='font-bold text-lg'>Resultado de la entrada</h3>
-                <div class='modal-action  flex flex-col items-center'>";
-    if ($resultadoEntrada != '') {
-        echo "<p>$resultadoEntrada</p>";
-    }
-    echo "</div>
-            </div>
-        </dialog>";
+    <div class='modal-box'>
+        <form method='dialog'>
+            <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
+        </form>
+        <h3 class='font-bold text-lg'>Se ha registrado tu entrada!</h3>
+    </div>
+</dialog>
+";
 ?>
     <script>
         resultadoEntradaModal.showModal();

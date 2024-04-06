@@ -151,17 +151,21 @@ class carentry extends conexion {
         return ($result && mysqli_num_rows($result) > 0);
     }
     
-    public function registrarSalidaVehiculo($entryId) {
+    public function registrarSalidaVehiculo($QR_code) {
         date_default_timezone_set('America/Tijuana');
     
         $conexion = new conexion();
         $conexion->connect();
     
-        $checkQuery = "SELECT date_out, fk_parking, fk_space FROM Check_In_Out WHERE pk_check = $entryId";
-        $checkResult = mysqli_query($conexion->getConnection(), $checkQuery);
+        $checkQuery = "SELECT CI.pk_check, CI.date_out, CI.fk_parking, CI.fk_space 
+                       FROM Check_In_Out AS CI
+                       INNER JOIN Access_Card AS AC ON CI.fk_card = AC.pk_card
+                       WHERE AC.QR_code = '$QR_code' AND CI.date_out IS NULL";
+        $checkResult = $conexion->execquery($checkQuery);
     
         if ($checkResult && mysqli_num_rows($checkResult) > 0) {
             $row = mysqli_fetch_assoc($checkResult);
+            $entryId = $row['pk_check'];
             $existingExitDate = $row['date_out'];
             $parkingId = $row['fk_parking'];
             $spaceId = $row['fk_space'];
@@ -174,45 +178,49 @@ class carentry extends conexion {
             $formattedExitDate = $exitDate->format('Y-m-d H:i:s');
             $query = "UPDATE Check_In_Out SET date_out = '$formattedExitDate' WHERE pk_check = $entryId";
     
-            $result = mysqli_query($conexion->getConnection(), $query);
+            $result = $conexion->execquery($query);
     
             if ($result) {
                 $releaseSpaceQuery = "UPDATE Parking_Spaces SET fk_status = 1, fk_employee = NULL, fk_visit = NULL WHERE pk_spaces = $spaceId";
-                $resultReleaseSpace = mysqli_query($conexion->getConnection(), $releaseSpaceQuery);
+                $resultReleaseSpace = $conexion->execquery($releaseSpaceQuery);
     
                 if ($resultReleaseSpace) {
                     return $formattedExitDate;
                 } else {
-                    return "Error al liberar el espacio del estacionamiento: " . mysqli_error($conexion->getConnection());
+                    return "Error al liberar el espacio del estacionamiento.";
                 }
             } else {
-                return "Error al registrar la salida del vehículo: " . mysqli_error($conexion->getConnection());
+                return "Error al registrar la salida del vehículo.";
             }
         } else {
-            return "La entrada no existe.";
+            return "La entrada no existe o ya tiene fecha de salida.";
         }
     }
+    
 
     public function getCheckInOutData($client_id) {
         $conexion = new conexion();
         $conexion->connect();
-
-        $query = "SELECT CI.date_in, CI.date_out, 
+    
+        $query = "SELECT CI.pk_check, CI.date_in, CI.date_out, 
                          CONCAT(E.employee_name, ' (Empleado)') AS person_name, 
                          CONCAT(V.visit_name, ' (Visitante)') AS visit_name, 
-                         CI.fk_parking, CI.pk_check, CI.fk_card, C.matricula, P.parking_location
+                         CI.fk_parking, CI.fk_card, C.matricula, P.parking_location
                   FROM Check_In_Out AS CI
                   LEFT JOIN Access_Card AS AC ON CI.fk_card = AC.pk_card
                   LEFT JOIN Employee AS E ON AC.fk_employee = E.pk_employee
                   LEFT JOIN Visit AS V ON AC.fk_visit = V.pk_visit
                   LEFT JOIN Car_Information AS C ON E.pk_employee = C.fk_employee
                   LEFT JOIN Parking AS P ON CI.fk_parking = P.pk_parking
-                  WHERE (E.fk_client = $client_id OR V.fk_client = $client_id) AND CI.fk_status = 1";
-
+                  WHERE (E.fk_client = $client_id OR V.fk_client = $client_id) AND CI.fk_status = 1
+                  ORDER BY CI.pk_check";
+    
         $result = $conexion->execquery($query);
-
+    
         return $result;
     }
+    
+    
     
     
     
