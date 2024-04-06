@@ -23,20 +23,20 @@ $payments = $payment->getAllPayments();
                             <!-- Cabecera de la tabla -->
                             <thead>
                                 <tr class="text-gray-200 font-semibold text-sm">
-                                    <th class="border-b border-gray-300">Cliente</th>
-                                    <th class="border-b border-gray-300">Tipo de Licencia</th>
-                                    <th class="border-b border-gray-300">Método de Pago</th>
-                                    <th class="border-b border-gray-300">Fecha</th>
+                                    <th class="border-a border-gray-300">Cliente</th>
+                                    <th class="border-a border-gray-300">Tipo de Licencia</th>
+                                    <th class="border-a border-gray-300">Método de Pago</th>
+                                    <th class="border-a border-gray-300">Fecha</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Filas de la tabla -->
                                 <?php while ($row = mysqli_fetch_assoc($payments)) { ?>
                                     <tr class="text-sm">
-                                        <td class="border-b border-gray-300"><?php echo $row['client_name'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['payment_description'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['method_name'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo date('d/m/Y', strtotime($row['payment_date'])); ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['client_name'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['payment_description'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['method_name'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo date('d/m/Y', strtotime($row['payment_date'])); ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

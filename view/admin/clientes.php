@@ -21,35 +21,35 @@ $clientes = $client->getAllClientsC();
                         <table class="table bg-gris-oscurito shadow-xl text-center items-center w-full max-w-screen-md">
                             <thead>
                                 <tr class="text-gray-200 font-semibold text-sm">
-                                    <th class="border-b border-gray-300">ID</th>
-                                    <th class="border-b border-gray-300">Logo</th>
-                                    <th class="border-b border-gray-300">Nombre</th>
-                                    <th class="border-b border-gray-300">Correo</th>
-                                    <th class="border-b border-gray-300">Dirección</th>
-                                    <th class="border-b border-gray-300">País</th>
-                                    <th class="border-b border-gray-300">Ciudad</th>
-                                    <th class="border-b border-gray-300">Estado</th>
-                                    <th class="border-b border-gray-300">Código Postal</th>
-                                    <th class="border-b border-gray-300">Teléfono</th>
+                                    <th class="border-a border-gray-300">ID</th>
+                                    <th class="border-a border-gray-300">Logo</th>
+                                    <th class="border-a border-gray-300">Nombre</th>
+                                    <th class="border-a border-gray-300">Correo</th>
+                                    <th class="border-a border-gray-300">Dirección</th>
+                                    <th class="border-a border-gray-300">País</th>
+                                    <th class="border-a border-gray-300">Ciudad</th>
+                                    <th class="border-a border-gray-300">Estado</th>
+                                    <th class="border-a border-gray-300">Código Postal</th>
+                                    <th class="border-a border-gray-300">Teléfono</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php while ($row = mysqli_fetch_assoc($clientes)) { ?>
                                     <tr class="text-sm">
-                                        <td class="border-b border-gray-300"><?php echo $row['pk_client'] ?></td>
-                                        <td class="border-b border-gray-300">
-                                            <div class="w-16 h-16 rounded-full overflow-hidden">
+                                        <td class="border-a border-gray-300"><?php echo $row['pk_client'] ?></td>
+                                        <td class="border-a border-gray-300">
+                                            <div class="w-9 h-9 rounded-full overflow-hidden">
                                                 <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Logo del cliente" class="w-full h-full object-cover">
                                             </div>
                                         </td>
-                                        <td class="border-b border-gray-300"><?php echo $row['client_name'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['client_email'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['client_address'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['client_country'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['client_city'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['client_state'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['client_zip_code'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['client_tel'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['client_name'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['client_email'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['client_address'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['client_country'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['client_city'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['client_state'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['client_zip_code'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['client_tel'] ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

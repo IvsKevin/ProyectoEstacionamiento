@@ -26,22 +26,22 @@ $resultadoLicenciasRegulares = $tuObjeto->sumRegularPayment();
                         <table class="table bg-gris-oscurito shadow-xl text-center items-center w-full max-w-screen-md">
                             <thead>
                                 <tr class="text-gray-200 font-semibold text-sm">
-                                    <th class="border-b border-gray-300">Licencias</th>
-                                    <th class="border-b border-gray-300">Licencias Adquiridas</th>
+                                    <th class="border-a border-gray-300">Licencias</th>
+                                    <th class="border-a border-gray-300">Licencias Adquiridas</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="text-sm">
-                                    <td class="border-b border-gray-300">Licencia Básica</td>
-                                    <td class="border-b border-gray-300"><?php echo $resultadoLicenciasBasicas; ?></td>
+                                    <td class="border-a border-gray-300">Licencia Básica</td>
+                                    <td class="border-a border-gray-300"><?php echo $resultadoLicenciasBasicas; ?></td>
                                 </tr>
                                 <tr class="text-sm">
-                                    <td class="border-b border-gray-300">Licencia Pro</td>
-                                    <td class="border-b border-gray-300"><?php echo $resultadoLicenciasPR; ?></td>
+                                    <td class="border-a border-gray-300">Licencia Pro</td>
+                                    <td class="border-a border-gray-300"><?php echo $resultadoLicenciasPR; ?></td>
                                 </tr>
                                 <tr class="text-sm">
-                                    <td class="border-b border-gray-300">Licencia Regular</td>
-                                    <td class="border-b border-gray-300"><?php echo $resultadoLicenciasRegulares; ?></td>
+                                    <td class="border-a border-gray-300">Licencia Regular</td>
+                                    <td class="border-a border-gray-300"><?php echo $resultadoLicenciasRegulares; ?></td>
                                 </tr>
                             </tbody>
                         </table>

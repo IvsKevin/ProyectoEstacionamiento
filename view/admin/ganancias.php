@@ -27,20 +27,20 @@ $totalAmount = $sum->sumPayment();
                             <!-- Cabecera de la tabla -->
                             <thead>
                                 <tr class="text-gray-200 font-semibold text-sm">
-                                    <th class="border-b border-gray-300">ID</th>
-                                    <th class="border-b border-gray-300">Monto</th>
-                                    <th class="border-b border-gray-300">Descripción</th>
-                                    <th class="border-b border-gray-300">Fecha</th>
+                                    <th class="border-a border-gray-300">ID</th>
+                                    <th class="border-a border-gray-300">Monto</th>
+                                    <th class="border-a border-gray-300">Descripción</th>
+                                    <th class="border-a border-gray-300">Fecha</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- Filas de la tabla -->
                                 <?php while ($row = mysqli_fetch_assoc($payments)) { ?>
                                     <tr class="text-sm">
-                                        <td class="border-b border-gray-300"><?php echo $row['pk_payment'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['payment_amount'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo $row['payment_description'] ?></td>
-                                        <td class="border-b border-gray-300"><?php echo date('d/m/Y', strtotime($row['payment_date'])); ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['pk_payment'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['payment_amount'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo $row['payment_description'] ?></td>
+                                        <td class="border-a border-gray-300"><?php echo date('d/m/Y', strtotime($row['payment_date'])); ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -49,12 +49,12 @@ $totalAmount = $sum->sumPayment();
                         <table class="table bg-gris-oscurito shadow-xl text-center items-center w-full max-w-screen-md mt-8">
                             <thead>
                                 <tr class="text-gray-200 font-semibold text-sm">
-                                    <th class="border-b border-gray-300">Monto Total</th>
+                                    <th class="border-a border-gray-300">Monto Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="text-sm">
-                                    <td class="border-b border-gray-300"><?php echo $totalAmount; ?></td>
+                                    <td class="border-a border-gray-300"><?php echo $totalAmount; ?></td>
                                 </tr>
                             </tbody>
                         </table>
