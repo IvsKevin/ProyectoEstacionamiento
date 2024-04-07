@@ -58,27 +58,27 @@
             <div class="px-4 md:px-10 mx-auto w-full lg:w-3/4 xl:w-2/3">
                 <div class="overflow-x-auto">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div class="bg-white p-4 rounded shadow">
+                        <div class="bg-gris-oscurito p-4 rounded shadow">
                             <h2 class="text-lg font-semibold mb-2">Parkings</h2>
                             <canvas id="parkingsChart" width="800" height="650"></canvas>
                         </div>
-                        <div class="bg-white p-4 rounded shadow">
+                        <div class="bg-gris-oscurito p-4 rounded shadow">
                             <h2 class="text-lg font-semibold mb-2">Empleados</h2>
                             <canvas id="employeesChart" width="800" height="650"></canvas>
                         </div>
-                        <div class="bg-white p-4 rounded shadow">
+                        <div class="bg-gris-oscurito p-4 rounded shadow">
                             <h2 class="text-lg font-semibold mb-2">Tarjetas</h2>
                             <canvas id="cardsChart" width="800" height="650"></canvas>
                         </div>
-                        <div class="bg-white p-4 rounded shadow">
+                        <div class="bg-gris-oscurito p-4 rounded shadow">
                             <h2 class="text-lg font-semibold mb-2">Visitantes</h2>
                             <canvas id="visitorsChart" width="800" height="650"></canvas>
                         </div>
-                        <div class="bg-white p-4 rounded shadow">
+                        <div class="bg-gris-oscurito p-4 rounded shadow">
                             <h2 class="text-lg font-semibold mb-2">Check-In/Out</h2>
                             <canvas id="checkinoutChart" width="800" height="650"></canvas>
                         </div>
-                        <div class="bg-white p-4 rounded shadow">
+                        <div class="bg-gris-oscurito p-4 rounded shadow">
                             <h2 class="text-lg font-semibold mb-2">Modelos de Carros</h2>
                             <canvas id="carsByModelChart" width="800" height="650"></canvas>
                         </div>
