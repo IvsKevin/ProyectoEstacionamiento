@@ -184,6 +184,9 @@ CREATE TABLE Employee (
     FOREIGN KEY (fk_rol) REFERENCES Rol(pk_rol)
 );
 
+ALTER TABLE employee
+ADD tel varchar(10);
+
 CREATE TABLE Brand (
     pk_brand INT AUTO_INCREMENT PRIMARY KEY,
     brand_name varchar(15) not null

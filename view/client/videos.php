@@ -30,7 +30,7 @@
                                         }                             
                                     }
                                 }
-                                echo "<h1 class='text-center text-lg font-bold mt-8'>".$key."</h1>"; //Nombre del canal con margen superior
+                                echo "<h1 class='text-center text-lg font-bold mt-8 text-gray-300'>".$key."</h1>"; //Nombre del canal con margen superior y color blanco
                                 echo "</div>"; //Cierre del div.bg-white
                             echo "</a>";
                         } 

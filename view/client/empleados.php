@@ -55,6 +55,7 @@ $employees = $employee->getEmployee();
                                     <th>Photo</th>
                                     <th>Nombre</th>
                                     <th>Apellidos</th>
+                                    <th>Telefono</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -88,13 +89,15 @@ $employees = $employee->getEmployee();
                                         </td>
                                         <!--Apellidos del empleado-->
                                         <td><?php echo $row['employee_lastNameP'] . ' ' . $row['employee_lastNameM'] ?></td>
-                                        <!--Ver detalles del empleado-->
+                                        <!--Ver telefono-->
+                                        <td><?php echo $row['tel']?></td>
                                         <td>
                                             <button class="btn btn-outline btn-success btn-xs" onclick="actualizarEmpleado(
                                                 '<?php echo $row['pk_employee']; ?>',
                                                 '<?php echo $row['employee_name']; ?>',
                                                 '<?php echo $row['employee_lastNameP']; ?>',
                                                 '<?php echo $row['employee_lastNameM']; ?>',
+                                                '<?php echo $row['tel']; ?>',
                                                 '<?php echo $row['rol_name']; ?>'
                                             )">Detalles</button>
                                         </td>

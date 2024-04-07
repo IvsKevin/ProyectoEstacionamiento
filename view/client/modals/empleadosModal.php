@@ -34,6 +34,12 @@
                     </label>
                 </div>
                 <div class="m-2">
+                    <label class="input input-bordered flex items-center gap-2">
+                        Telefono:
+                        <input name="tel" type="text" class="grow" required maxlength="10" required pattern="[0-9]{10}" title="Por favor, introduce un número de teléfono válido de 10 dígitos" Placeholder="Maximo 10 digitos"/>
+                    </label>
+                </div>
+                <div class="m-2">
                     <label class="form-control w-full max-w-xs">
                         <div class="label">
                             <span class="label-text">Rol del empleado</span>
@@ -104,7 +110,7 @@
 </dialog>
 
 <script>
-    function actualizarEmpleado(id, nombre, apPaterno, apMaterno, rol) {
+    function actualizarEmpleado(id, nombre, apPaterno, apMaterno, tel, rol) {
         var modal = document.getElementById('actualizarEmpleadoModal');
         var modalContent = modal.querySelector('.modal-box');
 
@@ -140,8 +146,14 @@
                 </div>
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
-                        Nombre:
+                        Apellido Materno:
                         <input name="apMaternoEmpleado" type="text" class="grow" value="${apMaterno}" required/>
+                    </label>
+                </div>
+                <div class="m-2">
+                    <label class="input input-bordered flex items-center gap-2">
+                        Telefono:
+                        <input name="tel" type="text" class="grow" value="${tel}" required/>
                     </label>
                 </div>
                 <div>

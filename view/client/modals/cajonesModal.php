@@ -91,11 +91,15 @@ if (isset($_GET['errorEliminacion'])) {
     $empleado = new Employee();
     // Suponiendo que $idEmpleado está definido o se pasa como parámetro a esta página
     $idEmpleado = $_GET['idEmpleado']; // Suponiendo que se pasa como parámetro GET
-    $consulta = $empleado->getEmployeeById($idEmpleado);
+    $consulta = $empleado->getEmployeeById3($idEmpleado);
     if ($consulta) {
         $nombre = $consulta['employee_name']; // Ajusta esto según la estructura de tu tabla de empleados
         $apellidoPaterno = $consulta['employee_lastNameP']; // Ajusta esto según la estructura de tu tabla de empleados
         $apellidoMaterno = $consulta['employee_lastNameM']; // Ajusta esto según la estructura de tu tabla de empleados
+        $tel = $consulta['tel'];
+        $matricula = $consulta['matricula'];
+        $modelo = $consulta['model_name'];
+        $marca = $consulta['brand_name'];
     }
     ?>
     <script>
@@ -122,6 +126,10 @@ if (isset($_GET['errorEliminacion'])) {
             <div class="modal-action  flex flex-col items-center">
                 <section>
                     <p>Nombre del empleado: <?php echo $nombre . ' ' . $apellidoPaterno . ' ' . $apellidoMaterno; ?></p>
+                    <p>Telefono: <?php echo $tel; ?></p>
+                    <p>Marca del auto: <?php echo $marca; ?></p>
+                    <p>Modelo del auto: <?php echo $modelo; ?></p>
+                    <p>Matricula del auto: <?php echo $matricula; ?></p>
                 </section>
             </div>
         `;

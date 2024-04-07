@@ -6,11 +6,21 @@ include_once("../../data/class/parking.php");
 include_once("../../data/class/Espacios.php");
 
 //Perdomo gay
+// Obtener el parámetro 'orden' de la URL
+$orden = isset($_GET['orden']) ? $_GET['orden'] : 'asc';
+
+// Instanciar la clase Parking
+$parkingHandler = new Parking();
+$parkingHandler->setFKclient($_SESSION['client_id']);
+
+// Mostrar la lista de estacionamientos ordenada según el parámetro
+$parkingList = $parkingHandler->getParkingList($orden);
+
 
 // Mostrar la lista de estacionamientos
 $parkingHandler = new Parking();
 $parkingHandler->setFKclient($_SESSION['client_id']);
-$parkingList = $parkingHandler->getParkingList();
+$parkingList = $parkingHandler->getParkingList($orden);
 
 $myEspacios = new Espacios();
 ?>
@@ -26,9 +36,20 @@ $myEspacios = new Espacios();
                     <div class="flex-1 px-2 lg:flex-none">
                         <button class="btn h-8 min-h-8h-8 min-h-8 btn-outline btn-primary" onclick="">Ultimos 30 dias</button>
                     </div>
-                    <div class="flex-1 px-2 lg:flex-none">
-                        <button class="btn h-8 min-h-8 btn-outline btn-primary" onclick="">Filtrar por</button>
-                    </div>
+                    <div class="flex-1 px-2 lg:flex-none relative">
+    <div class="dropdown dropdown-left dropdown-up dropdown-right" style="z-index: 999;">
+        <button class="btn h-8 min-h-8 btn-outline btn-primary">Filtrar por</button>
+        <!-- Opciones de filtrado -->
+        <ul tabindex="0" class="menu dropdown-content w-40 mt-2 py-1 bg-base-100 shadow-md rounded-md">
+        <li class="py-1"><a href="?orden=asc" class="flex items-center"><img src="../../assets/iconos/menor_a_mayor.png" class="w-8 h-8 mr-2 rounded-full border border-base-200 bg-transparent text-white" alt="De menor a mayor"> De menor a mayor</a></li>
+<li class="py-1"><a href="?orden=desc" class="flex items-center"><img src="../../assets/iconos/mayor_a_menor.png" class="w-8 h-8 mr-2 rounded-full border border-base-200 bg-transparent text-white" alt="De mayor a menor"> De mayor a menor</a></li>
+
+        </ul>
+    </div>
+</div>
+
+
+
                     <div class="flex justify-end flex-1 px-2">
                         <div class="flex items-stretch">
                             <a class="btn h-8 min-h-8 btn-ghost rounded-btn">Button</a>
@@ -87,8 +108,18 @@ $myEspacios = new Espacios();
                                             </p>
 
                                             <p class="text-gray-300 mt-3">
-                                                <img src="../../assets/iconos/status.png" alt="Icono de status" class="inline-block w-7 h-7 mr-3" />Estado: <?php echo $row['status_name']; ?>
-                                            </p>
+    <div class="flex items-center">
+        <!-- Círculo dinámico de estado -->
+        <div class="w-5 h-5 rounded-full ml-2 mr-3 <?php echo ($espaciosDisponibles > 0) ? 'bg-green-500' : 'bg-red-500'; ?>"></div>
+        <!-- Texto descriptivo del estado -->
+        <span>Estado: </span> <?php echo $row['status_name']; ?>
+    </div>
+</p>
+
+
+
+
+
 
 
                                         </div>

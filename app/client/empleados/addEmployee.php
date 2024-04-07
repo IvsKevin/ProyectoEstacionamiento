@@ -12,6 +12,7 @@ $employee = new Employee();
 $employee->setName($_POST["nombreEmpleado"]);
 $employee->setLastNameP($_POST["apPaternoEmpleado"]);
 $employee->setLastNameM($_POST["apMaternoEmpleado"]);
+$employee->setTel($_POST["tel"]);
 $employee->setRol($_POST["rolEmpleado"]);
 $employee->setFKclient($_SESSION['client_id']);
 

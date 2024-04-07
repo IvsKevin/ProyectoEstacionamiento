@@ -21,26 +21,25 @@ class Parking extends conexion {
     }
 
     //GET
-    public function getParkingList() {
+    public function getParkingList($orden) {
         $result = $this->connect();
-            if ($result == true){
-                //echo "vamos bien";
-                $dataset = $this->execquery("SELECT 
+        if ($result == true) {
+            $dataset = $this->execquery("SELECT 
                 p.*,
                 g.pk_status,
                 g.status_name 
                 FROM Parking AS p
                 INNER JOIN General_Status AS g ON g.pk_status = p.fk_status
-                WHERE p.fk_client = ".$this->fk_client."
-                ORDER BY p.parking_number"
-                );
-            }
-            else{
-                echo "algo fallo";
-                $dataset = "error";
-            }
-            return $dataset;
+                WHERE p.fk_client = {$this->fk_client}
+                ORDER BY p.parking_number $orden" // Ordenar según el parámetro recibido
+            );
+        } else {
+            echo "algo fallo";
+            $dataset = "error";
+        }
+        return $dataset;
     }
+    
     public function getParkingActive() {
         $result = $this->connect();
             if ($result == true){

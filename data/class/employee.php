@@ -9,6 +9,7 @@
         private $name;
         private $lastNameP;
         private $lastNameM;
+        private $tel;
         private $fk_client;
         private $fk_rol;
 
@@ -24,6 +25,9 @@
         }
         public function setLastNameM($lastNameM) {
             $this->lastNameM = $lastNameM;
+        }
+        public function setTel($tel){
+            $this->tel = $tel;
         }
         public function setFKclient($fk_client) {
             $this->fk_client = $fk_client;
@@ -80,6 +84,27 @@
             return null; // Devuelve null si no se encuentra el cliente
         }
 
+                //------------------------------------------------------------
+                public function getEmployeeById3($employee_id) {
+                    $result = $this->connect();
+                
+                    if ($result) {
+                        $employee_id = mysqli_real_escape_string($this->getConnection(), $employee_id); // Escapa el valor para evitar SQL injection
+                        $query = "SELECT * FROM Employee
+                        INNER JOIN car_information ON Employee.pk_employee = car_information.pk_car
+                        INNER JOIN model ON car_information.fk_model = model.pk_model
+                        INNER JOIN brand ON model.fk_brand = brand.pk_brand
+                        WHERE pk_employee = $employee_id";
+                        $employee_data = mysqli_query($this->getConnection(), $query);
+                
+                        if ($employee_data) {
+                            return mysqli_fetch_assoc($employee_data); // Devuelve un array asociativo con los datos del cliente
+                        }
+                    }
+                    return null; // Devuelve null si no se encuentra el cliente
+                }
+                //---------------------------------------------------------------
+
         public function getRol() {
             $result = $this->connect();
             if ($result == true){
@@ -95,7 +120,7 @@
 
         //INSERT
         public function setEmployee() {
-            $query = "INSERT INTO Employee (employee_name, employee_lastNameP, employee_lastNameM, fk_client, fk_status, fk_rol) VALUES ('".$this->name."', '".$this->lastNameP."', '".$this->lastNameM."', '".$this->fk_client."', 1, '".$this->fk_rol."')";
+            $query = "INSERT INTO Employee (employee_name, employee_lastNameP, employee_lastNameM, tel, fk_client, fk_status, fk_rol) VALUES ('".$this->name."', '".$this->lastNameP."', '".$this->lastNameM."', '".$this->fk_client."', 1, '".$this->fk_rol."')";
             $result = $this->connect();
             if($result) {
                 $newID = $this->execquery($query);
@@ -111,7 +136,7 @@
         
         //Metodo para actualizar el cliente.
         public function updateEmployee() {
-            $query = 'UPDATE Employee SET  employee_name = "'.$this->name.'", employee_lastNameP = "'.$this->lastNameP.'", employee_lastNameM = "'.$this->lastNameM.'", fk_rol = "'.$this->fk_rol.'" WHERE pk_employee = '.$this->id.'';
+            $query = 'UPDATE Employee SET  employee_name = "'.$this->name.'", employee_lastNameP = "'.$this->lastNameP.'", employee_lastNameM = "'.$this->lastNameM.'",tel = "'.$this->tel.'" , fk_rol = "'.$this->fk_rol.'" WHERE pk_employee = '.$this->id.'';
             $result = $this->connect();
             if($result) {
                 echo "Ha funcionado la actualizacion de usuario"; 
