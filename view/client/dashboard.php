@@ -4,66 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chart Example</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" charset="utf-8"></script>
-    <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <!-- Include your navbar and other components here -->
-    <?php include_once "navbar.php"; ?>
+    <?php
+    include_once "navbar.php";
+    include_once(__DIR__ . "/../../data/class/dashboard.php");
 
-    <!-- Header -->
-    <div class="relative bg-gray-600 md:pt-32 pb-32 pt-12">
-        <div class="px-4 md:px-10 mx-auto w-full">
-            <!-- Card stats -->
-            <div class="flex flex-wrap">
-                <!-- Include your card stats or other components here -->
-                <!-- Example card -->
-                <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-800">
-                        <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-                            <div class="flex flex-wrap items-center">
-                                <div class="relative w-full max-w-full flex-grow flex-1">
-                                    <h6 class="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
-                                        Overview
-                                    </h6>
-                                    <h2 class="text-white text-xl font-semibold">
-                                        Sales value
-                                    </h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4 flex-auto">
-                            <!-- Chart -->
-                            <div class="relative" style="height:350px">
-                                <canvas id="line-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Include your other cards or components here -->
+    if (isset($_SESSION['client_id'])) {
+        $client_id = $_SESSION['client_id'];
 
-                <!-- Placeholder for the bar chart -->
-                <div class="w-full xl:w-4/12 px-4">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-                        <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-                            <div class="flex flex-wrap items-center">
-                                <div class="relative w-full max-w-full flex-grow flex-1">
-                                    <h6 class="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
-                                        Performance
-                                    </h6>
-                                    <h2 class="text-blueGray-700 text-xl font-semibold">
-                                        Total orders
-                                    </h2>
-                                </div>
-                            </div>
+        $dashboard = new Dashboard();
+
+        $parkings_result = $dashboard->getParkings($client_id);
+        $total_parkings_result = $dashboard->countParkings($client_id);
+        $total_available_parkings_result = $dashboard->countAvailableParkings($client_id);
+        $cars_result = $dashboard->getCars($client_id);
+        $total_cars_result = $dashboard->countCars($client_id);
+        $total_checkinout_result = $dashboard->countCheckInOutByClient($client_id);
+
+        $parkings = $parkings_result->fetch_all(MYSQLI_ASSOC);
+        $total_parkings_data = $total_parkings_result->fetch_object();
+        $total_available_parkings_data = $total_available_parkings_result->fetch_object();
+        $cars = $cars_result->fetch_all(MYSQLI_ASSOC);
+        $total_cars_data = $total_cars_result->fetch_object();
+        $total_checkinout_data = $total_checkinout_result;
+
+        $total_employees = $dashboard->countEmployees($client_id);
+        $total_cards = $dashboard->countActiveAccessCards($client_id);
+        $total_visitors = $dashboard->countVisits($client_id);
+
+        // Obtener los datos de la cantidad de carros por modelo
+        $countCarsByModelResult = $dashboard->countCarsByModel($client_id);
+
+        // Inicializar arrays para almacenar los nombres de los modelos y la cantidad de carros por modelo
+        $modelNames = [];
+        $totalCarsByModel = [];
+
+        // Iterar sobre los resultados y almacenar los datos en los arrays
+        while ($row = $countCarsByModelResult->fetch_assoc()) {
+            $modelNames[] = $row['model_name'];
+            $totalCarsByModel[] = $row['total_cars'];
+        }
+    } else {
+        echo "La sesión no está iniciada o el cliente no está identificado.";
+    }
+    ?>
+
+    <div class="main-content mt-navbarClient">
+        <div class="relative md:pt-32 pb-32 pt-12">
+            <div class="px-4 md:px-10 mx-auto w-full lg:w-3/4 xl:w-2/3">
+                <div class="overflow-x-auto">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h2 class="text-lg font-semibold mb-2">Parkings</h2>
+                            <canvas id="parkingsChart" width="800" height="650"></canvas>
                         </div>
-                        <div class="p-4 flex-auto">
-                            <!-- Placeholder for the bar chart -->
-                            <div class="relative" style="height:350px">
-                                <canvas id="bar-chart"></canvas>
-                            </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h2 class="text-lg font-semibold mb-2">Empleados</h2>
+                            <canvas id="employeesChart" width="800" height="650"></canvas>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h2 class="text-lg font-semibold mb-2">Tarjetas</h2>
+                            <canvas id="cardsChart" width="800" height="650"></canvas>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h2 class="text-lg font-semibold mb-2">Visitantes</h2>
+                            <canvas id="visitorsChart" width="800" height="650"></canvas>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h2 class="text-lg font-semibold mb-2">Check-In/Out</h2>
+                            <canvas id="checkinoutChart" width="800" height="650"></canvas>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow">
+                            <h2 class="text-lg font-semibold mb-2">Modelos de Carros</h2>
+                            <canvas id="carsByModelChart" width="800" height="650"></canvas>
                         </div>
                     </div>
                 </div>
@@ -71,190 +88,198 @@
         </div>
     </div>
 
-    <!-- Include your footer or other components here -->
-    <span id="javascript-date"></span>
 
-    <!-- Include your functions.php or other scripts here -->
-    <?php include_once "../components/functions.php"; ?>
-
-    <!-- JavaScript to initialize and update the charts -->
-    <script type="text/javascript">
-        /* Add current date to the footer */
-        document.getElementById("javascript-date").innerHTML = new Date().getFullYear();
-
-        /* Line Chart */
-        var lineConfig = {
-            type: "line",
+    <script>
+        // Configurar datos para el gráfico de parkings
+        var totalParkings = <?php echo $total_parkings_data->total_parkings; ?>;
+        var availableParkings = <?php echo $total_available_parkings_data->available_parkings; ?>;
+        var ctxParkings = document.getElementById('parkingsChart').getContext('2d');
+        var parkingsChart = new Chart(ctxParkings, {
+            type: 'bar',
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: ['Parkings (<?php echo $total_parkings_data->total_parkings; ?>)           Disponibles (<?php echo $total_available_parkings_data->available_parkings; ?>)'],
                 datasets: [{
-                        label: new Date().getFullYear(),
-                        backgroundColor: "#4c51bf",
-                        borderColor: "#4c51bf",
-                        data: [65, 78, 66, 44, 56, 67, 75],
-                        fill: false
+                        label: 'Parkings',
+                        data: [totalParkings],
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
                     },
                     {
-                        label: new Date().getFullYear() - 1,
-                        fill: false,
-                        backgroundColor: "#ed64a6",
-                        borderColor: "#ed64a6",
-                        data: [40, 68, 86, 74, 56, 60, 87]
+                        label: 'Disponibles',
+                        data: [availableParkings],
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
                     }
                 ]
             },
             options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                title: {
-                    display: false,
-                    text: "Sales Charts",
-                    fontColor: "white"
-                },
-                legend: {
-                    labels: {
-                        fontColor: "white"
-                    },
-                    align: "end",
-                    position: "bottom"
-                },
-                tooltips: {
-                    mode: "index",
-                    intersect: false
-                },
-                hover: {
-                    mode: "nearest",
-                    intersect: true
-                },
                 scales: {
-                    xAxes: [{
-                        ticks: {
-                            fontColor: "rgba(255,255,255,.7)"
-                        },
-                        display: true,
-                        scaleLabel: {
-                            display: false,
-                            labelString: "Month",
-                            fontColor: "white"
-                        },
-                        gridLines: {
-                            display: false,
-                            borderDash: [2],
-                            borderDashOffset: [2],
-                            color: "rgba(33, 37, 41, 0.3)",
-                            zeroLineColor: "rgba(0, 0, 0, 0)",
-                            zeroLineBorderDash: [2],
-                            zeroLineBorderDashOffset: [2]
-                        }
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            fontColor: "rgba(255,255,255,.7)"
-                        },
-                        display: true,
-                        scaleLabel: {
-                            display: false,
-                            labelString: "Value",
-                            fontColor: "white"
-                        },
-                        gridLines: {
-                            borderDash: [3],
-                            borderDashOffset: [3],
-                            drawBorder: false,
-                            color: "rgba(255, 255, 255, 0.15)",
-                            zeroLineColor: "rgba(33, 37, 41, 0)",
-                            zeroLineBorderDash: [2],
-                            zeroLineBorderDashOffset: [2]
-                        }
-                    }]
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        };
-        var lineCtx = document.getElementById("line-chart").getContext("2d");
-        var myLine = new Chart(lineCtx, lineConfig);
+        });
 
-        /* Bar Chart */
-        var barConfig = {
-            type: "bar",
+        // Configurar datos para el gráfico de empleados
+        var totalEmployees = <?php echo $total_employees; ?>;
+        var ctxEmployees = document.getElementById('employeesChart').getContext('2d');
+        var employeesChart = new Chart(ctxEmployees, {
+            type: 'bar',
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: ['Total (<?php echo $total_employees; ?>)'],
                 datasets: [{
-                        label: new Date().getFullYear(),
-                        backgroundColor: "#ed64a6",
-                        borderColor: "#ed64a6",
-                        data: [30, 78, 56, 34, 100, 45, 13],
-                        fill: false,
-                        barThickness: 8
+                    label: 'Empleados',
+                    data: [totalEmployees],
+                    backgroundColor: 'rgba(255, 159, 64, 0.6)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Configurar datos para el gráfico de tarjetas
+        var totalCards = <?php echo $total_cards; ?>;
+        var ctxCards = document.getElementById('cardsChart').getContext('2d');
+        var cardsChart = new Chart(ctxCards, {
+            type: 'bar',
+            data: {
+                labels: ['Total (<?php echo $total_cards; ?>)'],
+                datasets: [{
+                    label: 'Tarjetas',
+                    data: [totalCards],
+                    backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Configurar datos para el gráfico de visitantes
+        var totalVisitors = <?php echo $total_visitors; ?>;
+        var ctxVisitors = document.getElementById('visitorsChart').getContext('2d');
+        var visitorsChart = new Chart(ctxVisitors, {
+            type: 'bar',
+            data: {
+                labels: ['Total (<?php echo $total_visitors; ?>)'],
+                datasets: [{
+                    label: 'Visitantes',
+                    data: [totalVisitors],
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Configurar datos para el gráfico de check-in/out
+        var totalCheckInOut = <?php echo $total_checkinout_data->total_checkinout; ?>;
+        var totalCheckInOutWithDate = <?php echo $total_checkinout_data->total_with_date; ?>;
+        var totalCheckInOutWithoutDate = <?php echo $total_checkinout_data->total_without_date; ?>;
+        var ctxCheckInOut = document.getElementById('checkinoutChart').getContext('2d');
+        var checkInOutChart = new Chart(ctxCheckInOut, {
+            type: 'bar',
+            data: {
+                labels: ['Total (<?php echo $total_checkinout_data->total_checkinout; ?>)', 'Completas (<?php echo $total_checkinout_data->total_with_date; ?>)', 'Sin salida (<?php echo $total_checkinout_data->total_without_date; ?>)'],
+                datasets: [{
+                        label: 'Entradas y Salidas',
+                        data: [totalCheckInOut, '', ''],
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
                     },
                     {
-                        label: new Date().getFullYear() - 1,
-                        fill: false,
-                        backgroundColor: "#4c51bf",
-                        borderColor: "#4c51bf",
-                        data: [27, 68, 86, 74, 10, 4, 87],
-                        barThickness: 8
+                        label: 'Completas',
+                        data: ['', totalCheckInOutWithDate, ''],
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Sin salida',
+                        data: ['', '', totalCheckInOutWithoutDate],
+                        backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
                     }
                 ]
             },
             options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                title: {
-                    display: false,
-                    text: "Orders Chart"
-                },
-                tooltips: {
-                    mode: "index",
-                    intersect: false
-                },
-                hover: {
-                    mode: "nearest",
-                    intersect: true
-                },
-                legend: {
-                    labels: {
-                        fontColor: "rgba(0,0,0,.4)"
-                    },
-                    align: "end",
-                    position: "bottom"
-                },
                 scales: {
-                    xAxes: [{
-                        display: false,
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Month"
-                        },
-                        gridLines: {
-                            borderDash: [2],
-                            borderDashOffset: [2],
-                            color: "rgba(33, 37, 41, 0.3)",
-                            zeroLineColor: "rgba(33, 37, 41, 0.3)",
-                            zeroLineBorderDash: [2],
-                            zeroLineBorderDashOffset: [2]
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: false,
-                            labelString: "Value"
-                        },
-                        gridLines: {
-                            borderDash: [2],
-                            drawBorder: false,
-                            borderDashOffset: [2],
-                            color: "rgba(33, 37, 41, 0.2)",
-                            zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                            zeroLineBorderDash: [2],
-                            zeroLineBorderDashOffset: [2]
-                        }
-                    }]
+                    y: {
+                        beginAtZero: true,
+                        min: 0
+                    },
+                    x: {
+                        stacked: true
+                    }
                 }
             }
-        };
-        var barCtx = document.getElementById("bar-chart").getContext("2d");
-        var myBar = new Chart(barCtx, barConfig);
+        });
+
+        // Configurar datos para el gráfico de modelos de carros
+        var modelNames = <?php 
+    $modelNamesWithCount = [];
+    foreach ($modelNames as $index => $modelName) {
+        $modelNamesWithCount[] = $modelName . ' (' . $totalCarsByModel[$index] . ')';
+    }
+    echo json_encode($modelNamesWithCount); ?>;
+
+        var totalCarsByModel = <?php echo json_encode($totalCarsByModel); ?>;
+        var ctxCarsByModel = document.getElementById('carsByModelChart').getContext('2d');
+        var carsByModelChart = new Chart(ctxCarsByModel, {
+            type: 'bar',
+            data: {
+                labels: modelNames,
+                datasets: [{
+                    label: 'Cantidad de Carros',
+                    data: totalCarsByModel,
+                    backgroundColor: generateRandomColorArray(modelNames.length),
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Función para generar un array de colores aleatorios
+        function generateRandomColorArray(numColors) {
+            var colors = [];
+            for (var i = 0; i < numColors; i++) {
+                var randomColor = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.6)';
+                colors.push(randomColor);
+            }
+            return colors;
+        }
     </script>
 </body>
 
