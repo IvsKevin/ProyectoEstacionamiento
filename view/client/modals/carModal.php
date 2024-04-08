@@ -3,7 +3,7 @@
         <form method="post" action="../../app/client/carros/addCar.php">
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="cerrarModal('agregarCarroModal')">✕</button>
             <h3 class="font-bold text-lg">Añadir carro</h3>
-            <div class="modal-action  flex flex-col items-center">
+            <div class="modal-action flex flex-col items-center">
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Matrícula:
@@ -72,8 +72,17 @@
                     </label>
                 </div>
 
+                <!-- Ventana modal para mostrar el mensaje de error -->
+                <dialog id="errorModal" class="modal">
+    <div class="modal-box">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="cerrarModal('errorModal')">✕</button>
+        <p id="errorMessage" class="font-bold text-lg"><?php echo isset($_SESSION['error_message']) ? $_SESSION['error_message'] : ''; ?></p>
+    </div>
+</dialog>
+
+
                 <div class="flex justify-end">
-                    <button type="submit" class="cursor-pointer mt-5 btn btn-outline btn-info p-2 pl-4 pr-4">Enviar</button>
+                    <button type="submit" class="cursor-pointer mt-5 btn btn-outline btn-info p-2 pl-4 pr-4" onclick="verificarEmpleado()">Enviar</button>
                 </div>
             </div>
         </form>
@@ -140,14 +149,16 @@
         modal.close();
     }
 
-    // Función para aplicar los filtros
-    function aplicarFiltros() {
-        // Obtener valores de los campos de filtro
-        var modelo = document.getElementById('filtro-modelo').value;
-        var empleado = document.getElementById('filtro-empleado').value;
+    // Función para verificar si el empleado ya tiene un carro registrado
+    function verificarEmpleado() {
+        var form = document.getElementById('carForm');
+        var empleadoSelect = form.querySelector('select[name="empleado"]');
+        var empleadoId = empleadoSelect.value;
 
-        // Establecer los valores de los campos de filtro en el formulario
-        document.getElementById('filtroForm').submit();
+        // Aquí debes realizar la lógica para verificar si el empleado ya tiene un carro registrado
+        // Por ahora, simplemente mostraremos el mensaje de error en el modal
+        var errorModal = document.getElementById('errorModal');
+        errorModal.showModal();
     }
 </script>
 

@@ -80,3 +80,10 @@ $empleados = $employee->getEmployee();
 </body>
 
 <?php include_once "modals/carModal.php"; ?>
+
+<?php
+if(isset($_SESSION['error_message'])) {
+    echo '<script>abrirModal("errorModal");</script>';
+    unset($_SESSION['error_message']);
+}
+?>
