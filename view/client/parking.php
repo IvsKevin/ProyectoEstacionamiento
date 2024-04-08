@@ -108,13 +108,13 @@ $myEspacios = new Espacios();
                                             </p>
 
                                             <p class="text-gray-300 mt-3">
-    <div class="flex items-center">
-        <!-- Círculo dinámico de estado -->
-        <div class="w-5 h-5 rounded-full ml-2 mr-3 <?php echo ($espaciosDisponibles > 0) ? 'bg-green-500' : 'bg-red-500'; ?>"></div>
-        <!-- Texto descriptivo del estado -->
-        <span>Estado: </span> <?php echo $row['status_name']; ?>
-    </div>
-</p>
+            <div class="flex items-center">
+                <!-- Círculo dinámico de estado -->
+                <div class="w-5 h-5 rounded-full ml-2 mr-3 <?php echo ($row['status_name'] == 'Activo') ? 'bg-green-500' : 'bg-red-500'; ?>"></div>
+                <!-- Texto descriptivo del estado -->
+                Estado: <?php echo $row['status_name']; ?>
+            </div>
+        </p>
 
 
 

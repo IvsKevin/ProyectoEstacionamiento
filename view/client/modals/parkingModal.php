@@ -24,7 +24,7 @@
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Capacidad:
-                        <input name="capacidadParking" type="number" class="grow" />
+                        <input name="capacidadParking" type="number" class="grow" placeholder="1" required min="1" max="50"/>
                     </label>
                 </div>
                 <!-- Otros campos que puedas necesitar -->

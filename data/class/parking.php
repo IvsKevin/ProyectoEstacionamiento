@@ -62,31 +62,47 @@ class Parking extends conexion {
     }
 
     public function addParking($location, $capacity) {
-        // Conectar a la base de datos
-        $result = $this->connect();
-        if ($result == false) {
-            echo "No se pudo conectar a la base de datos.";
-            return false;
-        }
-    
-        // Insertar nuevo estacionamiento sin escapar las entradas
-        $sql = "INSERT INTO Parking (parking_number, parking_location, parking_capacity, fk_client, fk_status) VALUES ($this->parking_number, '$location', $capacity, $this->fk_client, 1)";
-    
-        // Ejecutar la inserción y verificar si fue exitosa
-        $newID = $this->execinsert($sql);
-    
-        if ($newID > 0) {
-            // Insertar automáticamente espacios como "disponibles" para el nuevo estacionamiento
-            for ($i = 1; $i <= $capacity; $i++) {
-                $sqlSpaces = "INSERT INTO Parking_Spaces (spaces_number, fk_status, fk_parking) VALUES ($i, 1, $newID)";
-                $this->execquery($sqlSpaces);
-            }
-            return true;
-        } else {
-            echo "No se pudo insertar el nuevo estacionamiento.";
-            return false;
-        }
+    // Conectar a la base de datos
+    $result = $this->connect();
+    if ($result == false) {
+        echo "No se pudo conectar a la base de datos.";
+        return false;
     }
+
+    // Inicializar $_SESSION['parking_number'] como un array si no está inicializado
+    if (!isset($_SESSION['parking_number'])) {
+        $_SESSION['parking_number'] = array();
+    }
+
+    // Verificar si el número de estacionamiento ya está en uso en la sesión
+    if (in_array($this->parking_number, $_SESSION['parking_number'])) {
+        echo "El número de estacionamiento ya está en uso. Por favor, elige otro.";
+        return false;
+    }
+
+    // Insertar nuevo estacionamiento sin escapar las entradas
+    $sql = "INSERT INTO Parking (parking_number, parking_location, parking_capacity, fk_client, fk_status) VALUES ($this->parking_number, '$location', $capacity, $this->fk_client, 1)";
+
+    // Ejecutar la inserción y verificar si fue exitosa
+    $newID = $this->execinsert($sql);
+
+    if ($newID > 0) {
+        // Insertar automáticamente espacios como "disponibles" para el nuevo estacionamiento
+        for ($i = 1; $i <= $capacity; $i++) {
+            $sqlSpaces = "INSERT INTO Parking_Spaces (spaces_number, fk_status, fk_parking) VALUES ($i, 1, $newID)";
+            $this->execquery($sqlSpaces);
+        }
+
+        // Agregar el número de estacionamiento a la sesión
+        $_SESSION['parking_number'][] = $this->parking_number;
+
+        return true;
+    } else {
+        echo "No se pudo insertar el nuevo estacionamiento.";
+        return false;
+    }
+}
+
     
 
     public function getParkingDetails($parkingID) {
