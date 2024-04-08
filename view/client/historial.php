@@ -23,7 +23,7 @@ if (isset($_SESSION['client_id'])) {
                         <button class="btn h-8 min-h-8 btn-outline btn-info" onclick="agregarEntrada()">Registrar entrada</button>
                     </div>
                     <div class="flex-1 px-2 lg:flex-none">
-                        <button class="btn h-8 min-h-8 btn-outline btn-error" onclick="agregarSalida()">Registar salida</button>
+                        <button class="btn h-8 min-h-8 btn-outline btn-error" onclick="agregarSalida()">Registrar salida</button>
                     </div>
                 </div>
                 <div class="overflow-x-auto mt-4">
@@ -61,11 +61,13 @@ if (isset($_SESSION['client_id'])) {
         </div>
     </div>
 </div>
+
 <?php
 // Verifica si el parámetro 'resultado' está presente en la URL
 if (isset($_GET['resultado'])) {
     // Recupera el valor del parámetro 'resultado'
     $resultadoEntrada = $_GET['resultado'];
+
     // Muestra los detalles de la entrada al usuario
     echo "<dialog id='resultadoEntradaModal' class='modal bg-black-300 text-white'>
     <div class='modal-box'>
@@ -87,17 +89,26 @@ if (isset($_GET['resultado'])) {
 if (isset($_GET['resultadoSalida'])) {
     // Recupera el valor del parámetro 'resultado'
     $resultadoSalida = $_GET['resultadoSalida'];
+
     // Muestra los detalles de la entrada al usuario
     echo "<dialog id='resultadoSalidaModal' class='modal bg-black-300 text-white'>
             <div class='modal-box'>
                 <form method='dialog'>
                     <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
-                </form>
-                <h3 class='font-bold text-lg'>Hora de salida:</h3>
-                <div class='modal-action  flex flex-col items-center'>";
-    if ($resultadoSalida != '') {
+                </form>";
+
+    // Verifica si el resultado de la salida indica que el empleado no ha registrado su entrada
+    if ($resultadoSalida === 'no_registrado') {
+        echo "<h3 class='font-bold text-lg'>Error:</h3>";
+        echo "<div class='modal-action flex flex-col items-center'>";
+        echo "<p>Debes registrar tu entrada antes de registrar la salida.</p>";
+    } else {
+        // Muestra la hora de salida
+        echo "<h3 class='font-bold text-lg'>Hora de salida:</h3>";
+        echo "<div class='modal-action flex flex-col items-center'>";
         echo "<p>$resultadoSalida</p>";
     }
+
     echo "</div>
             </div>
         </dialog>";
@@ -105,4 +116,4 @@ if (isset($_GET['resultadoSalida'])) {
     <script>
         resultadoSalidaModal.showModal();
     </script>
-<?php }
+<?php } ?>

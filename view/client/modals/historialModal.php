@@ -1,11 +1,11 @@
-<!--===============MODAL PARA AGREGAR ENTRADA========================================-->
+<!-- MODAL PARA AGREGAR ENTRADA -->
 <dialog id="agregarEntradaModal" class="modal bg-black-300 text-white">
     <div class="modal-box">
         <form method="dialog">
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 class="font-bold text-lg">Registro de Entrada</h3>
-        <div class="modal-action  flex flex-col items-center">
+        <div class="modal-action flex flex-col items-center">
             <form method="post" action="../../app/client/historial/addEntry.php">
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
@@ -39,14 +39,15 @@
         </div>
     </div>
 </dialog>
-<!--===============MODAL PARA AGREGAR SALIDA========================================-->
+
+<!-- MODAL PARA AGREGAR SALIDA -->
 <dialog id="agregarSalidaModal" class="modal bg-black-300 text-white">
     <div class="modal-box">
         <form method="dialog">
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
         <h3 class="font-bold text-lg">Registro de Salida</h3>
-        <div class="modal-action  flex flex-col items-center">
+        <div class="modal-action flex flex-col items-center">
             <form method="post" action="../../app/client/historial/exitEntry.php">
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
@@ -61,6 +62,51 @@
         </div>
     </div>
 </dialog>
+
+<script>
+    function agregarEntrada() {
+    // Aquí debes implementar la lógica para verificar si el empleado ha registrado su salida antes de permitir agregar una nueva entrada.
+    
+    // Supongamos que tienes una variable o función que verifica si el empleado ha registrado su salida
+    var haRegistradoSalida = verificarSalidaEmpleado(); // Esta función debería devolver true si el empleado ha registrado su salida y false si no lo ha hecho
+
+    if (!haRegistradoSalida) {
+        alert("Debes registrar tu salida antes de registrar una nueva entrada.");
+    } else {
+        agregarEntradaModal.showModal();
+    }
+}
+
+// Función de ejemplo para verificar si el empleado ha registrado su salida
+function verificarSalidaEmpleado() {
+    // Aquí debes implementar la lógica para verificar si el empleado ha registrado su salida
+    // Puedes consultar la base de datos u otro almacenamiento de datos para determinar si hay un registro de salida para el empleado actual
+    // Retorna true si el empleado ha registrado su salida, de lo contrario, retorna false
+    // Por ahora, supondremos que siempre devuelve true para simular que el empleado ha registrado su salida
+    return true;
+}
+
+
+    function agregarSalida() {
+        agregarSalidaModal.showModal();
+    }
+
+    function mostrarImagen(input) {
+        var preview = document.getElementById('previewImagen');
+        var file = input.files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+            preview.src = reader.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+</script>
 
 <!--==============================SCRIPTS PARA AGREGAR EMPLEAODS================================-->
 <script>
