@@ -176,6 +176,7 @@ CREATE TABLE Employee (
     employee_name varchar(30) not null,
     employee_lastNameP varchar(30),
     employee_lastNameM varchar(30),
+    tel varchar(10),
     fk_client int,
     fk_status int,
     fk_rol int,
@@ -184,8 +185,6 @@ CREATE TABLE Employee (
     FOREIGN KEY (fk_rol) REFERENCES Rol(pk_rol)
 );
 
-ALTER TABLE employee
-ADD tel varchar(10);
 
 CREATE TABLE Brand (
     pk_brand INT AUTO_INCREMENT PRIMARY KEY,

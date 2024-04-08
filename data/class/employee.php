@@ -120,17 +120,18 @@
 
         //INSERT
         public function setEmployee() {
-            $query = "INSERT INTO Employee (employee_name, employee_lastNameP, employee_lastNameM, tel, fk_client, fk_status, fk_rol) VALUES ('".$this->name."', '".$this->lastNameP."', '".$this->lastNameM."', '".$this->fk_client."', 1, '".$this->fk_rol."')";
+            $query = "INSERT INTO Employee (employee_name, employee_lastNameP, employee_lastNameM, tel, fk_client, fk_status, fk_rol) VALUES ('".$this->name."', '".$this->lastNameP."', '".$this->lastNameM."', '".$this->tel."', '".$this->fk_client."', 1, '".$this->fk_rol."')";
             $result = $this->connect();
             if($result) {
                 $newID = $this->execquery($query);
-                echo "Ha funcionado el registro de empleado"; 
+                echo "El registro del empleado ha sido exitoso"; 
             } else {
-                echo "algo salio mal";
+                echo "Algo salió mal";
                 $newID = "error";
             }
             return $newID;
         }
+        
 
          //UPDATE
         
