@@ -118,7 +118,7 @@ class carentry extends conexion {
                         $resultAssignSpace = $conexion->execquery($assignSpaceQuery);
     
                         if ($resultAssignSpace) {
-                            return $lastEntryId;
+                            return "Se ha registrado tu entrada!";
                         } else {
                             $errorMessage = "Error al asignar el espacio al vehículo.";
                             return $errorMessage;
