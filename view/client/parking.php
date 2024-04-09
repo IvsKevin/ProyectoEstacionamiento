@@ -33,9 +33,9 @@ $myEspacios = new Espacios();
                     <div class="flex-1 px-2 lg:flex-none">
                         <button class="btn h-8 min-h-8 btn-outline btn-info" onclick="agregarParking()">+ Añadir estacionamiento</button>
                     </div>
-                    <div class="flex-1 px-2 lg:flex-none">
+                    <!-- <div class="flex-1 px-2 lg:flex-none">
                         <button class="btn h-8 min-h-8h-8 min-h-8 btn-outline btn-primary" onclick="">Ultimos 30 dias</button>
-                    </div>
+                    </div> -->
                     <div class="flex-1 px-2 lg:flex-none relative">
     <div class="dropdown dropdown-left dropdown-up dropdown-right" style="z-index: 999;">
         <button class="btn h-8 min-h-8 btn-outline btn-primary">Filtrar por</button>

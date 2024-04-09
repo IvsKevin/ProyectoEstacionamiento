@@ -78,19 +78,14 @@
                 <i class="fas fa-user-friends text-xl"></i>
               </div>
               <h3 class="text-3xl mb-2 font-semibold leading-normal">
-                Working with us is a pleasure
+                Utilizar Parking Manager te facilitara la gestion de tus estacionamientos
               </h3>
               <p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
-                Don't let your uses guess by attaching tooltips and popoves to
-                any element. Just make sure you enable them first via
-                JavaScript.
-              </p>
+              Miles de usuarios confían en Parking Manager para simplificar la gestión de estacionamientos. Nuestra plataforma ofrece reservas en línea, seguimiento de ocupación en tiempo real y notificaciones automáticas, garantizando comodidad y eficiencia.          </p>
               <p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
-                The kit comes with three pre-built pages to help you get started
-                faster. You can change the text and images and you're good to
-                go. Just make sure you enable them first via JavaScript.
+              Además, contamos con membresías que ofrecen beneficios exclusivos, como descuentos en reservas, acceso prioritario y más. Únete a nuestra comunidad y descubre una nueva forma de gestionar tus espacios de estacionamiento.
               </p>
-              <a href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation" class="font-bold text-gray-800 mt-8">Check Tailwind Starter Kit!</a>
+              <a href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation" class="font-bold text-gray-800 mt-8">Consigue ya tu membresia!</a>
             </div>
             <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
               <div class="relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-pink-600">
@@ -100,12 +95,10 @@
                     <polygon points="-30,95 583,95 583,65" class="text-pink-600 fill-current"></polygon>
                   </svg>
                   <h4 class="text-xl font-bold text-white">
-                    Top Notch Services
+                    Somos el equipo de trabajo Parking Manager
                   </h4>
                   <p class="text-md font-light mt-2 text-white">
-                    The Arctic Ocean freezes every winter and much of the
-                    sea-ice then thaws every summer, and that process will
-                    continue whatever happens.
+                  En Parking Manager, nos esforzamos por brindar un servicio de gestión de estacionamientos eficiente y fácil de usar. Nuestro equipo se dedica a proporcionar una plataforma innovadora que simplifica la experiencia tanto para los propietarios de estacionamientos como para los usuarios.
                   </p>
                 </blockquote>
               </div>
@@ -126,24 +119,22 @@
             </div>
             <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
               <div class="md:pr-12">
-                <div class="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
+                <div class="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blue-400">
                   <i class="fas fa-rocket text-xl"></i>
                 </div>
-                <h3 class="text-3xl font-semibold">A growing company</h3>
-                <p class="mt-4 text-lg leading-relaxed text-gray-600">
-                  The extension comes with three pre-built pages to help you get
-                  started faster. You can change the text and images and you're
-                  good to go.
+                <h3 class="text-3xl font-semibold text-gray-300">Una compañia en crecimiento</h3>
+                <p class="mt-4 text-lg leading-relaxed text-gray-400">
+                "En Parking Manager, somos una compañía en crecimiento dedicada a simplificar la gestión de estacionamientos. Con una visión innovadora y un compromiso con la excelencia, estamos expandiendo constantemente nuestra presencia y mejorando nuestros servicios. Estamos emocionados de seguir creciendo y ofreciendo soluciones cada vez mejores para nuestros usuarios. Únete a nosotros en esta emocionante jornada y sé parte de nuestro éxito en el futuro.
                 </p>
                 <ul class="list-none mt-6">
                   <li class="py-2">
                     <div class="flex items-center">
                       <div>
-                        <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3"><i class="fas fa-fingerprint"></i></span>
+                        <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-blue-400 mr-3"><i class="fas fa-fingerprint"></i></span>
                       </div>
                       <div>
-                        <h4 class="text-gray-600">
-                          Carefully crafted components
+                        <h4 class="text-gray-400">
+                          Tus estacionamientos siempre seguros
                         </h4>
                       </div>
                     </div>
@@ -151,20 +142,20 @@
                   <li class="py-2">
                     <div class="flex items-center">
                       <div>
-                        <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3"><i class="fab fa-html5"></i></span>
+                        <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-blue-400 mr-3"><i class="fab fa-html5"></i></span>
                       </div>
                       <div>
-                        <h4 class="text-gray-600">Amazing page examples</h4>
+                        <h4 class="text-gray-400">Un ambiente mas controlado</h4>
                       </div>
                     </div>
                   </li>
                   <li class="py-2">
                     <div class="flex items-center">
                       <div>
-                        <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3"><i class="far fa-paper-plane"></i></span>
+                        <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-blue-400 mr-3"><i class="far fa-paper-plane"></i></span>
                       </div>
                       <div>
-                        <h4 class="text-gray-600">Dynamic components</h4>
+                        <h4 class="text-gray-400">Interfaces intuitivas</h4>
                       </div>
                     </div>
                   </li>
@@ -178,22 +169,20 @@
         <div class="container mx-auto px-4">
           <div class="flex flex-wrap justify-center text-center mb-24">
             <div class="w-full lg:w-6/12 px-4">
-              <h2 class="text-4xl font-semibold">Here are our heroes</h2>
-              <p class="text-lg leading-relaxed m-4 text-gray-600">
-                According to the National Oceanic and Atmospheric
-                Administration, Ted, Scambos, NSIDClead scentist, puts the
-                potentially record maximum.
+              <h2 class="text-4xl font-semibold text-gray-300">Conoce al equipo detras de Parking Manager</h2>
+              <p class="text-lg leading-relaxed m-4 text-gray-400">
+              En Parking Manager nos esforzamos por brindarte la mejor experiencia posible en la administración de tus espacios de estacionamiento.
               </p>
             </div>
           </div>
           <div class="flex flex-wrap">
             <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
               <div class="px-6">
-                <img alt="..." src="./assets/img/team-1-800x800.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;" />
+                <img alt="..." src="./assets/img/bp.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;" />
                 <div class="pt-6 text-center">
-                  <h5 class="text-xl font-bold">Ryan Tompson</h5>
-                  <p class="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    Web Developer
+                  <h5 class="text-xl font-bold text-gray-300">Perdomo Garcia Kevin Alberto</h5>
+                  <p class="mt-1 text-sm text-gray-400 uppercase font-semibold">
+                    Web Developer/UI Designer
                   </p>
                   <div class="mt-6">
                     <button class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type="button">
@@ -207,11 +196,11 @@
             </div>
             <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
               <div class="px-6">
-                <img alt="..." src="./assets/img/team-2-800x800.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;" />
+                <img alt="..." src="./assets/img/cano.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;" />
                 <div class="pt-6 text-center">
-                  <h5 class="text-xl font-bold">Romina Hadid</h5>
-                  <p class="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    Marketing Specialist
+                  <h5 class="text-xl font-bold text-gray-300">Hernández González Alejandro</h5>
+                  <p class="mt-1 text-sm text-gray-400 uppercase font-semibold">
+                  Web Developer/UI Designer
                   </p>
                   <div class="mt-6">
                     <button class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type="button">
@@ -224,11 +213,11 @@
             </div>
             <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
               <div class="px-6">
-                <img alt="..." src="./assets/img/team-3-800x800.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;" />
+                <img alt="..." src="./assets/img/jotorge.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;" />
                 <div class="pt-6 text-center">
-                  <h5 class="text-xl font-bold">Alexa Smith</h5>
-                  <p class="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    UI/UX Designer
+                  <h5 class="text-xl font-bold text-gray-300">Robledo Ramirez Jorge Rafael</h5>
+                  <p class="mt-1 text-sm text-gray-400 uppercase font-semibold">
+                  Web Developer/UI Designer
                   </p>
                   <div class="mt-6">
                     <button class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type="button">
@@ -242,11 +231,11 @@
             </div>
             <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
               <div class="px-6">
-                <img alt="..." src="./assets/img/team-4-470x470.png" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;" />
+                <img alt="..." src="./assets/img/efra.jpg" class="shadow-lg rounded-full max-w-full mx-auto" style="max-width: 120px;" />
                 <div class="pt-6 text-center">
-                  <h5 class="text-xl font-bold">Jenna Kardi</h5>
-                  <p class="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    Founder and CEO
+                  <h5 class="text-xl font-bold text-gray-300">Leyva Davila Jesus Efrain</h5>
+                  <p class="mt-1 text-sm text-gray-400 uppercase font-semibold">
+                  Web Developer/UI Designer
                   </p>
                   <div class="mt-6">
                     <button class="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1" type="button">
@@ -271,47 +260,42 @@
         <div class="container mx-auto px-4 lg:pt-24 lg:pb-64">
           <div class="flex flex-wrap text-center justify-center">
             <div class="w-full lg:w-6/12 px-4">
-              <h2 class="text-4xl font-semibold text-white">Build something</h2>
-              <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
-                Put the potentially record low maximum sea ice extent tihs year
-                down to low ice. According to the National Oceanic and
-                Atmospheric Administration, Ted, Scambos.
+              <h2 class="text-4xl font-semibold text-white">¡Gestiona tu estacionamiento con Parking Manager hoy!</h2>
+              <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-300">
+              Gestiona tu estacionamiento fácilmente con Parking Manager. ¡Comienza ahora mismo y simplifica tu vida!
               </p>
             </div>
           </div>
           <div class="flex flex-wrap mt-12 justify-center">
             <div class="w-full lg:w-3/12 px-4 text-center">
-              <div class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+              <div class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-blue-400 inline-flex items-center justify-center">
                 <i class="fas fa-medal text-xl"></i>
               </div>
               <h6 class="text-xl mt-5 font-semibold text-white">
-                Excelent Services
+                Excelente Servicio
               </h6>
-              <p class="mt-2 mb-4 text-gray-500">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+              <p class="mt-2 mb-4 text-gray-400">
+              Parking Manager: Donde la excelencia es nuestra norma. Descubre cómo podemos elevar tu experiencia en la gestión de estacionamientos.
               </p>
             </div>
             <div class="w-full lg:w-3/12 px-4 text-center">
-              <div class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+              <div class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-blue-600 inline-flex items-center justify-center">
                 <i class="fas fa-poll text-xl"></i>
               </div>
               <h5 class="text-xl mt-5 font-semibold text-white">
-                Grow your market
+                Haz de tus estacionamientos algo mejor
               </h5>
-              <p class="mt-2 mb-4 text-gray-500">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+              <p class="mt-2 mb-4 text-gray-400">
+              Haz de tus estacionamientos algo mejor con Parking Manager. Descubre cómo logramos este objetivo y optimizamos cada espacio para ti.
               </p>
             </div>
             <div class="w-full lg:w-3/12 px-4 text-center">
-              <div class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
+              <div class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-blue-400 inline-flex items-center justify-center">
                 <i class="fas fa-lightbulb text-xl"></i>
               </div>
-              <h5 class="text-xl mt-5 font-semibold text-white">Launch time</h5>
-              <p class="mt-2 mb-4 text-gray-500">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+              <h5 class="text-xl mt-5 font-semibold text-white">Contamos con interfaces intuitivas</h5>
+              <p class="mt-2 mb-4 text-gray-400">
+              Nuestro sistema intuitivo facilita la gestión de tus espacios de manera eficiente y sencilla.
               </p>
             </div>
           </div>
@@ -323,22 +307,22 @@
             <div class="w-full lg:w-6/12 px-4">
               <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300">
                 <div class="flex-auto p-5 lg:p-10">
-                  <h4 class="text-2xl font-semibold">Want to work with us?</h4>
+                  <h4 class="text-2xl font-semibold">Tienes problemas? Envianos tus dudas.</h4>
                   <p class="leading-relaxed mt-1 mb-4 text-gray-600">
-                    Complete this form and we will get back to you in 24 hours.
+                    Llena este formulario y te responederemos en 24 horas.
                   </p>
                   <div class="relative w-full mb-3 mt-8">
-                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="full-name">Full Name</label><input type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Full Name" style="transition: all 0.15s ease 0s;" />
+                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="full-name">Nombre Completo</label><input type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Full Name" style="transition: all 0.15s ease 0s;" />
                   </div>
                   <div class="relative w-full mb-3">
                     <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="email">Email</label><input type="email" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Email" style="transition: all 0.15s ease 0s;" />
                   </div>
                   <div class="relative w-full mb-3">
-                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="message">Message</label><textarea rows="4" cols="80" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Type a message..."></textarea>
+                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="message">Mensaje</label><textarea rows="4" cols="80" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Type a message..."></textarea>
                   </div>
                   <div class="text-center mt-6">
                     <button class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all 0.15s ease 0s;">
-                      Send Message
+                      Enviar Mensaje
                     </button>
                   </div>
                 </div>

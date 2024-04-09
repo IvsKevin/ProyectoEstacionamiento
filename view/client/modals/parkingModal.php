@@ -142,4 +142,28 @@ if (isset($_GET['errorEliminacion'])) {
         resultadoEliminacion.showModal();
     </script>
 <?php } ?>
+<?php
+// Verifica si el parámetro 'resultado' está presente en la URL
+if (isset($_GET['errorEst'])) {
+    // Recupera el valor del parámetro 'resultado'
+    $errorEst = $_GET['errorEst'];
+    // Muestra los detalles de la entrada al usuario
+    echo "<dialog id='errorEstacionamiento' class='modal bg-black-300 text-white'>
+            <div class='modal-box'>
+                <form method='dialog'>
+                    <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
+                </form>
+                <h3 class='font-bold text-lg'>Error al agregar estacionamiento</h3>
+                <div class='modal-action  flex flex-col items-center'>";
+    if ($errorEst != '') {
+        echo "<p>$errorEst</p>";
+    }
+    echo "</div>
+            </div>
+        </dialog>";
+?>
+    <script>
+        errorEstacionamiento.showModal();
+    </script>
+<?php } ?>
 <!--==============================TERMINA EL MODAL PARA ACTUALIZAR PARKING================================-->

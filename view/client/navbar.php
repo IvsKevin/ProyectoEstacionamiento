@@ -37,7 +37,7 @@
 
             <li id="parkingContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
             <a href="parking.php" id="parkingLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block">
-      <img src="../../assets/iconos/parking.png" alt="Parking Icon" class="inline-block w-6 h-6 mr-2">
+      <img src="../../assets/iconos/parking.png" alt="Parking Icon" class="inline-block w-5 h-5 mr-3">
       Parking
         </a>
       </li>

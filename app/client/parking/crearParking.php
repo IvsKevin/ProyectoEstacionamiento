@@ -1,6 +1,6 @@
 <?php
 // Incluimos las clases necesarias
-include(__DIR__.'/../../../data/class/parking.php');
+include(__DIR__ . '/../../../data/class/parking.php');
 
 session_start();
 
@@ -10,14 +10,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ubicacionParking']) &&
     $location = $_POST['ubicacionParking'];
     $capacity = $_POST['capacidadParking'];
 
-    $parkingHandler= new Parking();
-    $parkingHandler -> parking_number = $parking;
+    $parkingHandler = new Parking();
+    $parkingHandler->parking_number = $parking;
     $parkingHandler->setFKclient($_SESSION['client_id']); //Setteamos el client_id.
     // Agregar el nuevo estacionamiento
     if ($parkingHandler->addParking($location, $capacity)) {
         echo "Estacionamiento agregado correctamente";
         header('Location: ../../../view/client/parking.php');
     } else {
-        echo "Error al agregar estacionamiento";
+        $errorEst = 'El número de estacionamiento ya está en uso. Por favor, elige otro..';
+        header('Location: ../../../view/client/parking.php?errorEst=' . urlencode($errorEst) . '');
     }
 }

@@ -22,9 +22,9 @@
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap">
           <div class="w-full lg:w-6/12 px-4">
-            <h4 class="text-3xl font-semibold">Let's keep in touch!</h4>
+            <h4 class="text-3xl font-semibold">Visita Nuestras Redes!</h4>
             <h5 class="text-lg mt-0 mb-2 text-gray-700">
-              Find us on any of these platforms, we respond 1-2 business days.
+              Encuentranos en cualquiera de estas redes sociales, te responderemos nunca.
             </h5>
             <div class="mt-6">
               <button
@@ -55,14 +55,14 @@
               <div class="w-full lg:w-4/12 px-4 ml-auto">
                 <span
                   class="block uppercase text-gray-600 text-sm font-semibold mb-2"
-                  >Useful Links</span
+                  >Links Utiles</span
                 >
                 <ul class="list-unstyled">
                   <li>
                     <a
                       class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                       href="https://www.creative-tim.com/presentation"
-                      >About Us</a
+                      >Acerca de nosotros</a
                     >
                   </li>
                   <li>
@@ -83,7 +83,7 @@
                     <a
                       class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                       href="https://www.creative-tim.com/bootstrap-themes/free"
-                      >Free Products</a
+                      >Productos</a
                     >
                   </li>
                 </ul>
@@ -91,35 +91,35 @@
               <div class="w-full lg:w-4/12 px-4">
                 <span
                   class="block uppercase text-gray-600 text-sm font-semibold mb-2"
-                  >Other Resources</span
+                  >Otros Recursos</span
                 >
                 <ul class="list-unstyled">
                   <li>
                     <a
                       class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                       href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
-                      >MIT License</a
+                      >Hola</a
                     >
                   </li>
                   <li>
                     <a
                       class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                       href="https://creative-tim.com/terms"
-                      >Terms &amp; Conditions</a
+                      >Terminos &amp; Condiciones</a
                     >
                   </li>
                   <li>
                     <a
                       class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                       href="https://creative-tim.com/privacy"
-                      >Privacy Policy</a
+                      >Politicas de privacidad</a
                     >
                   </li>
                   <li>
                     <a
                       class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                       href="https://creative-tim.com/contact-us"
-                      >Contact Us</a
+                      >Contactanos</a
                     >
                   </li>
                 </ul>
@@ -133,11 +133,11 @@
         >
           <div class="w-full md:w-4/12 px-4 mx-auto text-center">
             <div class="text-sm text-gray-600 font-semibold py-1">
-              Copyright © 2019 Tailwind Starter Kit by
+              Copyright © Natanael Cano Corporation Parking
               <a
                 href="https://www.creative-tim.com"
                 class="text-gray-600 hover:text-gray-900"
-                >Creative Tim</a
+                >Skibidi Toilet</a
               >.
             </div>
           </div>
