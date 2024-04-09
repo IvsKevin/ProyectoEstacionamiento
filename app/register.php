@@ -85,9 +85,9 @@
     try {
         if ($resultado) {
             $payment = new Payment();
-            $payment->setAmount($_POST["amount"]);
-            $payment->setDescription($_POST["description"]);
-            $payment->setDuration($_POST['duration']);
+            $payment->setAmount($_GET["amount"]);
+            $payment->setDescription($_GET["description"]);
+            $payment->setDuration($_GET['duration']);
             $payment->setClient($fk_client);
             // Realizamos el pago y almacenamos el id de la inserccion realizada.
             $idPago = $payment->setPayment();
@@ -104,7 +104,7 @@
         if ($resultado) {
             //Creamos nuestra clase de licencias
             $license = new Licenses();
-            $license->setDuration($_POST['duration']);
+            $license->setDuration($_GET['duration']);
             $license->setPayment($idPago);
             $accessCode = $license->setLicenses(); //Obtenemos el accessCode
 
