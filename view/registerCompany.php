@@ -1,9 +1,11 @@
 <!--Incluimos el header de la pagina-->
 <?php include_once "components/header_2.php"; ?>
 <?php
-$_SESSION['usuarioNuevo'] = $_POST['username'];
-$_SESSION['correoNuevo'] = $_POST['email'];
-$_SESSION['contraNueva'] = $_POST['password'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_SESSION['username'] = $_POST['username'];
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['password'] = $_POST['password'];
+}
 ?>
 
 <main class="mt-12 p-0 bg-black w-full h-full">
@@ -86,9 +88,9 @@ $_SESSION['contraNueva'] = $_POST['password'];
         </div>
       </div>
     </div>
-</section>
+  </section>
 </main>
 
-    <!--Inclumos los footers de los logins-->
-    <?php //include_once "components/footer_2.php"; 
-    ?>
+<!--Inclumos los footers de los logins-->
+<?php //include_once "components/footer_2.php"; 
+?>

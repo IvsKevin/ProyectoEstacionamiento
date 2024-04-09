@@ -1,120 +1,125 @@
-<?php
-// Extraemos todos las variables de SESSION.
-session_start();
-// echo $_SESSION['usuarioNuevo'] . "<br>";
-// echo $_SESSION['correoNuevo'] . "<br>";
-// echo $_SESSION['contraNueva'] . "<br>";
-// echo $_SESSION['nombreEmpresa'] . "<br>";
-// echo $_SESSION['emailEmpresa'] . "<br>";
-// echo $_SESSION['direccionEmpresa'] . "<br>";
-// echo $_SESSION['paisEmpresa'] . "<br>";
-// echo $_SESSION['estadoEmpresa'] . "<br>";
-// echo $_SESSION['ciudadEmpresa'] . "<br>";
-// echo $_SESSION['codigoEmpresa'] . "<br>";
-// echo $_SESSION['telEmpresa'] . "<br>";
-// echo $_POST['amount'] . "<br>";
-// echo $_POST['description'] . "<br>";
-// echo $_POST['duration'] . "<br>";
+    <?php
+    // Extraemos todos las variables de SESSION.
+    session_start();
+    $nombreUsuario = $_SESSION['username'];
+    $emailUsuario = $_SESSION['email'];
+    $passwordUsuario = $_SESSION['password'];
 
-// Incluimos nuestras clases.
-include('../data/class/user.php'); // Usuario.
-include('../data/class/client.php'); // Empresa.
-include("../data/class/payment.php"); // Registrar pago.
-include("../data/class/licenses.php");
+    $nombreEmpresa = $_SESSION['nombreEmpresa'];
+    $emailEmpresa = $_SESSION['emailEmpresa'];
+    $direccionEmpresa = $_SESSION['direccionEmpresa'];
+    $paisEmpresa = $_SESSION['paisEmpresa'];
+    $estadoEmpresa = $_SESSION['estadoEmpresa'];
+    $ciudadEmpresa = $_SESSION['ciudadEmpresa'];
+    $codigoEmpresa = $_SESSION['codigoEmpresa'];
+    $telEmpresa = $_SESSION['telEmpresa'];
 
-// +==================================================================+
-// Establecemos los valores de los setters de la clase 'USER'.
-$User = new User();
-$User->setNickname($_SESSION["usuarioNuevo"]);
-$User->setEmail($_SESSION["correoNuevo"]);
-$User->setPassword($_SESSION["contraNueva"]);
+    // echo '<pre>';
+    // var_dump($_SESSION);
+    // echo '</pre>';
+    // exit;
 
-$resultado = true;
 
-try { // Intentamos ejecutar la inserccion.
-    $fk_user = $User->setUser(); // Me retorna el ID insertado.
-} catch (mysqli_sql_exception $e) { //En caso de ocurrir una entrada duplicada como nickname o password.
-    // Si hay un error con la inserción, verifica si es por un valor duplicado
-    $resultado = false;
-    if ($e->getCode() === 1062) {
-        echo "
-        <script>
-            alert('¡Ups! El nombre de usuario o correo electrónico ya está registrado. Por favor, elige otros.');
-            window.location.href = '../view/login.php'; // Redireccionar a login.php
-        </script>";
-    } else {
-        // Si es un error diferente, también deberías manejarlo
-        echo 'Error con la inserccion del usuario';
-    }
-} // Fin de las inserciones de la clase 'USER'.
-// +====================================================================+
+    // Incluimos nuestras clases.
+    include('../data/class/user.php'); // Usuario.
+    include('../data/class/client.php'); // Empresa.
+    include("../data/class/payment.php"); // Registrar pago.
+    include("../data/class/licenses.php");
 
-// +====================================================================+
-$fk_client = 0; // Establecemos el ID del 'CLIENTE'.
+    // +==================================================================+
+    // Establecemos los valores de los setters de la clase 'USER'.
+    $User = new User();
+    $User->setNickname($nombreUsuario);
+    $User->setEmail($emailUsuario);
+    $User->setPassword($passwordUsuario);
 
-try {
-    if ($resultado) { // Validamos si se inserto el usuario.
-        // Establecemos los valores de los setters de la clase Cliente.
-        $Client = new Client();
-        $Client->setName($_SESSION["nombreEmpresa"]);
-        $Client->setEmail($_SESSION["emailEmpresa"]);
-        $Client->setAddress($_SESSION["direccionEmpresa"]);
-        $Client->setCountry($_SESSION["paisEmpresa"]);
-        $Client->setCity($_SESSION["ciudadEmpresa"]);
-        $Client->setState($_SESSION["estadoEmpresa"]);
-        $Client->setZipCode($_SESSION["codigoEmpresa"]);
-        $Client->setTel($_SESSION["telEmpresa"]);
-        $Client->setFK_user($fk_user);
+    $resultado = true;
 
-        //Llamamos al metodo y nos retorna el valor de un id de la fila insertada.
-        $fk_client = $Client->setClient();
-    }  // Fin de la inserciones del 'CLIENTE'.
-} catch (mysqli_sql_exception $e) {
-    // Si hay un error con la inserción, verifica si es por un valor duplicado
-    $resultado = false;
-    echo "Error con la insercion de la empresa.";
-}
-// +=====================================================================+
-
-// +======================================================================+
-// Establecemos los valores de los setters de la clase payment.
-try {
-    if ($resultado) {
-        $payment = new Payment();
-        $payment->setAmount($_POST["amount"]);
-        $payment->setDescription($_POST["description"]);
-        $payment->setDuration($_POST['duration']);
-        $payment->setClient($fk_client);
-        // Realizamos el pago y almacenamos el id de la inserccion realizada.
-        $idPago = $payment->setPayment();
-    }
-} catch (mysqli_sql_exception $e) {
-    $resultado = false;
-    echo "Error con la insercion del pago.";
-}
-// +=======================================================================+ 
-
-// +=======================================================================+
-//Validamos que se haya completado exitosamente el pago.
-try {
-    if ($resultado) {
-        //Creamos nuestra clase de licencias
-        $license = new Licenses();
-        $license->setDuration($_POST['duration']);
-        $license->setPayment($idPago);
-        $accessCode = $license->setLicenses(); //Obtenemos el accessCode
-
-        if ($accessCode > 1) {
-            $User->setID($fk_user); //Setteamos el ID de nuestro usuario.
-            $User->updateAccessCode($accessCode); //Le mandamos el mismo code de la membresia al usuario.
-            //Redireccionamos
-            header('Location: ../view/login.php');
+    try { // Intentamos ejecutar la inserccion.
+        $fk_user = $User->setUser(); // Me retorna el ID insertado.
+    } catch (mysqli_sql_exception $e) { //En caso de ocurrir una entrada duplicada como nickname o password.
+        // Si hay un error con la inserción, verifica si es por un valor duplicado
+        $resultado = false;
+        if ($e->getCode() === 1062) {
+            echo "
+            <script>
+                alert('¡Ups! El nombre de usuario o correo electrónico ya está registrado. Por favor, elige otros.');
+                window.location.href = '../view/login.php'; // Redireccionar a login.php
+            </script>";
         } else {
-            echo 'Ha ocurrido un error a la hora de registrar la licencia';
+            // Si es un error diferente, también deberías manejarlo
+            echo 'Error con la inserccion del usuario';
         }
-    }
-} catch (mysqli_sql_exception $e) {
-    $resultado = false;
+    } // Fin de las inserciones de la clase 'USER'.
+    // +====================================================================+
 
-    echo "Error con el registor de la licencia";
-}
+    // +====================================================================+
+    $fk_client = 0; // Establecemos el ID del 'CLIENTE'.
+
+    try {
+        if ($resultado) { // Validamos si se inserto el usuario.
+            // Establecemos los valores de los setters de la clase Cliente.
+            $Client = new Client();
+            $Client->setName($nombreEmpresa);
+            $Client->setEmail($emailEmpresa);
+            $Client->setAddress($direccionEmpresa);
+            $Client->setCountry($paisEmpresa);
+            $Client->setCity($estadoEmpresa);
+            $Client->setState($ciudadEmpresa);
+            $Client->setZipCode($codigoEmpresa);
+            $Client->setTel($telEmpresa);
+            $Client->setFK_user($fk_user);
+
+            //Llamamos al metodo y nos retorna el valor de un id de la fila insertada.
+            $fk_client = $Client->setClient();
+        }  // Fin de la inserciones del 'CLIENTE'.
+    } catch (mysqli_sql_exception $e) {
+        // Si hay un error con la inserción, verifica si es por un valor duplicado
+        $resultado = false;
+        echo "Error con la insercion de la empresa.";
+    }
+    // +=====================================================================+
+
+    // +======================================================================+
+    // Establecemos los valores de los setters de la clase payment.
+    try {
+        if ($resultado) {
+            $payment = new Payment();
+            $payment->setAmount($_POST["amount"]);
+            $payment->setDescription($_POST["description"]);
+            $payment->setDuration($_POST['duration']);
+            $payment->setClient($fk_client);
+            // Realizamos el pago y almacenamos el id de la inserccion realizada.
+            $idPago = $payment->setPayment();
+        }
+    } catch (mysqli_sql_exception $e) {
+        $resultado = false;
+        echo "Error con la insercion del pago.";
+    }
+    // +=======================================================================+ 
+
+    // +=======================================================================+
+    //Validamos que se haya completado exitosamente el pago.
+    try {
+        if ($resultado) {
+            //Creamos nuestra clase de licencias
+            $license = new Licenses();
+            $license->setDuration($_POST['duration']);
+            $license->setPayment($idPago);
+            $accessCode = $license->setLicenses(); //Obtenemos el accessCode
+
+            if ($accessCode > 1) {
+                $User->setID($fk_user); //Setteamos el ID de nuestro usuario.
+                $User->updateAccessCode($accessCode); //Le mandamos el mismo code de la membresia al usuario.
+                //Redireccionamos
+                $inserccionExitosa = 'Se ha completado el registro del usuario correctamente.';
+                header('Location: ../view/login.php?resultado=' . urlencode($inserccionExitosa) . '');
+            } else {
+                echo 'Ha ocurrido un error a la hora de registrar la licencia';
+            }
+        }
+    } catch (mysqli_sql_exception $e) {
+        $resultado = false;
+
+        echo "Error con el registor de la licencia";
+    }

@@ -100,7 +100,7 @@ if (isset($_GET['errorEliminacion'])) {
         $matricula = $consulta['matricula'];
         $modelo = $consulta['model_name'];
         $marca = $consulta['brand_name'];
-    }
+    } 
     ?>
     <script>
         document.addEventListener("DOMContentLoaded", function() {

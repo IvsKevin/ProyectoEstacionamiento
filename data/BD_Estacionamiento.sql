@@ -185,7 +185,6 @@ CREATE TABLE Employee (
     FOREIGN KEY (fk_rol) REFERENCES Rol(pk_rol)
 );
 
-
 CREATE TABLE Brand (
     pk_brand INT AUTO_INCREMENT PRIMARY KEY,
     brand_name varchar(15) not null
