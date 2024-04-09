@@ -97,6 +97,20 @@ class Car extends conexion
         }
         return $dataset;
     }
+
+    public function verificarCarroEmpleado($employeeId)
+    {
+        $query = "SELECT COUNT(*) AS count FROM Car_Information WHERE fk_employee = $employeeId";
+        $result = $this->connect();
+        if ($result == true) {
+            $row = mysqli_fetch_assoc($this->execquery($query));
+            return $row['count'] > 0;
+        } else {
+            echo "Algo falló al verificar el carro del empleado.";
+            return false;
+        }
+    }
+
     public function getMarcaID($brand_name)
     {
         $query = "SELECT pk_brand FROM Brand WHERE brand_name = '" . $brand_name . "'";

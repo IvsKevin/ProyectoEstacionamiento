@@ -151,3 +151,28 @@
         }, 3000); // 2000 milisegundos = 2 segundos
     }
 </script>
+
+<?php
+// Verifica si el parámetro 'resultado' está presente en la URL
+if (isset($_GET['resultado'])) {
+    // Recupera el valor del parámetro 'resultado'
+    $resultado = $_GET['resultado'];
+    // Muestra los detalles de la entrada al usuario
+    echo "<dialog id='inserccionUsuario' class='modal bg-black-300 text-white'>
+            <div class='modal-box'>
+                <form method='dialog'>
+                    <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
+                </form>
+                <h3 class='font-bold text-lg'>Resultado del registro</h3>
+                <div class='modal-action  flex flex-col items-center'>";
+    if ($resultado != '') {
+        echo "<p>$resultado</p>";
+    }
+    echo "</div>
+            </div>
+        </dialog>";
+?>
+    <script>
+        inserccionUsuario.showModal();
+    </script>
+<?php } ?>
