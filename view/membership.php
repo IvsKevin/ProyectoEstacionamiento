@@ -80,59 +80,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </section>
 
-    <!--Inclumos los footers de los logins-->
-    <?php include_once "components/footer_2.php"; ?>
-
-    <script>
-        // Function to handle PayPal payment
-        function handlePayPalPayment(type) {
-            let amount = 0;
-            let description = '';
-            let duration = 0;
-            
-            if (type === 'Basica') {
-                amount = 200;
-                description = 'Licencia Basica';
-                duration = 1;
-            } else if (type === 'Regular') {
-                amount = 500;
-                description = 'Licencia Regular';
-                duration = 5;
-            } else if (type === 'Pro') {
-                amount = 600;
-                description = 'Licencia Pro';
-                duration = 9;
-            }
-
-            paypal.Buttons({
-                style: {
-                    background: '#1F2937',
-                },
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: amount,
-                                currency_code: 'MXN'
-                            },
-                            description: description,
-                            name: description
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        window.location.href = "../app/register.php?amount=" + amount + "&description=" + description + "&duration=" + duration;
-                    });
-                },
-                onCancel: function(data) {
-                    alert("Pago cancelado");
-                    console.log(data);
-                }
-            }).render('#paypal-button-container-' + type.toLowerCase());
-        }
-        handlePayPalPayment('Basica');
-        handlePayPalPayment('Regular');
-        handlePayPalPayment('Pro');
-    </script>
 </main>
+
+<!--Inclumos los footers de los logins-->
+<?php include_once "components/footer_2.php"; ?>
+
+<script>
+    // Function to handle PayPal payment
+    function handlePayPalPayment(type) {
+        let amount = 0;
+        let description = '';
+        let duration = 0;
+
+        if (type === 'Basica') {
+            amount = 200;
+            description = 'Licencia Basica';
+            duration = 1;
+        } else if (type === 'Regular') {
+            amount = 500;
+            description = 'Licencia Regular';
+            duration = 5;
+        } else if (type === 'Pro') {
+            amount = 600;
+            description = 'Licencia Pro';
+            duration = 9;
+        }
+
+
+        paypal.Buttons({
+            style: {
+                background: '#1F2937',
+            },
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: amount,
+                            currency_code: 'MXN'
+                        },
+                        description: description,
+                        name: description
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    window.location.href = "../app/register.php?amount=" + amount + "&description=" + description + "&duration=" + duration;
+                });
+            },
+            onCancel: function(data) {
+                alert("Pago cancelado");
+                console.log(data);
+            }
+        }).render('#paypal-button-container-' + type.toLowerCase());
+    }
+    handlePayPalPayment('Basica');
+    handlePayPalPayment('Regular');
+    handlePayPalPayment('Pro');
+</script>
+</main>
+<!--Inclumos los modales-->
+<?php include_once "components/modals.php"; ?>
+
+<!--Inclumos los footers de los logins-->
+<?php include_once "components/footer_2.php"; ?>

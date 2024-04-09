@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
               <div class="relative w-full mb-3"> <!--Codigo postal de la empresa-->
                 <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="grid-password">Codigo postal</label>
-                <input name="postal" maxlength="5" minlength="4" required type="number" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="22253" style="transition: all 0.15s ease 0s;" />
+                <input name="postal" maxlength="5" max="99999" minlength="4" required type="number" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="22253" style="transition: all 0.15s ease 0s;" />
               </div> <!--Termina la Codigo postal de la empresa-->
 
               <div class="relative w-full mb-3"> <!--Telefono de la empresa-->
