@@ -1,12 +1,5 @@
 <?php include_once "navbar.php"; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Videos</title>
-</head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold  mt-20 mb-8">Canales</h1>
@@ -41,3 +34,16 @@
     </div>
 </body>
 </html>
+
+
+<script>
+    function cambiarColor() {
+        var carrosLink = document.getElementById("videosLink");
+        var carrosLink = document.getElementById("videosContainer");
+        carrosLink.classList.add("text-gray-100");
+        carrosLink.classList.add("bg-gris-clarito");
+    }
+
+    // Llamada a la función para cambiar el color
+    cambiarColor();
+</script>
