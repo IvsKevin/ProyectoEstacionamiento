@@ -154,6 +154,7 @@ $myEspacios = new Espacios();
         for (i = 0; i < elements.length; i++) {
             element = elements[i];
             ubicacionElement = element.querySelector("p:nth-of-type(3)"); // Corregir selector
+            if (ubicacionElement) {
                 txtValue = ubicacionElement.textContent || ubicacionElement.innerText;
                 // Cambio en la condición para buscar coincidencias en cualquier parte del texto de ubicación
                 if (txtValue.toUpperCase().includes(filter)) {
