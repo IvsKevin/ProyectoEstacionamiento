@@ -24,7 +24,7 @@
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Capacidad:
-                        <input name="capacidadParking" type="number" class="grow" placeholder="10" required min="1" max="50"/>
+                        <input name="capacidadParking" type="number" class="grow" placeholder="10" required min="1" max="50" />
                     </label>
                 </div>
                 <!-- Otros campos que puedas necesitar -->
@@ -98,12 +98,14 @@
             </div>
 
             <div class="m-2">
-                <label class="input input-bordered flex items-center gap-2">
-                    Estado:
-                    <select name="status" class="grow">
-                        <option value="1" ${status === 'Activo' ? 'selected' : ''}>Accesible</option>
-                        <option value="2" ${status === 'Inactivo' ? 'selected' : ''}>Lleno</option>
-                    </select>
+                <label class="form-control w-full max-w-xs">
+                        <div class="label">
+                            <span class="label-text">Estado:</span>
+                        </div>
+                        <select class="select select-bordered" name="status" required>
+                            <option value="1" ${status === 'Activo' ? 'selected' : ''}>Accesible</option>
+                            <option value="2" ${status === 'Inactivo' ? 'selected' : ''}>Lleno</option>
+                        </select>
                 </label>
             </div>
             <!-- Otros campos que puedas necesitar -->
