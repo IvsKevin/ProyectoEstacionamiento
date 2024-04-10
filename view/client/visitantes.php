@@ -27,7 +27,7 @@ $visits = $visit->getVisit();
                     </div>
                     <!-- Otros botones de filtrado o acciones -->
                 </div>
-                <?php if ($visits && $visits != "error") { ?>
+                <?php if ($visits && $visits != "error" && mysqli_num_rows($visits) > 0) { ?>
                     <!-- Contenido en tabla -->
                     <div class="overflow-x-auto" id="table-view">
                         <table class="table bg-gris-oscurito shadow-xl text-center items-center">
@@ -72,7 +72,6 @@ $visits = $visit->getVisit();
                         </table>
                     </div>
                 <?php } else { ?>
-                    <p>No hay visitantes para mostrar.</p>
                 <?php } ?>
             </div>
         </div>
@@ -123,4 +122,4 @@ if (isset($_GET['resultado'])) {
     <script>
         resultadoModal.showModal();
     </script>
-<?php }
+<?php } ?>

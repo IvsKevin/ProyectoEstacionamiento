@@ -26,37 +26,40 @@ if (isset($_SESSION['client_id'])) {
                         <button class="btn h-8 min-h-8 btn-outline btn-error" onclick="agregarSalida()">Registrar salida</button>
                     </div>
                 </div>
-                <div class="overflow-x-auto mt-4">
-                    <h1 class="text-2xl font-bold mb-4">Registro de entradas y salidas</h1>
-                    <table class="table bg-gris-oscurito shadow-xl text-center items-center w-full">
-                        <thead class="text-gray-200 font-semibold text-base">
-                            <tr>
-                                <th>ID</th>
-                                <th>Fecha de Entrada</th>
-                                <th>Fecha de Salida</th>
-                                <th>Persona</th>
-                                <th>Matrícula</th>
-                                <th>Parking</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                                <tr class="text-base">
-                                    <td><?php echo $row['pk_check']; ?></td>
-                                    <td class="<?php echo $row['date_in'] ? 'text-green-500' : 'text-red-500'; ?>">
-                                        <?php echo $row['date_in'] ? $row['date_in'] : 'Sin fecha de entrada'; ?>
-                                    </td>
-                                    <td class="<?php echo $row['date_out'] ? 'text-green-500' : 'text-red-500'; ?>">
-                                        <?php echo $row['date_out'] ? $row['date_out'] : 'Sin fecha de salida'; ?>
-                                    </td>
-                                    <td><?php echo $row['person_name'] ? $row['person_name'] : $row['visit_name']; ?></td>
-                                    <td><?php echo $row['matricula'] ? $row['matricula'] : 'Sin vehículo asociado'; ?></td>
-                                    <td><?php echo $row['parking_location'] ? $row['parking_location'] : 'Sin parking'; ?></td>
+                <?php if (mysqli_num_rows($result) > 0) { ?>
+                    <div class="overflow-x-auto mt-4">
+                        <h1 class="text-2xl font-bold mb-4">Registro de entradas y salidas</h1>
+                        <table class="table bg-gris-oscurito shadow-xl text-center items-center w-full">
+                            <thead class="text-gray-200 font-semibold text-base">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Fecha de Entrada</th>
+                                    <th>Fecha de Salida</th>
+                                    <th>Persona</th>
+                                    <th>Matrícula</th>
+                                    <th>Parking</th>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                                    <tr class="text-base">
+                                        <td><?php echo $row['pk_check']; ?></td>
+                                        <td class="<?php echo $row['date_in'] ? 'text-green-500' : 'text-red-500'; ?>">
+                                            <?php echo $row['date_in'] ? $row['date_in'] : 'Sin fecha de entrada'; ?>
+                                        </td>
+                                        <td class="<?php echo $row['date_out'] ? 'text-green-500' : 'text-red-500'; ?>">
+                                            <?php echo $row['date_out'] ? $row['date_out'] : 'Sin fecha de salida'; ?>
+                                        </td>
+                                        <td><?php echo $row['person_name'] ? $row['person_name'] : $row['visit_name']; ?></td>
+                                        <td><?php echo $row['matricula'] ? $row['matricula'] : 'Sin vehículo asociado'; ?></td>
+                                        <td><?php echo $row['parking_location'] ? $row['parking_location'] : 'Sin parking'; ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php } else {
+                } ?>
             </div>
         </div>
     </div>
@@ -68,7 +71,7 @@ if (isset($_GET['resultado'])) {
     // Recupera el valor del parámetro 'resultado'
     $resultado = $_GET['resultado'];
     // Muestra los detalles de la entrada al usuario
-    echo "<dialog id='resultadoEntrada' class='modal bg-black-300 text-white'>
+    echo "<div id='resultadoEntrada' class='modal bg-black-300 text-white'>
             <div class='modal-box'>
                 <form method='dialog'>
                     <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
@@ -80,10 +83,10 @@ if (isset($_GET['resultado'])) {
     }
     echo "</div>
             </div>
-        </dialog>";
+        </div>";
 ?>
     <script>
-        resultadoEntrada.showModal();
+        document.getElementById('resultadoEntrada').showModal();
     </script>
 <?php } ?>
 
@@ -95,7 +98,7 @@ if (isset($_GET['resultadoSalida'])) {
     $resultadoSalida = $_GET['resultadoSalida'];
 
     // Muestra los detalles de la entrada al usuario
-    echo "<dialog id='resultadoSalidaModal' class='modal bg-black-300 text-white'>
+    echo "<div id='resultadoSalidaModal' class='modal bg-black-300 text-white'>
             <div class='modal-box'>
                 <form method='dialog'>
                     <button class='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
@@ -115,9 +118,9 @@ if (isset($_GET['resultadoSalida'])) {
 
     echo "</div>
             </div>
-        </dialog>";
+        </div>";
 ?>
     <script>
-        resultadoSalidaModal.showModal();
+        document.getElementById('resultadoSalidaModal').showModal();
     </script>
 <?php } ?>
