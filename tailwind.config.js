@@ -13,6 +13,7 @@ module.exports = {
         'azul-principal': 'rgb(17 24 39 / var(--tw-bg-opacity)',
         'gris-clarito': '#181924',
         'gris-oscurito': '#2a2b36',
+        'search' : '#7582ff',
       }
     },
   },

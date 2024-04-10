@@ -2845,6 +2845,10 @@ html {
   z-index: 1;
 }
 
+.m-0 {
+  margin: 0px;
+}
+
 .m-2 {
   margin: 0.5rem;
 }
@@ -3016,10 +3020,6 @@ html {
   margin-top: 2rem;
 }
 
-.mt-7 {
-  margin-top: 1.75rem;
-}
-
 .block {
   display: block;
 }
@@ -3058,10 +3058,6 @@ html {
 
 .h-16 {
   height: 4rem;
-}
-
-.h-20 {
-  height: 5rem;
 }
 
 .h-4 {
@@ -3433,6 +3429,11 @@ html {
   border-color: transparent;
 }
 
+.border-search {
+  --tw-border-opacity: 1;
+  border-color: rgb(117 130 255 / var(--tw-border-opacity));
+}
+
 .bg-base-100 {
   --tw-bg-opacity: 1;
   background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
@@ -3503,16 +3504,6 @@ html {
   background-color: rgb(42 43 54 / var(--tw-bg-opacity));
 }
 
-.bg-pink-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(251 207 232 / var(--tw-bg-opacity));
-}
-
-.bg-pink-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 168 212 / var(--tw-bg-opacity));
-}
-
 .bg-pink-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(236 72 153 / var(--tw-bg-opacity));
@@ -3560,17 +3551,6 @@ html {
 .bg-yellow-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(202 138 4 / var(--tw-bg-opacity));
-}
-
-
-.bg-blue-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(147 197 253 / var(--tw-bg-opacity));
-}
-.bg-gray-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-
 }
 
 .bg-cover {
@@ -3776,15 +3756,6 @@ html {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-
-.pb-8 {
-  padding-bottom: 2rem;
-}
-.pb-0 {
-  padding-bottom: 0px;
-
 }
 
 .text-left {
@@ -4133,6 +4104,11 @@ html {
   border-color: rgb(96 165 250 / var(--tw-border-opacity));
 }
 
+.focus\:border-search:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(117 130 255 / var(--tw-border-opacity));
+}
+
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -4376,10 +4352,6 @@ html {
 
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .lg\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:flex-row {

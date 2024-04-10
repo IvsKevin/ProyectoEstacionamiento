@@ -74,11 +74,11 @@
 
                 <!-- Ventana modal para mostrar el mensaje de error -->
                 <dialog id="errorModal" class="modal">
-    <div class="modal-box">
-        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="cerrarModal('errorModal')">✕</button>
-        <p id="errorMessage" class="font-bold text-lg"><?php echo isset($_SESSION['error_message']) ? $_SESSION['error_message'] : ''; ?></p>
-    </div>
-</dialog>
+                    <div class="modal-box">
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onclick="cerrarModal('errorModal')">✕</button>
+                        <p id="errorMessage" class="font-bold text-lg"><?php echo isset($_SESSION['error_message']) ? $_SESSION['error_message'] : ''; ?></p>
+                    </div>
+                </dialog>
 
 
                 <div class="flex justify-end">
@@ -127,6 +127,7 @@
 
 
 <script>
+    // Cambia el color de la seccion del navbar para identificar en donde estamos.
     function cambiarColor() {
         var carrosLink = document.getElementById("carrosLink");
         var carrosLink = document.getElementById("carrosContainer");
@@ -160,6 +161,64 @@
         var errorModal = document.getElementById('errorModal');
         errorModal.showModal();
     }
+
+    // Modificar la vista entre las tarjetas o las tablas de los carros.
+    function toggleView() {
+        var cambiarVista = document.getElementById('cambiarVista');
+        var tableView = document.getElementById('table-view');
+        var cardView = document.getElementById('card-view');
+
+        // Si la vista de tarjetas está visible, ocúltala y muestra la vista de tabla (y viceversa)
+        if (cardView.style.display === 'block' || cardView.style.display === '') {
+            cardView.style.display = 'none';
+            tableView.style.display = 'block';
+            cambiarVista.innerText = "Tabla";
+        } else {
+            cardView.style.display = 'block';
+            tableView.style.display = 'none';
+            cambiarVista.innerText = "Tarjeta";
+        }
+    }
+
+    // Buscador del carro por matricula en ambas vistas.
+    function searchCars() {
+        var input, filter, elements, element, matriculaElement, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+
+        // Buscar en la vista de tabla
+        elements = document.getElementById("carsTable").getElementsByTagName("tr");
+        for (i = 0; i < elements.length; i++) {
+            element = elements[i];
+            matriculaElement = element.getElementsByTagName("td")[2]; // La segunda columna contiene la matrícula del carro
+            if (matriculaElement) {
+                txtValue = matriculaElement.textContent || matriculaElement.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    element.style.display = "";
+                } else {
+                    element.style.display = "none";
+                }
+            }
+        }
+
+        // Buscar en la vista de tarjetas
+        elements = document.getElementById("carsCardContainer").getElementsByClassName("bg-gris-oscurito");
+        for (i = 0; i < elements.length; i++) {
+            element = elements[i];
+            matriculaElement = element.querySelector("#matriculaSearch"); // Seleccionar por ID
+            if (matriculaElement) {
+                txtValue = matriculaElement.textContent || matriculaElement.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    element.style.display = "";
+                } else {
+                    element.style.display = "none";
+                }
+            }
+        }
+    }
+
+    // Llamar a la función de búsqueda cada vez que el usuario escribe algo en el campo de búsqueda
+    document.getElementById("searchInput").addEventListener("input", searchCars);
 </script>
 
 <!-- En tu barra de navegación, agrega el botón "Filtrar por" -->
@@ -178,6 +237,7 @@
         modal.close();
     }
 
+    // Nos permite cambiar los modelos dependiendo de la marca seleccionada en tiempo real.
     function cargarModelos() {
         var marcaSelect = document.querySelector('select[name="marca"]');
         var modeloSelect = document.querySelector('select[name="modelo"]');
