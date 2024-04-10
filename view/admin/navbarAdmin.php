@@ -55,6 +55,11 @@
             <li id="membresiasContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
               <a href="membresias.php" id="membresiasLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
                 Membresias</a>
+
+                <li id="comentariosContainer" class="items-center rounded-xl pl-4 pr-4 hover:bg-gris-clarito">
+              <a href="comentarios.php" id="comentariosLink" class="hover:text-gray-100 text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"><i class="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>
+                Comentarios</a>
+            </li>
             </li>
           </ul>
           <hr class="my-4 md:min-w-full" />

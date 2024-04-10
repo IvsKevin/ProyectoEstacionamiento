@@ -336,8 +336,8 @@ CREATE TABLE Check_In_Out (
 
 CREATE TABLE Comments (
     comment_id INT AUTO_INCREMENT PRIMARY KEY,
-    comment_text TEXT not null,
-    user varchar(50),
-    reply_to INT,
-    comment_date DATE not null
+    mensaje TEXT NOT NULL,
+    nombre_completo VARCHAR(70),
+    email VARCHAR(50) NOT NULL,
+    comment_date DATETIME NOT NULL
 );

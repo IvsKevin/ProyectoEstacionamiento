@@ -311,19 +311,26 @@
                   <p class="leading-relaxed mt-1 mb-4 text-gray-600">
                     Llena este formulario y te responederemos en 24 horas.
                   </p>
-                  <div class="relative w-full mb-3 mt-8">
-                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="full-name">Nombre Completo</label><input type="text" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Full Name" style="transition: all 0.15s ease 0s;" />
-                  </div>
-                  <div class="relative w-full mb-3">
-                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="email">Email</label><input type="email" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Email" style="transition: all 0.15s ease 0s;" />
-                  </div>
-                  <div class="relative w-full mb-3">
-                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="message">Mensaje</label><textarea rows="4" cols="80" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Type a message..."></textarea>
-                  </div>
-                  <div class="text-center mt-6">
-                    <button class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all 0.15s ease 0s;">
-                      Enviar Mensaje
-                    </button>
+                  <form method="POST" action="app/admin/clientes/comentarios/insertar_comentario.php" class="mt-6">
+    <div class="relative w-full mb-3 mt-8">
+        <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="full-name">Nombre Completo</label>
+        <input type="text" name="nombre_completo" maxlength="70" minlength="1" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Nombre completo" style="transition: all 0.15s ease 0s;" required>
+    </div>
+    <div class="relative w-full mb-3">
+        <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="email">Email</label>
+        <input type="email" name="email" maxlength="60" minlength="1" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Email" style="transition: all 0.15s ease 0s;" required>
+    </div>
+    <div class="relative w-full mb-3">
+        <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="message">Mensaje</label>
+        <textarea name="mensaje" maxlength="250" minlength="1" rows="4" cols="80" class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" placeholder="Escribe un mensaje..." required></textarea>
+    </div>
+    <div class="text-center mt-6">
+        <button type="submit" class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" style="transition: all 0.15s ease 0s;">
+            Enviar Mensaje
+        </button>
+    </div>
+</form>
+
                   </div>
                 </div>
               </div>
