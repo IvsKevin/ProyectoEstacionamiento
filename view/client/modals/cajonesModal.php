@@ -100,7 +100,7 @@ if (isset($_GET['errorEliminacion'])) {
         $matricula = $consulta['matricula'];
         $modelo = $consulta['model_name'];
         $marca = $consulta['brand_name'];
-    } 
+    }
     ?>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -123,10 +123,13 @@ if (isset($_GET['errorEliminacion'])) {
                 <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <h3 class="font-bold text-lg">Datos del empleado ocupante</h3>
-            <div class="modal-action  flex flex-col items-center">
-                <section>
+            <div class="modal-action flex flex-col items-center">
+                <section class="flex flex-col items-center">
+                    <h2 class="font-bold text-lg">Datos del empleado</h2>
                     <p>Nombre del empleado: <?php echo $nombre . ' ' . $apellidoPaterno . ' ' . $apellidoMaterno; ?></p>
-                    <p>Telefono: <?php echo $tel; ?></p>
+                    <p>Telefono: <?php echo $tel; ?></p><br>
+
+                    <h2 class="font-bold text-lg">Datos del vehiculo</h2>
                     <p>Marca del auto: <?php echo $marca; ?></p>
                     <p>Modelo del auto: <?php echo $modelo; ?></p>
                     <p>Matricula del auto: <?php echo $matricula; ?></p>
