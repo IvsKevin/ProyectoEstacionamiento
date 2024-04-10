@@ -47,6 +47,12 @@ $myEspacios = new Espacios();
                             </ul>
                         </div>
                     </div>
+                    <label class="relative flex items-center">
+                        <input type="text" id="searchInput" placeholder="Buscar por Ubicacion..." class="ml-2 pl-4 pr-10 py-1 bg-gris-oscurito border border-search rounded-lg focus:outline-none focus:ring focus:border-search transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="absolute right-3 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400">
+                            <path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" />
+                        </svg>
+                    </label>
                     <div class="flex justify-end flex-1 px-2">
                         <div class="flex items-stretch">
                             <a class="btn h-8 min-h-8 btn-ghost rounded-btn">Button</a>
@@ -64,7 +70,7 @@ $myEspacios = new Espacios();
                 // Verifica si $parkingList está definida y es un resultado válido
                 if (isset($parkingList) && $parkingList !== "error") { ?>
                     <div class="overflow-x-auto">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div id="parkingContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <?php
                             // Verifica si $parkingList está definida y es un resultado válido
                             if (isset($parkingList) && $parkingList !== "error") {
@@ -96,8 +102,9 @@ $myEspacios = new Espacios();
                                             </div>
                                             </p>
 
-                                            <p class="text-gray-300 mt-3">
-                                                <img src="../../assets/iconos/ubi.png" alt="Icono de ubicación" class="inline-block w-7 h-7 mr-3" />Ubicación: <?php echo $row['parking_location']; ?>
+                                            <p id="ubicacionSearch_<?php echo $row['pk_parking']; ?>" class="text-gray-300 mt-3">
+                                                <img src="../../assets/iconos/ubi.png" alt="Icono de ubicación" class="inline-block w-7 h-7 mr-3" />
+                                                Ubicacion: <?php echo $row['parking_location']; ?>
                                             </p>
 
                                             <p class="text-gray-300 mt-3 ">
@@ -135,4 +142,31 @@ $myEspacios = new Espacios();
         </div>
     </div>
 </div>
-</body>
+<script>
+    // Función para buscar parkings por ubicación
+    function searchParkings() {
+        var input, filter, elements, element, ubicacionElement, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+
+        // Buscar en la vista de tabla
+        elements = document.getElementById("parkingContainer").getElementsByClassName("bg-gris-clarito");
+        for (i = 0; i < elements.length; i++) {
+            element = elements[i];
+            ubicacionElement = element.querySelector("p:nth-of-type(3)"); // Corregir selector
+                txtValue = ubicacionElement.textContent || ubicacionElement.innerText;
+                // Cambio en la condición para buscar coincidencias en cualquier parte del texto de ubicación
+                if (txtValue.toUpperCase().includes(filter)) {
+                    element.style.display = "";
+                } else {
+                    element.style.display = "none";
+                }
+            }
+        }
+    }
+
+
+    // Llamar a la función de búsqueda cada vez que el usuario escribe algo en el campo de búsqueda
+    document.getElementById("searchInput").addEventListener("input", searchParkings);
+</script>
+
