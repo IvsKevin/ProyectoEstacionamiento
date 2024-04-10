@@ -18,13 +18,13 @@
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Ubicación:
-                        <input name="ubicacionParking" type="text" class="grow" />
+                        <input name="ubicacionParking" placeholder="Docencia 1" type="text" class="grow" />
                     </label>
                 </div>
                 <div class="m-2">
                     <label class="input input-bordered flex items-center gap-2">
                         Capacidad:
-                        <input name="capacidadParking" type="number" class="grow" placeholder="1" required min="1" max="50"/>
+                        <input name="capacidadParking" type="number" class="grow" placeholder="10" required min="1" max="50"/>
                     </label>
                 </div>
                 <!-- Otros campos que puedas necesitar -->

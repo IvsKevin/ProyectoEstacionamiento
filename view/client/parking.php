@@ -37,19 +37,16 @@ $myEspacios = new Espacios();
                         <button class="btn h-8 min-h-8h-8 min-h-8 btn-outline btn-primary" onclick="">Ultimos 30 dias</button>
                     </div> -->
                     <div class="flex-1 px-2 lg:flex-none relative">
-    <div class="dropdown dropdown-left dropdown-up dropdown-right" style="z-index: 999;">
-        <button class="btn h-8 min-h-8 btn-outline btn-primary">Filtrar por</button>
-        <!-- Opciones de filtrado -->
-        <ul tabindex="0" class="menu dropdown-content w-40 mt-2 py-1 bg-base-100 shadow-md rounded-md">
-        <li class="py-1"><a href="?orden=asc" class="flex items-center"><img src="../../assets/iconos/menor_a_mayor.png" class="w-8 h-8 mr-2 rounded-full border border-base-200 bg-transparent text-white" alt="De menor a mayor"> De menor a mayor</a></li>
-<li class="py-1"><a href="?orden=desc" class="flex items-center"><img src="../../assets/iconos/mayor_a_menor.png" class="w-8 h-8 mr-2 rounded-full border border-base-200 bg-transparent text-white" alt="De mayor a menor"> De mayor a menor</a></li>
+                        <div class="dropdown dropdown-left dropdown-up dropdown-right" style="z-index: 999;">
+                            <button class="btn h-8 min-h-8 btn-outline btn-primary">Filtrar por</button>
+                            <!-- Opciones de filtrado -->
+                            <ul tabindex="0" class="menu dropdown-content w-40 mt-2 py-1 bg-base-100 shadow-md rounded-md">
+                                <li class="py-1"><a href="?orden=asc" class="flex items-center"><img src="../../assets/iconos/menor_a_mayor.png" class="w-8 h-8 mr-2 rounded-full border border-base-200 bg-transparent text-white" alt="De menor a mayor"> De menor a mayor</a></li>
+                                <li class="py-1"><a href="?orden=desc" class="flex items-center"><img src="../../assets/iconos/mayor_a_menor.png" class="w-8 h-8 mr-2 rounded-full border border-base-200 bg-transparent text-white" alt="De mayor a menor"> De mayor a menor</a></li>
 
-        </ul>
-    </div>
-</div>
-
-
-
+                            </ul>
+                        </div>
+                    </div>
                     <div class="flex justify-end flex-1 px-2">
                         <div class="flex items-stretch">
                             <a class="btn h-8 min-h-8 btn-ghost rounded-btn">Button</a>
@@ -108,24 +105,17 @@ $myEspacios = new Espacios();
                                             </p>
 
                                             <p class="text-gray-300 mt-3">
-            <div class="flex items-center">
-                <!-- Círculo dinámico de estado -->
-                <div class="w-5 h-5 rounded-full ml-2 mr-3 <?php echo ($row['status_name'] == 'Activo') ? 'bg-green-500' : 'bg-red-500'; ?>"></div>
-                <!-- Texto descriptivo del estado -->
-                Estado: <?php echo $row['status_name']; ?>
-            </div>
-        </p>
-
-
-
-
-
-
-
+                                            <div class="flex items-center">
+                                                <!-- Círculo dinámico de estado -->
+                                                <div class="w-5 h-5 rounded-full ml-1 mr-3 <?php echo ($row['status_name'] == 'Activo') ? 'bg-green-500' : 'bg-red-500'; ?>"></div>
+                                                <!-- Texto descriptivo del estado -->
+                                                Estado: <?php echo $row['status_name']; ?>
+                                            </div>
+                                            </p>
                                         </div>
                                         <div class="p-4 bg-gray-800">
-                                            <a href='cajones.php?idParking=<?php echo $row["pk_parking"]; ?>' class="w-full btn btn-outline btn-md rounded-md">Ver parking</a>
-                                            <button class="block w-full mt-4 btn btn-outline  btn-sm" onclick="actualizarParking(
+                                            <a href='cajones.php?idParking=<?php echo $row["pk_parking"]; ?>' class="w-full btn btn-info btn-outline btn-md rounded-md">Ver parking</a>
+                                            <button class="block w-full mt-4 btn btn-outline btn-success btn-sm" onclick="actualizarParking(
                                                 '<?php echo $row['pk_parking']; ?>',
                                                             '<?php echo $row['parking_number']; ?>',
                                                             '<?php echo $row['parking_location']; ?>',

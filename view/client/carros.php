@@ -95,12 +95,15 @@ $empleados = $employee->getEmployee();
                                     </span>
                                     <!--Foto del empleado-->
                                     <div class="mb-4 mt-5">
-                                        <img src="../../assets/img/bg-carro.jpg" alt="Employee Photo" class="w-full rounded-full">
+                                        <label for="fileInput" class="cursor-pointer">
+                                            <img src="../../assets/img/bg-carro.jpg" alt="Employee Photo" class="w-full rounded-full">
+                                            <input id="fileInput" type="file" class="hidden" />
+                                        </label>
                                     </div>
                                     <!--Datos del vehiculos-->
                                     <div class="mb-2">
                                         <p class="text-sm font-semibold m-0">Propietario: <?php echo $row['employee_name']; ?></p>
-                                        <p class="text-sm text-gray-500">Datos del vehiculo: </p>
+                                        <p class="text-sm text-gray-500 mt-1">Datos del vehiculo: </p>
                                         <p class="text-sm text-gray-500">Marca: <?php echo $row['brand_name']; ?> </p>
                                         <p class="text-sm text-gray-500">Modelo: <?php echo $row['model_name']; ?> </p>
                                         <p class="text-sm text-gray-500">Año: <?php echo $row['model_year']; ?> </p>
@@ -108,7 +111,10 @@ $empleados = $employee->getEmployee();
                                         <p class="text-sm text-gray-500">Status: <?php echo $row['status_name']; ?> </p>
                                     </div>
 
-
+                                    <div class="w-full flex flex-row mt-5">
+                                        <button class="btn btn-outline btn-success btn-xs ml-0 m-2">Actualizar</button>
+                                        <button class="btn btn-outline btn-error btn-xs m-2">Dar de baja</button>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -129,5 +135,3 @@ if (isset($_SESSION['error_message'])) {
     unset($_SESSION['error_message']);
 }
 ?>
-
-
