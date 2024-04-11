@@ -28,8 +28,8 @@ class Parking extends conexion {
                 p.*,
                 g.pk_status,
                 g.status_name 
-                FROM Parking AS p
-                INNER JOIN General_Status AS g ON g.pk_status = p.fk_status
+                FROM parking AS p
+                INNER JOIN general_status AS g ON g.pk_status = p.fk_status
                 WHERE p.fk_client = {$this->fk_client}
                 ORDER BY p.parking_number $orden" // Ordenar según el parámetro recibido
             );
@@ -48,8 +48,8 @@ class Parking extends conexion {
                 p.*,
                 g.pk_status,
                 g.status_name 
-                FROM Parking AS p
-                INNER JOIN General_Status AS g ON g.pk_status = p.fk_status
+                FROM parking AS p
+                INNER JOIN general_status AS g ON g.pk_status = p.fk_status
                 WHERE p.fk_client = ".$this->fk_client." AND g.pk_status = 1
                 ORDER BY p.parking_number"
                 );
@@ -81,7 +81,7 @@ class Parking extends conexion {
     }
 
     // Insertar nuevo estacionamiento sin escapar las entradas
-    $sql = "INSERT INTO Parking (parking_number, parking_location, parking_capacity, fk_client, fk_status) VALUES ($this->parking_number, '$location', $capacity, $this->fk_client, 1)";
+    $sql = "INSERT INTO parking (parking_number, parking_location, parking_capacity, fk_client, fk_status) VALUES ($this->parking_number, '$location', $capacity, $this->fk_client, 1)";
 
     // Ejecutar la inserción y verificar si fue exitosa
     $newID = $this->execinsert($sql);
@@ -89,7 +89,7 @@ class Parking extends conexion {
     if ($newID > 0) {
         // Insertar automáticamente espacios como "disponibles" para el nuevo estacionamiento
         for ($i = 1; $i <= $capacity; $i++) {
-            $sqlSpaces = "INSERT INTO Parking_Spaces (spaces_number, fk_status, fk_parking) VALUES ($i, 1, $newID)";
+            $sqlSpaces = "INSERT INTO parking_spaces (spaces_number, fk_status, fk_parking) VALUES ($i, 1, $newID)";
             $this->execquery($sqlSpaces);
         }
 
@@ -110,7 +110,7 @@ class Parking extends conexion {
         $this->connect();
     
         // Ejecutar la consulta sin sentencia preparada
-        $sql = "SELECT * FROM Parking WHERE pk_parking = $parkingID";
+        $sql = "SELECT * FROM parking WHERE pk_parking = $parkingID";
         $result = $this->execquery($sql);
     
         if ($result && $result->num_rows > 0) {
@@ -137,7 +137,7 @@ class Parking extends conexion {
         }
         
         // Realizar la actualización sin sentencia preparada
-        $sql = "UPDATE Parking SET parking_number = $this->parking_number, parking_capacity = $capacity, parking_location = '$location', fk_status = $status WHERE pk_parking = $parkingID";
+        $sql = "UPDATE parking SET parking_number = $this->parking_number, parking_capacity = $capacity, parking_location = '$location', fk_status = $status WHERE pk_parking = $parkingID";
         $this->execquery($sql);
         
         // Verificar si la actualización fue exitosa
@@ -145,7 +145,7 @@ class Parking extends conexion {
             // Si la capacidad ha cambiado
             if ($oldCapacity != $capacity) {
                 // Obtener los números de espacio actuales del estacionamiento
-                $existingSpacesResult = $this->execquery("SELECT spaces_number FROM Parking_Spaces WHERE fk_parking = $parkingID");
+                $existingSpacesResult = $this->execquery("SELECT spaces_number FROM parking_spaces WHERE fk_parking = $parkingID");
                 $existingSpaces = [];
                 while ($row = $existingSpacesResult->fetch_assoc()) {
                     $existingSpaces[] = $row['spaces_number'];
@@ -154,7 +154,7 @@ class Parking extends conexion {
                 // Eliminar los espacios que exceden la nueva capacidad
                 if ($capacity < $oldCapacity) {
                     $deleteCount = $oldCapacity - $capacity;
-                    $this->execquery("DELETE FROM Parking_Spaces WHERE fk_parking = $parkingID AND spaces_number > $capacity LIMIT $deleteCount");
+                    $this->execquery("DELETE FROM parking_spaces WHERE fk_parking = $parkingID AND spaces_number > $capacity LIMIT $deleteCount");
                 }
                 
                 // Agregar nuevos espacios que no existan previamente
@@ -162,7 +162,7 @@ class Parking extends conexion {
                     // Verificar si el espacio ya existe
                     if (!in_array($i, $existingSpaces)) {
                         // Insertar el espacio si no existe
-                        $this->execquery("INSERT INTO Parking_Spaces (spaces_number, fk_status, fk_parking) VALUES ($i, 1, $parkingID)");
+                        $this->execquery("INSERT INTO parking_spaces (spaces_number, fk_status, fk_parking) VALUES ($i, 1, $parkingID)");
                     }
                 }
             }
@@ -174,7 +174,7 @@ class Parking extends conexion {
     
     // Función para obtener el número de espacios ocupados en un estacionamiento
     private function getOccupiedSpacesCount($parkingID) {
-        $occupiedSpacesResult = $this->execquery("SELECT COUNT(*) AS count FROM Parking_Spaces WHERE fk_parking = $parkingID AND fk_status = 2");
+        $occupiedSpacesResult = $this->execquery("SELECT COUNT(*) AS count FROM parking_spaces WHERE fk_parking = $parkingID AND fk_status = 2");
         $row = $occupiedSpacesResult->fetch_assoc();
         return $row['count'];
     }

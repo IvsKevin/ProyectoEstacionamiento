@@ -48,9 +48,9 @@ class Employee extends conexion
     //GET
     public function getEmployee()
     {
-        $query = "SELECT Employee.*, Rol.rol_name FROM Employee 
-              INNER JOIN Rol ON Employee.fk_rol = Rol.pk_rol 
-              WHERE Employee.fk_status = 1 AND Employee.fk_client = '" . $this->fk_client . "'";
+        $query = "SELECT employee.*, Rol.rol_name FROM employee 
+              INNER JOIN rol ON employee.fk_rol = Rol.pk_rol 
+              WHERE employee.fk_status = 1 AND employee.fk_client = '" . $this->fk_client . "'";
         $result = $this->connect();
         if ($result == true) {
             //echo "vammos bien";
@@ -69,7 +69,7 @@ class Employee extends conexion
 
         if ($result) {
             $employee_id = mysqli_real_escape_string($this->getConnection(), $employee_id); // Escapa el valor para evitar SQL injection
-            $query = "SELECT * FROM Employee WHERE pk_employee = $employee_id";
+            $query = "SELECT * FROM employee WHERE pk_employee = $employee_id";
             $employee_data = mysqli_query($this->getConnection(), $query);
 
             if ($employee_data) {
@@ -84,7 +84,7 @@ class Employee extends conexion
 
         if ($result) {
             $employee_id = mysqli_real_escape_string($this->getConnection(), $employee_id); // Escapa el valor para evitar SQL injection
-            $query = "SELECT * FROM Employee WHERE pk_employee = $employee_id";
+            $query = "SELECT * FROM employee WHERE pk_employee = $employee_id";
             $employee_data = mysqli_query($this->getConnection(), $query);
 
             if ($employee_data) {
@@ -121,7 +121,7 @@ class Employee extends conexion
         $result = $this->connect();
         if ($result == true) {
             //echo "vammos bien";
-            $dataset = $this->execquery("SELECT * FROM Rol (rol_name) WHERE pk_rol = '" . $this->fk_rol . "'");
+            $dataset = $this->execquery("SELECT * FROM rol (rol_name) WHERE pk_rol = '" . $this->fk_rol . "'");
         } else {
             echo "algo fallo";
             $dataset = "error";
@@ -132,7 +132,7 @@ class Employee extends conexion
     //INSERT
     public function setEmployee()
     {
-        $query = "INSERT INTO Employee (employee_name, employee_lastNameP, employee_lastNameM, tel, fk_client, fk_status, fk_rol) VALUES ('" . $this->name . "', '" . $this->lastNameP . "', '" . $this->lastNameM . "', '" . $this->tel . "', '" . $this->fk_client . "', 1, '" . $this->fk_rol . "')";
+        $query = "INSERT INTO employee (employee_name, employee_lastNameP, employee_lastNameM, tel, fk_client, fk_status, fk_rol) VALUES ('" . $this->name . "', '" . $this->lastNameP . "', '" . $this->lastNameM . "', '" . $this->tel . "', '" . $this->fk_client . "', 1, '" . $this->fk_rol . "')";
         $result = $this->connect();
         if ($result) {
             $newID = $this->execquery($query);
@@ -150,7 +150,7 @@ class Employee extends conexion
     //Metodo para actualizar el cliente.
     public function updateEmployee()
     {
-        $query = 'UPDATE Employee SET  employee_name = "' . $this->name . '", employee_lastNameP = "' . $this->lastNameP . '", employee_lastNameM = "' . $this->lastNameM . '",tel = "' . $this->tel . '" , fk_rol = "' . $this->fk_rol . '" WHERE pk_employee = ' . $this->id . '';
+        $query = 'UPDATE employee SET employee_name = "' . $this->name . '", employee_lastNameP = "' . $this->lastNameP . '", employee_lastNameM = "' . $this->lastNameM . '",tel = "' . $this->tel . '" , fk_rol = "' . $this->fk_rol . '" WHERE pk_employee = ' . $this->id . '';
         $result = $this->connect();
         if ($result) {
             echo "Ha funcionado la actualizacion de usuario";
@@ -165,14 +165,14 @@ class Employee extends conexion
     //Metodo para eliminar el cliente.
     public function deleteEmployee()
     {
-        $query = 'UPDATE Employee SET fk_status = 2 WHERE pk_employee = ' . $this->id . '';
+        $query = 'UPDATE employee SET fk_status = 2 WHERE pk_employee = ' . $this->id . '';
         $result = $this->connect();
         if ($result) {
             echo "Ha funcionado la eliminacion de usuario";
             $newID = $this->execquery($query);
 
             // Cambiar el estado de la tarjeta de acceso asociada al empleado eliminado
-            $query_access_card = 'UPDATE Access_Card SET fk_status = 2 WHERE fk_employee = ' . $this->id . '';
+            $query_access_card = 'UPDATE access_card SET fk_status = 2 WHERE fk_employee = ' . $this->id . '';
             $result_access_card = $this->execquery($query_access_card);
             if ($result_access_card) {
                 echo "Estado de la tarjeta de acceso actualizado correctamente";
@@ -188,7 +188,7 @@ class Employee extends conexion
 
     public function getEmployeeList($client_id)
     {
-        $query = "SELECT * FROM Employee WHERE fk_client = $client_id";
+        $query = "SELECT * FROM employee WHERE fk_client = $client_id";
         $result = $this->connect();
         if ($result) {
             return $this->execquery($query);

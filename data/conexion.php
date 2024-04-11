@@ -8,11 +8,17 @@ private $DB = "";
 private $connection;
 private $dateSet; //El resultado de la consulta.
     //constructor
+    // public function __construct() {
+    //     $this->HOST = "localhost";
+    //     $this->USER = "root";
+    //     $this->PASS = "";
+    //     $this->DB = "estacionamiento"; //Aqui ira el nombre de nuestra BD
+    // }
     public function __construct() {
         $this->HOST = "localhost";
-        $this->USER = "root";
-        $this->PASS = "";
-        $this->DB = "estacionamiento"; //Aqui ira el nombre de nuestra BD
+        $this->USER = "id22030952_root";
+        $this->PASS = "Estacionamiento_10";
+        $this->DB = "id22030952_estacionamiento"; //Aqui ira el nombre de nuestra BD
     }
 
     //Metodo para conectar con la base de datos.

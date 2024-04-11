@@ -36,8 +36,8 @@
                 ps.fk_visit,
                 gs.pk_status,
                 gs.status_name
-            FROM Parking_Spaces ps
-            JOIN General_Status gs ON ps.fk_status = gs.pk_status
+            FROM parking_spaces ps
+            JOIN general_status gs ON ps.fk_status = gs.pk_status
             WHERE ps.fk_parking = $pk_parking
             ORDER BY ps.spaces_number");
         } else {
@@ -51,7 +51,7 @@
         $result = $this->connect();
         if ($result){
             $visitQuery = "SELECT visit_name, visit_lastNameP, visit_lastNameM
-                FROM Visit
+                FROM visit
                 WHERE pk_visit = $pk_visit";
             $visitResult = $this->execquery($visitQuery);
             return $visitResult;
@@ -65,9 +65,9 @@
         $result = $this->connect();
         if ($result){
             $employeeQuery = "SELECT e.employee_name, ci.matricula, m.model_name
-                FROM Employee e
-                JOIN Car_Information ci ON e.pk_employee = ci.fk_employee
-                JOIN Model m ON ci.fk_model = m.pk_model
+                FROM employee e
+                JOIN car_information ci ON e.pk_employee = ci.fk_employee
+                JOIN model m ON ci.fk_model = m.pk_model
                 WHERE e.pk_employee = $pk_employee";
             $employeeResult = $this->execquery($employeeQuery);
             return $employeeResult;
@@ -98,9 +98,9 @@
         $result = $this->connect();
         if ($result) {
             $query = "SELECT e.employee_name, v.vehicle_model, v.matricula
-                        FROM Employees e
-                        JOIN Check_In_Out c ON e.pk_employee = c.fk_employee
-                        JOIN Vehicles v ON v.pk_vehicle = c.fk_vehicle
+                        FROM employees e
+                        JOIN check_in_out c ON e.pk_employee = c.fk_employee
+                        JOIN vehicles v ON v.pk_vehicle = c.fk_vehicle
                         WHERE c.fk_space = {$pk_space}";
     
             $employeeInfo = $this->execquery($query);
@@ -130,7 +130,7 @@
     public function getCapacidad(){
         $result = $this->connect();
         if ($result){
-            $dataset = $this->execquery("SELECT parking_capacity FROM Parking WHERE pk_parking = $this->fk_parking AND fk_client = $this->client_id");
+            $dataset = $this->execquery("SELECT parking_capacity FROM parking WHERE pk_parking = $this->fk_parking AND fk_client = $this->client_id");
             if($dataset) {
                 while($row = mysqli_fetch_assoc($dataset)) {
                     $capacidad = $row['parking_capacity'];
@@ -149,7 +149,7 @@
         $capacidad = $this->getCapacidad();
     
         // Obtener el número máximo de espacio actualmente utilizado
-        $maxSpaceNumberResult = $this->execquery("SELECT MAX(spaces_number) AS max_space_number FROM Parking_Spaces WHERE fk_parking = $this->fk_parking");
+        $maxSpaceNumberResult = $this->execquery("SELECT MAX(spaces_number) AS max_space_number FROM parking_spaces WHERE fk_parking = $this->fk_parking");
         $maxSpaceNumberRow = $maxSpaceNumberResult->fetch_assoc();
         $maxSpaceNumber = $maxSpaceNumberRow['max_space_number'];
     
@@ -176,7 +176,7 @@
     
 
     public function updateEspacio($pk_spaces) {
-        $query = "UPDATE Parking_Spaces SET fk_status = $this->fk_status WHERE pk_spaces = $pk_spaces";
+        $query = "UPDATE parking_spaces SET fk_status = $this->fk_status WHERE pk_spaces = $pk_spaces";
             $result = $this->connect();
             if($result) {
                 $newID = $this->execquery($query);
@@ -188,7 +188,7 @@
             return $newID;
     }
     public function updateEspacioNumber($pk_spaces) {
-        $query = "UPDATE Parking_Spaces SET spaces_number = $this->spaces_number WHERE pk_spaces = $pk_spaces";
+        $query = "UPDATE parking_spaces SET spaces_number = $this->spaces_number WHERE pk_spaces = $pk_spaces";
             $result = $this->connect();
             if($result) {
                 $newID = $this->execquery($query);
@@ -200,7 +200,7 @@
             return $newID;
     }
     public function eliminarEspacio($pk_spaces) {
-        $query = "DELETE FROM Parking_Spaces WHERE pk_spaces = $pk_spaces";
+        $query = "DELETE FROM parking_spaces WHERE pk_spaces = $pk_spaces";
             $result = $this->connect();
             if($result) {
                 $newID = $this->execquery($query);

@@ -1,6 +1,6 @@
 <?php //client.php 
     //Incluimos la conexion.
-    include_once(__DIR__."\..\conexion.php");
+    include_once(__DIR__."/../conexion.php");
 
     //Creamos la clase para nuestra tabla
     class Licenses extends conexion{
@@ -38,13 +38,13 @@
                 LD.LD_end_date, 
                 GS.status_name
             FROM 
-                Client c
+                client c
             INNER JOIN 
-                Payment p ON c.pk_client = p.fk_client
+                payment p ON c.pk_client = p.fk_client
             INNER JOIN 
-                Licenses_Duration LD ON p.pk_payment = LD.fk_payment
+                licenses_duration LD ON p.pk_payment = LD.fk_payment
             INNER JOIN 
-                General_Status GS ON LD.fk_status = GS.pk_status
+                general_status GS ON LD.fk_status = GS.pk_status
             WHERE 
                 c.pk_client = ".$client_id." 
                 AND LD.LD_end_date > CURRENT_TIMESTAMP 
@@ -77,15 +77,15 @@
                 LD.LD_end_date, 
                 GS.status_name
             FROM 
-                Client c
+                client c
             INNER JOIN 
                 User s ON s.pk_user = c.fk_user
             INNER JOIN 
-                Payment p ON c.pk_client = p.fk_client
+                payment p ON c.pk_client = p.fk_client
             INNER JOIN 
-                Licenses_Duration LD ON p.pk_payment = LD.fk_payment
+                licenses_duration LD ON p.pk_payment = LD.fk_payment
             INNER JOIN 
-                General_Status GS ON LD.fk_status = GS.pk_status
+                general_status GS ON LD.fk_status = GS.pk_status
             WHERE 
                 c.pk_client = ".$client_id." 
                 AND LD.LD_end_date > CURRENT_TIMESTAMP 
@@ -115,7 +115,7 @@
         public function setLicenses() {
             $accessCode = $this->generateAccessCode();
 
-            $query = "INSERT INTO Licenses_Duration (LD_start_date, LD_end_date, accessCode, fk_duration, fk_payment, fk_status) 
+            $query = "INSERT INTO licenses_duration (LD_start_date, LD_end_date, accessCode, fk_duration, fk_payment, fk_status) 
             VALUES (NOW(), DATE_ADD(NOW(), INTERVAL 1 MONTH), $accessCode,".$this->fk_duration.", ".$this->fk_payment.", 1)";
             $result = $this->connect();
             if($result) {

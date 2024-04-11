@@ -31,6 +31,7 @@ CREATE TABLE License (
     fk_status int,
     FOREIGN KEY (fk_status) REFERENCES General_Status (pk_status)
 );
+
 -- INSERCCIONES DE NUESTRAS LICENCIAS DE USO
 INSERT INTO License(license_name, license_description, fk_status) 
 VALUES

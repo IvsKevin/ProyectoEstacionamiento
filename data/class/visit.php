@@ -45,7 +45,7 @@ class Visit extends conexion
     // Métodos
     public function getVisit()
     {
-        $query = "SELECT * FROM Visit WHERE fk_client = '" . $this->fk_client . "' AND fk_status = 1";
+        $query = "SELECT * FROM visit WHERE fk_client = '" . $this->fk_client . "' AND fk_status = 1";
         $result = $this->connect();
         if ($result == true) {
             $dataset = $this->execquery($query);
@@ -58,7 +58,7 @@ class Visit extends conexion
     // Obtener visitas por cliente
     public function getVisitsByClient()
     {
-        $query = "SELECT * FROM Visit WHERE fk_client = '" . $this->fk_client . "'";
+        $query = "SELECT * FROM visit WHERE fk_client = '" . $this->fk_client . "'";
         $result = $this->connect();
         if ($result) {
             $dataset = $this->execquery($query);
@@ -71,7 +71,7 @@ class Visit extends conexion
     // Insertar nueva visita
     public function setVisit()
     {
-        $query = "INSERT INTO Visit (visit_company, visit_reason, visit_name, visit_lastName, fk_client, fk_status) VALUES ('" . $this->company . "', '" . $this->reason . "', '" . $this->name . "', '" . $this->last_name . "', " . $this->fk_client . ", 1)";
+        $query = "INSERT INTO visit (visit_company, visit_reason, visit_name, visit_lastName, fk_client, fk_status) VALUES ('" . $this->company . "', '" . $this->reason . "', '" . $this->name . "', '" . $this->last_name . "', " . $this->fk_client . ", 1)";
         $result = $this->connect();
         if ($result) {
             $newID = $this->execquery($query);
@@ -86,7 +86,7 @@ class Visit extends conexion
     // Actualizar información de visita
     public function updateVisit()
     {
-        $query = 'UPDATE Visit SET visit_company = "' . $this->company . '", visit_reason = "' . $this->reason . '", visit_name = "' . $this->name . '", visit_lastName = "' . $this->last_name . '" WHERE pk_visit = ' . $this->id . '';
+        $query = 'UPDATE visit SET visit_company = "' . $this->company . '", visit_reason = "' . $this->reason . '", visit_name = "' . $this->name . '", visit_lastName = "' . $this->last_name . '" WHERE pk_visit = ' . $this->id . '';
         $result = $this->connect();
         if ($result) {
             $result = $this->execquery($query);
@@ -101,7 +101,7 @@ class Visit extends conexion
     // Eliminar visita
     public function deleteVisit()
     {
-        $query = 'UPDATE Visit SET fk_status = 2 WHERE pk_visit = ' . $this->id . '';
+        $query = 'UPDATE visit SET fk_status = 2 WHERE pk_visit = ' . $this->id . '';
         $result = $this->connect();
         if ($result) {
             // Consulta para actualizar el estado de la visita            
@@ -135,7 +135,7 @@ class Visit extends conexion
         $result = $this->connect();
         if ($result) {
             $visit_id = mysqli_real_escape_string($this->getConnection(), $visit_id);
-            $query = "SELECT * FROM Visit WHERE pk_visit = $visit_id";
+            $query = "SELECT * FROM visit WHERE pk_visit = $visit_id";
             $visit_data = mysqli_query($this->getConnection(), $query);
             if ($visit_data) {
                 return mysqli_fetch_assoc($visit_data);

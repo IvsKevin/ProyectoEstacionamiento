@@ -30,12 +30,12 @@ class Car extends conexion
                 mc.model_color,
                 g.status_name,
                 g.pk_status
-            FROM Car_Information AS c
-                INNER JOIN Employee         AS e ON e.pk_employee = c.fk_employee
-                INNER JOIN Model            AS m ON m.pk_model = c.fk_model
-                INNER JOIN Brand            AS b ON b.pk_brand = m.fk_brand
-                INNER JOIN Model_Color      AS mc ON mc.pk_color = c.fk_color
-                INNER JOIN General_Status   AS g ON g.pk_status = c.fk_status
+            FROM car_information AS c
+                INNER JOIN employee         AS e ON e.pk_employee = c.fk_employee
+                INNER JOIN model            AS m ON m.pk_model = c.fk_model
+                INNER JOIN brand            AS b ON b.pk_brand = m.fk_brand
+                INNER JOIN model_Color      AS mc ON mc.pk_color = c.fk_color
+                INNER JOIN general_Status   AS g ON g.pk_status = c.fk_status
             WHERE c.fk_client = " . $this->fk_client . "";
         $result = $this->connect();
         if ($result == true) {
@@ -56,12 +56,12 @@ class Car extends conexion
                 mc.model_color,
                 g.status_name,
                 g.pk_status
-            FROM Car_Information AS c
-                INNER JOIN Employee         AS e ON e.pk_employee = c.fk_employee
-                INNER JOIN Model            AS m ON m.pk_model = c.fk_model
-                INNER JOIN Brand            AS b ON b.pk_brand = m.fk_brand
-                INNER JOIN Model_Color      AS mc ON mc.pk_color = c.fk_color
-                INNER JOIN General_Status   AS g ON g.pk_status = c.fk_status
+            FROM car_information AS c
+                INNER JOIN employee         AS e ON e.pk_employee = c.fk_employee
+                INNER JOIN model            AS m ON m.pk_model = c.fk_model
+                INNER JOIN brand            AS b ON b.pk_brand = m.fk_brand
+                INNER JOIN model_Color      AS mc ON mc.pk_color = c.fk_color
+                INNER JOIN general_Status   AS g ON g.pk_status = c.fk_status
             WHERE c.fk_client = " . $this->fk_client;
 
         // Aplicar filtros
@@ -87,7 +87,7 @@ class Car extends conexion
     }
     public function getMarca()
     {
-        $query = "SELECT * FROM Brand";
+        $query = "SELECT * FROM brand";
         $result = $this->connect();
         if ($result == true) {
             $dataset = $this->execquery($query);
@@ -100,7 +100,7 @@ class Car extends conexion
 
     public function verificarCarroEmpleado($employeeId)
     {
-        $query = "SELECT COUNT(*) AS count FROM Car_Information WHERE fk_employee = $employeeId";
+        $query = "SELECT COUNT(*) AS count FROM car_information WHERE fk_employee = $employeeId";
         $result = $this->connect();
         if ($result == true) {
             $row = mysqli_fetch_assoc($this->execquery($query));
@@ -113,7 +113,7 @@ class Car extends conexion
 
     public function getMarcaID($brand_name)
     {
-        $query = "SELECT pk_brand FROM Brand WHERE brand_name = '" . $brand_name . "'";
+        $query = "SELECT pk_brand FROM brand WHERE brand_name = '" . $brand_name . "'";
         $result = $this->connect();
         if ($result == true) {
             $consultado = $this->execquery($query);
@@ -133,7 +133,7 @@ class Car extends conexion
     }
     public function getModel()
     {
-        $query = "SELECT * FROM Model";
+        $query = "SELECT * FROM model";
         $result = $this->connect();
         if ($result == true) {
             $dataset = $this->execquery($query);
@@ -145,7 +145,7 @@ class Car extends conexion
     }
     public function getModelByID($fk_brand)
     {
-        $query = "SELECT * FROM Model WHERE fk_brand = $fk_brand";
+        $query = "SELECT * FROM model WHERE fk_brand = $fk_brand";
         $result = $this->connect();
         if ($result == true) {
             $dataset = $this->execquery($query);
@@ -157,7 +157,7 @@ class Car extends conexion
     }
     public function getModelColor()
     {
-        $query = "SELECT * FROM Model_Color";
+        $query = "SELECT * FROM model_color";
         $result = $this->connect();
         if ($result == true) {
             $dataset = $this->execquery($query);
@@ -169,7 +169,7 @@ class Car extends conexion
     }
     public function setCarInformation()
     {
-        $query = "INSERT INTO Car_Information (matricula, model_year, fk_employee, fk_model, fk_color, fk_status, fk_client) 
+        $query = "INSERT INTO car_information (matricula, model_year, fk_employee, fk_model, fk_color, fk_status, fk_client) 
             VALUES ('" . $this->matricula . "', " . $this->model_year . ", " . $this->fk_employee . ", " . $this->fk_model . ", " . $this->fk_color . ", " . $this->fk_status . ", " . $this->fk_client . ")";
         $result = $this->connect();
         if ($result) {
@@ -183,7 +183,7 @@ class Car extends conexion
     }
     public function updateCar()
     {
-        $query = 'UPDATE Car_Information SET fk_status = "' . $this->fk_status . '" WHERE pk_car = ' . $this->id . '';
+        $query = 'UPDATE car_Information SET fk_status = "' . $this->fk_status . '" WHERE pk_car = ' . $this->id . '';
         $result = $this->connect();
         if ($result) {
             echo "Ha funcionado la actualizacion de usuario";

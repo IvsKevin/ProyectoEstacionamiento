@@ -1,6 +1,6 @@
 <?php //client.php 
     //Incluimos la conexion.
-    include_once(__DIR__."\..\conexion.php");
+    include_once(__DIR__."/../conexion.php");
 
     //Creamos la clase para nuestra tabla
     class Client extends conexion{
@@ -55,7 +55,7 @@
             $result = $this->connect();
             if ($result == true){
                 //echo "vammos bien";
-                $dataset = $this->execquery("SELECT * FROM Client inner join user on client.fk_user = user.pk_user WHERE user.category = 'C'");
+                $dataset = $this->execquery("SELECT * FROM client inner join user on client.fk_user = user.pk_user WHERE user.category = 'C'");
             }
             else{
                 echo "algo fallo";
@@ -67,7 +67,7 @@
             $result = $this->connect();
             if ($result == true){
                 //echo "vammos bien";
-                $dataset = $this->execquery("SELECT * FROM Client WHERE fk_status = 1");
+                $dataset = $this->execquery("SELECT * FROM client WHERE fk_status = 1");
             }
             else{
                 echo "algo fallo";
@@ -80,7 +80,7 @@
             $result = $this->connect();
             if ($result == true){
                 // echo "Funciono la consulta en Cliente por filtro de Usuario";
-                $dataset = $this->execquery("SELECT * FROM Client WHERE fk_user = $fk_user");
+                $dataset = $this->execquery("SELECT * FROM client WHERE fk_user = $fk_user");
                 // print_r($dataset);
             }
             else{
@@ -95,7 +95,7 @@ public function countTotalClients()
 {
     $result = $this->connect();
     if ($result) {
-        $dataset = $this->execquery("SELECT COUNT(pk_client) AS total_clients FROM Client WHERE fk_user <> 1");
+        $dataset = $this->execquery("SELECT COUNT(pk_client) AS total_clients FROM client WHERE fk_user <> 1");
         if ($row = mysqli_fetch_assoc($dataset)) {
             return $row['total_clients'];
         } else {
@@ -114,7 +114,7 @@ public function countTotalClients()
         
             if ($result) {
                 $client_id = mysqli_real_escape_string($this->getConnection(), $client_id); // Escapa el valor para evitar SQL injection
-                $query = "SELECT * FROM Client WHERE pk_client = $client_id";
+                $query = "SELECT * FROM client WHERE pk_client = $client_id";
                 $client_data = mysqli_query($this->getConnection(), $query);
         
                 if ($client_data) {
@@ -128,7 +128,7 @@ public function countTotalClients()
         public function setClient() {
             $consult = $this->connect();
             if ($consult) {
-                $newid = $this->execinsert("INSERT INTO Client (client_name, client_email, client_address, client_country, client_city, client_state, client_zip_code, client_tel, fk_user, fk_status) VALUES ('" . $this->name . "', '" . $this->email . "','".$this->address."','".$this->country."','".$this->city."','".$this->state."',".$this->zip_code.",'".$this->tel."',".$this->fk_user.", 1)");
+                $newid = $this->execinsert("INSERT INTO client (client_name, client_email, client_address, client_country, client_city, client_state, client_zip_code, client_tel, fk_user, fk_status) VALUES ('" . $this->name . "', '" . $this->email . "','".$this->address."','".$this->country."','".$this->city."','".$this->state."',".$this->zip_code.",'".$this->tel."',".$this->fk_user.", 1)");
             } else {
                 echo "Ha ocurrido un problema con la conexión";
                 $newid = 0;
@@ -140,7 +140,7 @@ public function countTotalClients()
         
         //Metodo para actualizar el cliente.
         public function updateClient() {
-            $query = 'UPDATE Client SET  client_email = "'.$this->email.'", client_address = "'.$this->address.'", client_tel = "'.$this->tel.'" WHERE pk_client = '.$this->id.'';
+            $query = 'UPDATE client SET  client_email = "'.$this->email.'", client_address = "'.$this->address.'", client_tel = "'.$this->tel.'" WHERE pk_client = '.$this->id.'';
             $result = $this->connect();
             if($result) {
                 echo "Ha funcionado la actualizacion de usuario"; 
@@ -154,7 +154,7 @@ public function countTotalClients()
 
         //Metodo para eliminar el cliente.
         public function deleteClient() {
-            $query = 'UPDATE Client SET fk_status = 2 WHERE pk_client = ' . $this->id . '';
+            $query = 'UPDATE client SET fk_status = 2 WHERE pk_client = ' . $this->id . '';
             $result = $this->connect();
             if($result) {
                 echo "Ha funcionado la eliminacion de usuario"; 
@@ -165,21 +165,5 @@ public function countTotalClients()
             }
             return $newID;
         }
-
-
-        
-        // public function getUserAdmin() {
-        //     $query = "select * from user where password='".$this->password."' and username = '".$this->username."' and category = 'A'";
-        //     $result = $this->connect();
-        //     if($result) {
-        //         //echo "todo bien"; 
-        //         $dateSet = $this->execquery($query);
-        //     } else {
-        //         echo "algo salio mal";
-        //         $dateSet = "error";
-        //     }
-        //     return $dateSet;
-        // }
-
     } //Fin de la clase
 ?>

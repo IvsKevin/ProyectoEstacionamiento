@@ -71,7 +71,7 @@ class carentry extends conexion {
         $conexion->connect();
         $entryDate = date('Y-m-d H:i:s');
     
-        $accessCardQuery = "SELECT pk_card, fk_employee, fk_visit FROM Access_Card WHERE QR_code = '$QR_code' AND fk_status = 1";
+        $accessCardQuery = "SELECT pk_card, fk_employee, fk_visit FROM access_card WHERE QR_code = '$QR_code' AND fk_status = 1";
         $accessCardResult = $conexion->execquery($accessCardQuery);
     
         if ($accessCardResult && mysqli_num_rows($accessCardResult) > 0) {
@@ -86,7 +86,7 @@ class carentry extends conexion {
             }
 
             if($selectedCardEmployee != null) {
-                $carCheckQuery = "SELECT pk_car FROM Car_Information WHERE fk_employee = $selectedCardEmployee";
+                $carCheckQuery = "SELECT pk_car FROM car_information WHERE fk_employee = $selectedCardEmployee";
                 $carCheckResult = $conexion->execquery($carCheckQuery);
             }
     
@@ -95,7 +95,7 @@ class carentry extends conexion {
                 return $errorMessage;
             }
     
-            $spaceQuery = "SELECT pk_spaces FROM Parking_Spaces WHERE fk_parking = $selectedParking AND fk_status = 1 LIMIT 1";
+            $spaceQuery = "SELECT pk_spaces FROM parking_spaces WHERE fk_parking = $selectedParking AND fk_status = 1 LIMIT 1";
             $spaceResult = $conexion->execquery($spaceQuery);
     
             if ($spaceResult && mysqli_num_rows($spaceResult) > 0) {
@@ -103,18 +103,18 @@ class carentry extends conexion {
                 $selectedSpace = $spaceRow['pk_spaces'];
     
                 $spaceUpdate = ($selectedCardEmployee !== null) ?
-                    "UPDATE Parking_Spaces SET fk_employee = $selectedCardEmployee WHERE pk_spaces = $selectedSpace AND fk_status = 1 LIMIT 1" :
-                    "UPDATE Parking_Spaces SET fk_visit = $selectedCardVisit WHERE pk_spaces = $selectedSpace AND fk_status = 1 LIMIT 1";
+                    "UPDATE parking_spaces SET fk_employee = $selectedCardEmployee WHERE pk_spaces = $selectedSpace AND fk_status = 1 LIMIT 1" :
+                    "UPDATE parking_spaces SET fk_visit = $selectedCardVisit WHERE pk_spaces = $selectedSpace AND fk_status = 1 LIMIT 1";
     
                 $spaceResultUpdate = $conexion->execquery($spaceUpdate);
     
                 if ($spaceResultUpdate) {
-                    $queryInsert = "INSERT INTO Check_In_Out (date_in, fk_parking, fk_card, fk_space, fk_status) VALUES ('$entryDate', $selectedParking, $selectedCard, $selectedSpace, 1)";
+                    $queryInsert = "INSERT INTO check_in_out (date_in, fk_parking, fk_card, fk_space, fk_status) VALUES ('$entryDate', $selectedParking, $selectedCard, $selectedSpace, 1)";
                     $resultInsert = $conexion->execinsert($queryInsert);
     
                     if ($resultInsert) {
                         $lastEntryId = $conexion->getConnection()->insert_id;
-                        $assignSpaceQuery = "UPDATE Parking_Spaces SET fk_status = 2 WHERE pk_spaces = $selectedSpace";
+                        $assignSpaceQuery = "UPDATE parking_spaces SET fk_status = 2 WHERE pk_spaces = $selectedSpace";
                         $resultAssignSpace = $conexion->execquery($assignSpaceQuery);
     
                         if ($resultAssignSpace) {
@@ -145,7 +145,7 @@ class carentry extends conexion {
         $conexion = new conexion();
         $conexion->connect();
         
-        $query = "SELECT date_out FROM Check_In_Out WHERE fk_card = $selectedCard AND date_out IS NULL";
+        $query = "SELECT date_out FROM check_in_out WHERE fk_card = $selectedCard AND date_out IS NULL";
         $result = $conexion->execquery($query);
         
         return ($result && mysqli_num_rows($result) > 0);
@@ -158,8 +158,8 @@ class carentry extends conexion {
         $conexion->connect();
     
         $checkQuery = "SELECT CI.pk_check, CI.date_out, CI.fk_parking, CI.fk_space 
-                       FROM Check_In_Out AS CI
-                       INNER JOIN Access_Card AS AC ON CI.fk_card = AC.pk_card
+                       FROM check_in_out AS CI
+                       INNER JOIN access_card AS AC ON CI.fk_card = AC.pk_card
                        WHERE AC.QR_code = '$QR_code' AND CI.date_out IS NULL";
         $checkResult = $conexion->execquery($checkQuery);
     
@@ -181,7 +181,7 @@ class carentry extends conexion {
             $result = $conexion->execquery($query);
     
             if ($result) {
-                $releaseSpaceQuery = "UPDATE Parking_Spaces SET fk_status = 1, fk_employee = NULL, fk_visit = NULL WHERE pk_spaces = $spaceId";
+                $releaseSpaceQuery = "UPDATE parking_spaces SET fk_status = 1, fk_employee = NULL, fk_visit = NULL WHERE pk_spaces = $spaceId";
                 $resultReleaseSpace = $conexion->execquery($releaseSpaceQuery);
     
                 if ($resultReleaseSpace) {
@@ -206,12 +206,12 @@ class carentry extends conexion {
                          CONCAT(E.employee_name, ' (Empleado)') AS person_name, 
                          CONCAT(V.visit_name, ' (Visitante)') AS visit_name, 
                          CI.fk_parking, CI.fk_card, C.matricula, P.parking_location
-                  FROM Check_In_Out AS CI
-                  LEFT JOIN Access_Card AS AC ON CI.fk_card = AC.pk_card
-                  LEFT JOIN Employee AS E ON AC.fk_employee = E.pk_employee
-                  LEFT JOIN Visit AS V ON AC.fk_visit = V.pk_visit
-                  LEFT JOIN Car_Information AS C ON E.pk_employee = C.fk_employee
-                  LEFT JOIN Parking AS P ON CI.fk_parking = P.pk_parking
+                  FROM check_in_out AS CI
+                  LEFT JOIN access_card AS AC ON CI.fk_card = AC.pk_card
+                  LEFT JOIN employee AS E ON AC.fk_employee = E.pk_employee
+                  LEFT JOIN visit AS V ON AC.fk_visit = V.pk_visit
+                  LEFT JOIN car_information AS C ON E.pk_employee = C.fk_employee
+                  LEFT JOIN parking AS P ON CI.fk_parking = P.pk_parking
                   WHERE (E.fk_client = $client_id OR V.fk_client = $client_id) AND CI.fk_status = 1
                   ORDER BY CI.pk_check";
     

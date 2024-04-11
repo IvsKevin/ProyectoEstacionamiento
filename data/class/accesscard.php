@@ -57,7 +57,7 @@ class AccessCard extends conexion
 
     public function getAccessCards()
     {
-        $query = "SELECT * FROM Access_Card";
+        $query = "SELECT * FROM access_card";
         $result = $this->connect();
 
         if ($result) {
@@ -72,7 +72,7 @@ class AccessCard extends conexion
 
     public function insertAccessCard()
     {
-        $query = "INSERT INTO Access_Card (QR_code, card_creation_date, card_end_date, card_type, fk_employee, fk_status) 
+        $query = "INSERT INTO access_card (QR_code, card_creation_date, card_end_date, card_type, fk_employee, fk_status) 
               VALUES ('$this->QR_code', '$this->card_creation_date', '$this->card_end_date', '$this->card_type', '$this->fk_employee', 1)";
 
         $result = $this->connect();
@@ -88,7 +88,7 @@ class AccessCard extends conexion
 
     public function insertAccessCardForVisit($QR_code, $creation_date, $end_date, $card_type, $fk_visit)
     {
-        $query = "INSERT INTO Access_Card (QR_code, card_creation_date, card_end_date, card_type, fk_visit, fk_status) 
+        $query = "INSERT INTO access_card (QR_code, card_creation_date, card_end_date, card_type, fk_visit, fk_status) 
                       VALUES ('$QR_code', '$creation_date', '$end_date', '$card_type', '$fk_visit', 1)";
 
         $result = $this->connect();
@@ -112,7 +112,7 @@ class AccessCard extends conexion
 
     public function updateAccessCard()
     {
-        $query = "UPDATE Access_Card SET QR_code = '$this->QR_code', card_creation_date = '$this->card_creation_date', 
+        $query = "UPDATE access_card SET QR_code = '$this->QR_code', card_creation_date = '$this->card_creation_date', 
                       card_end_date = '$this->card_end_date', card_type = '$this->card_type', 
                       fk_employee = '$this->fk_employee', fk_status = '$this->fk_status' WHERE pk_card = $this->id";
 
@@ -140,9 +140,9 @@ class AccessCard extends conexion
             V.pk_visit,
             V.visit_name,
             V.visit_lastName
-            FROM Access_Card AS AC 
-            LEFT JOIN Employee AS E ON AC.fk_employee = E.pk_employee
-            LEFT JOIN Visit AS V ON AC.fk_visit = V.pk_visit
+            FROM access_card AS AC 
+            LEFT JOIN employee AS E ON AC.fk_employee = E.pk_employee
+            LEFT JOIN visit AS V ON AC.fk_visit = V.pk_visit
             WHERE E.fk_client = $client_id OR V.fk_client = $client_id";
 
         $result = $this->connect();
