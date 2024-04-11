@@ -127,12 +127,12 @@ if (isset($_GET['errorEliminacion'])) {
                 <section class="flex flex-col items-center">
                     <h2 class="font-bold text-lg">Datos del empleado</h2>
                     <p>Nombre del empleado: <?php echo $nombre . ' ' . $apellidoPaterno . ' ' . $apellidoMaterno; ?></p>
-                    <p>Telefono: <?php echo $tel; ?></p><br>
+                    <p>Teléfono: <?php echo $tel; ?></p><br>
 
                     <h2 class="font-bold text-lg">Datos del vehiculo</h2>
                     <p>Marca del auto: <?php echo $marca; ?></p>
                     <p>Modelo del auto: <?php echo $modelo; ?></p>
-                    <p>Matricula del auto: <?php echo $matricula; ?></p>
+                    <p>Matrícula del auto: <?php echo $matricula; ?></p>
                 </section>
             </div>
         `;
@@ -178,10 +178,10 @@ if (isset($_GET['errorEliminacion'])) {
             <h3 class="font-bold text-lg">Datos de la visita ocupante</h3>
             <div class="modal-action  flex flex-col items-center">
                 <section>
-                    <p>Compania: <?php echo $visitCompany; ?></p>
-                    <p>Razon de visita: <?php echo $visitReason; ?></p>
+                    <p>Compañía: <?php echo $visitCompany; ?></p>
+                    <p>Razón de visita: <?php echo $visitReason; ?></p>
                     <p>Nombre de la visita: <?php echo $visitName . ' ' . $visitLastName; ?></p>
-                    <p>Datos del vehiculo: Sin carro asociado </p>
+                    <p>Datos del vehículo: Sin carro asociado </p>
                 </section>
             </div>
         `;
