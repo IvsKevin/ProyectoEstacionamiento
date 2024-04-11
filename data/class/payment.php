@@ -56,7 +56,7 @@
                     return 0;
                 }
             }else{
-                echo "algo fallo";
+                //echo "algo fallo";
                 return 0;
             }
         }
@@ -73,7 +73,7 @@
                     return 0;
                 }
             }else{
-                echo "algo fallo";
+                //echo "algo fallo";
                 return 0;
             }
         }
@@ -89,7 +89,7 @@
                     return 0;
                 }
             }else{
-                echo "algo fallo";
+                //echo "algo fallo";
                 return 0;
             }
         }
@@ -104,7 +104,7 @@
                     return 0;
                 }
             }else{
-                echo "algo fallo";
+                //echo "algo fallo";
                 return 0;
             }
         }
@@ -131,9 +131,9 @@
             $result = $this->connect();
             if($result) {
                 $newID = $this->execinsert($query);
-                echo "Ha funcionado el registro del pago"; 
+                //echo "Ha funcionado el registro del pago"; 
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $newID = "error";
             }
             return $newID;
@@ -151,11 +151,11 @@
                     }
                     return $earnings;
                 } else {
-                    echo "Error al ejecutar la consulta";
+                    //echo "Error al ejecutar la consulta";
                     return array();
                 }
             } else {
-                echo "Error al conectar con la base de datos";
+                //echo "Error al conectar con la base de datos";
                 return array();
             }
         }

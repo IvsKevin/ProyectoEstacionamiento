@@ -58,7 +58,7 @@
                 $dataset = $this->execquery("SELECT * FROM client INNER JOIN user on client.fk_user = user.pk_user WHERE user.category = 'C'");
             }
             else{
-                echo "algo fallo";
+                //echo "algo fallo";
                 $dataset = "error";
             }
             return $dataset;
@@ -102,7 +102,7 @@ public function countTotalClients()
             return 0;
         }
     } else {
-        echo "Algo falló";
+        //echo "Algo falló";
         return 0;
     }
 }
@@ -130,7 +130,7 @@ public function countTotalClients()
             if ($consult) {
                 $newid = $this->execinsert("INSERT INTO client (client_name, client_email, client_address, client_country, client_city, client_state, client_zip_code, client_tel, fk_user, fk_status) VALUES ('" . $this->name . "', '" . $this->email . "','".$this->address."','".$this->country."','".$this->city."','".$this->state."',".$this->zip_code.",'".$this->tel."',".$this->fk_user.", 1)");
             } else {
-                echo "Ha ocurrido un problema con la conexión";
+                //echo "Ha ocurrido un problema con la conexión";
                 $newid = 0;
             }
             return $newid;
@@ -143,10 +143,10 @@ public function countTotalClients()
             $query = 'UPDATE client SET  client_email = "'.$this->email.'", client_address = "'.$this->address.'", client_tel = "'.$this->tel.'" WHERE pk_client = '.$this->id.'';
             $result = $this->connect();
             if($result) {
-                echo "Ha funcionado la actualizacion de usuario"; 
+                //echo "Ha funcionado la actualizacion de usuario"; 
                 $newID = $this->execquery($query);
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $newID = "error";
             }
             return $newID;
@@ -157,10 +157,10 @@ public function countTotalClients()
             $query = 'UPDATE client SET fk_status = 2 WHERE pk_client = ' . $this->id . '';
             $result = $this->connect();
             if($result) {
-                echo "Ha funcionado la eliminacion de usuario"; 
+                //echo "Ha funcionado la eliminacion de usuario"; 
                 $newID = $this->execquery($query);
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $newID = "error";
             }
             return $newID;

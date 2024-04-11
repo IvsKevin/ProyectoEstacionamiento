@@ -64,7 +64,7 @@ class AccessCard extends conexion
             $access_cards = $this->execquery($query);
             return $access_cards;
         } else {
-            echo "Algo salió mal al intentar obtener las tarjetas de acceso";
+            //echo "Algo salió mal al intentar obtener las tarjetas de acceso";
             return "error";
         }
     }
@@ -78,9 +78,9 @@ class AccessCard extends conexion
         $result = $this->connect();
         if ($result) {
             $newID = $this->execinsert($query);
-            echo "La tarjeta de acceso se ha generado correctamente";
+            //echo "La tarjeta de acceso se ha generado correctamente";
         } else {
-            echo "Algo salió mal al intentar generar la tarjeta de acceso";
+            //echo "Algo salió mal al intentar generar la tarjeta de acceso";
             $newID = "error";
         }
         return $newID;
@@ -95,14 +95,14 @@ class AccessCard extends conexion
         if ($result) {
             $newID = $this->execinsert($query);
             if ($newID) {
-                echo "La tarjeta de acceso para la visita se ha generado correctamente";
+                //echo "La tarjeta de acceso para la visita se ha generado correctamente";
                 return $newID;
             } else {
-                echo "No se pudo generar la tarjeta de acceso para la visita.";
+                //echo "No se pudo generar la tarjeta de acceso para la visita.";
                 return "error";
             }
         } else {
-            echo "Algo salió mal al intentar generar la tarjeta de acceso para la visita";
+            //echo "Algo salió mal al intentar generar la tarjeta de acceso para la visita";
             return "error";
         }
     }
@@ -119,9 +119,9 @@ class AccessCard extends conexion
         $result = $this->connect();
         if ($result) {
             $updated = $this->execquery($query);
-            echo "La tarjeta de acceso se ha actualizado correctamente";
+            //echo "La tarjeta de acceso se ha actualizado correctamente";
         } else {
-            echo "Algo salió mal al intentar actualizar la tarjeta de acceso";
+            //echo "Algo salió mal al intentar actualizar la tarjeta de acceso";
             $updated = "error";
         }
         return $updated;
@@ -150,7 +150,7 @@ class AccessCard extends conexion
             $access_cards = $this->execquery($query);
             return $access_cards;
         } else {
-            echo "Algo salió mal al intentar obtener las tarjetas de acceso";
+            //echo "Algo salió mal al intentar obtener las tarjetas de acceso";
             return "error";
         }
     }

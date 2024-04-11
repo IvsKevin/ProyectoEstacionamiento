@@ -34,7 +34,7 @@ class Parking extends conexion {
                 ORDER BY p.parking_number $orden" // Ordenar según el parámetro recibido
             );
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $dataset = "error";
         }
         return $dataset;
@@ -43,7 +43,7 @@ class Parking extends conexion {
     public function getParkingActive() {
         $result = $this->connect();
             if ($result == true){
-                //echo "vamos bien";
+                ////echo "vamos bien";
                 $dataset = $this->execquery("SELECT 
                 p.*,
                 g.pk_status,
@@ -55,7 +55,7 @@ class Parking extends conexion {
                 );
             }
             else{
-                echo "algo fallo";
+                //echo "algo fallo";
                 $dataset = "error";
             }
             return $dataset;
@@ -65,7 +65,7 @@ class Parking extends conexion {
     // Conectar a la base de datos
     $result = $this->connect();
     if ($result == false) {
-        echo "No se pudo conectar a la base de datos.";
+        //echo "No se pudo conectar a la base de datos.";
         return false;
     }
 
@@ -76,7 +76,7 @@ class Parking extends conexion {
 
     // Verificar si el número de estacionamiento ya está en uso en la sesión
     if (in_array($this->parking_number, $_SESSION['parking_number'])) {
-        echo "El número de estacionamiento ya está en uso. Por favor, elige otro.";
+        //echo "El número de estacionamiento ya está en uso. Por favor, elige otro.";
         return false;
     }
 
@@ -98,7 +98,7 @@ class Parking extends conexion {
 
         return true;
     } else {
-        echo "No se pudo insertar el nuevo estacionamiento.";
+        //echo "No se pudo insertar el nuevo estacionamiento.";
         return false;
     }
 }

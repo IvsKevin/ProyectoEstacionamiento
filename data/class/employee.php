@@ -53,10 +53,10 @@ class Employee extends conexion
               WHERE employee.fk_status = 1 AND employee.fk_client = '" . $this->fk_client . "'";
         $result = $this->connect();
         if ($result == true) {
-            //echo "vammos bien";
+            ////echo "vammos bien";
             $dataset = $this->execquery($query);
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $dataset = "error";
         }
         return $dataset;
@@ -120,10 +120,10 @@ class Employee extends conexion
     {
         $result = $this->connect();
         if ($result == true) {
-            //echo "vammos bien";
+            ////echo "vammos bien";
             $dataset = $this->execquery("SELECT * FROM rol (rol_name) WHERE pk_rol = '" . $this->fk_rol . "'");
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $dataset = "error";
         }
         return $dataset;
@@ -136,9 +136,9 @@ class Employee extends conexion
         $result = $this->connect();
         if ($result) {
             $newID = $this->execquery($query);
-            echo "El registro del empleado ha sido exitoso";
+            //echo "El registro del empleado ha sido exitoso";
         } else {
-            echo "Algo salió mal";
+            //echo "Algo salió mal";
             $newID = "error";
         }
         return $newID;
@@ -153,10 +153,10 @@ class Employee extends conexion
         $query = 'UPDATE employee SET employee_name = "' . $this->name . '", employee_lastNameP = "' . $this->lastNameP . '", employee_lastNameM = "' . $this->lastNameM . '",tel = "' . $this->tel . '" , fk_rol = "' . $this->fk_rol . '" WHERE pk_employee = ' . $this->id . '';
         $result = $this->connect();
         if ($result) {
-            echo "Ha funcionado la actualizacion de usuario";
+            //echo "Ha funcionado la actualizacion de usuario";
             $newID = $this->execquery($query);
         } else {
-            echo "algo salio mal";
+            //echo "algo salio mal";
             $newID = "error";
         }
         return $newID;
@@ -168,19 +168,19 @@ class Employee extends conexion
         $query = 'UPDATE employee SET fk_status = 2 WHERE pk_employee = ' . $this->id . '';
         $result = $this->connect();
         if ($result) {
-            echo "Ha funcionado la eliminacion de usuario";
+            //echo "Ha funcionado la eliminacion de usuario";
             $newID = $this->execquery($query);
 
             // Cambiar el estado de la tarjeta de acceso asociada al empleado eliminado
             $query_access_card = 'UPDATE access_card SET fk_status = 2 WHERE fk_employee = ' . $this->id . '';
             $result_access_card = $this->execquery($query_access_card);
             if ($result_access_card) {
-                echo "Estado de la tarjeta de acceso actualizado correctamente";
+                //echo "Estado de la tarjeta de acceso actualizado correctamente";
             } else {
-                echo "Hubo un problema al actualizar el estado de la tarjeta de acceso";
+                //echo "Hubo un problema al actualizar el estado de la tarjeta de acceso";
             }
         } else {
-            echo "algo salio mal";
+            //echo "algo salio mal";
             $newID = "error";
         }
         return $newID = "okey";
