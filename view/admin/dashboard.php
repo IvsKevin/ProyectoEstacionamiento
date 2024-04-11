@@ -1,4 +1,4 @@
-<?php include_once "navbarAdmin.php"; ?>
+<?php include_once "navbar.php"; ?>
 
 <head>
     <meta charset="UTF-8">
@@ -20,14 +20,14 @@
                 <div class="overflow-x-auto">
                     <!-- Contenido del dashboard -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div class="bg-white p-4 rounded shadow">
+                        <div class="bg-gris-oscurito p-4 rounded shadow-lg">
                             <canvas class="chart w-full h-64" id="membershipChart"></canvas>
                         </div>
-                        <div class="bg-white p-4 rounded shadow">
+                        <div class="bg-gris-oscurito p-4 rounded shadow-lg">
                             <canvas class="chart w-full h-64" id="clientChart"></canvas>
                         </div>
-                        <div class="bg-white p-4 rounded shadow">
-                            <canvas class="chart w-full h-64" id="revenueChart"></canvas>
+                        <div class="bg-gris-oscurito p-4 rounded shadow-lg" style="height: 400px;">
+                            <canvas id="revenueChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
             labels: ['Básica (<?php echo $basicCount; ?>)', 'Pro (<?php echo $proCount; ?>)', 'Regular (<?php echo $regularCount; ?>)'],
             datasets: [{
                 data: [<?php echo $basicCount; ?>, <?php echo $proCount; ?>, <?php echo $regularCount; ?>],
-                backgroundColor: ['blue', 'green', 'orange']
+                backgroundColor: ['#4CAF50', '#2196F3', '#FF5722']
             }]
         };
 
@@ -74,7 +74,7 @@
             labels: ['Clientes nuevos (<?php echo $totalClients; ?>)'],
             datasets: [{
                 data: [<?php echo $totalClients; ?>, 0], // Usamos el total de clientes como primer dato
-                backgroundColor: ['blue']
+                backgroundColor: ['#FF9800']
             }]
         };
 
@@ -88,7 +88,7 @@
                 data: [<?php foreach ($earningsByMonth as $earnings) {
                             echo $earnings['total_earnings'] . ", ";
                         } ?>],
-                backgroundColor: 'blue'
+                backgroundColor: '#2196F3'
             }]
         };
 
@@ -105,7 +105,39 @@
 
         var revenueChart = new Chart(document.getElementById('revenueChart').getContext('2d'), {
             type: 'line',
-            data: revenueData
+            data: revenueData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 14 // Tamaño de la fuente del eje X
+                            }
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            font: {
+                                size: 14 // Tamaño de la fuente del eje Y
+                            },
+                            callback: function(value, index, values) {
+                                return '$' + value; // Prefijo para los valores del eje Y
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 16 // Tamaño de la fuente de la leyenda
+                            }
+                        }
+                    }
+                }
+            }
         });
 
         function cambiarColor() {

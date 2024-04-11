@@ -112,15 +112,17 @@
         public function getAllPayments(){
             $result = $this->connect();
             if ($result == true){
-                //echo "vammos bien";
-                $dataset = $this->execquery("SELECT * FROM Payment INNER JOIN client ON payment.pk_payment = client.pk_client INNER JOIN payment_method ON payment.pk_payment = payment_method.pk_method");
+                $dataset = $this->execquery("SELECT Payment.*, Client.client_name, Payment_Method.* 
+                                            FROM Payment 
+                                            INNER JOIN Client ON Payment.fk_client = Client.pk_client 
+                                            INNER JOIN Payment_Method ON Payment.fk_method = Payment_Method.pk_method");
             }
-            else{
-                echo "algo fallo";
+            else {
                 $dataset = "error";
             }
             return $dataset;
         }
+        
         
         //INSERT
         public function setPayment() {

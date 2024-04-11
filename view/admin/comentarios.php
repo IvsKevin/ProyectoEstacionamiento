@@ -1,4 +1,4 @@
-<?php include_once "navbarAdmin.php"; ?>
+<?php include_once "navbar.php"; ?>
 
 <div>
     <div class="relative md:pt-32 pb-32 pt-12">
@@ -19,29 +19,18 @@
                         // Verificar si hay comentarios
                         if (!empty($comentarios)) {
                     ?>
-                            <table class="border-collapse w-full ml-32"> <!-- Agregar margen izquierdo -->
-                                <thead>
-                                    <tr class="bg-gray-200">
-                                        <th class="border border-gray-400 px-4 py-2">Nombre</th>
-                                        <th class="border border-gray-400 px-4 py-2">Email</th>
-                                        <th class="border border-gray-400 px-4 py-2">Mensaje</th>
-                                        <th class="border border-gray-400 px-4 py-2">Fecha</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        // Recorrer los comentarios
-                                        foreach ($comentarios as $comentario) {
-                                    ?>
-                                        <tr>
-                                            <td class="border border-gray-400 px-4 py-2 overflow-hidden whitespace-nowrap max-w-[70px] text-overflow-ellipsis"><?php echo $comentario['nombre_completo']; ?></td>
-                                            <td class="border border-gray-400 px-4 py-2"><?php echo $comentario['email']; ?></td>
-                                            <td class="border border-gray-400 px-4 py-2 overflow-hidden whitespace-nowrap max-w-[70px] text-overflow-ellipsis"><?php echo $comentario['mensaje']; ?></td>
-                                            <td class="border border-gray-400 px-4 py-2"><?php echo $comentario['comment_date']; ?></td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                            <div id="licensesCardContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                                <?php foreach ($comentarios as $comentario) { ?>
+                                    <div class="bg-gris-oscurito p-6 rounded-xl shadow-md relative">
+                                        <div class="mb-4 mt-5">
+                                            <p class="text-sm font-semibold">Nombre: <?php echo $comentario['nombre_completo']; ?></p>
+                                        </div>
+                                        <p class="text-sm text-gray-500 mb-4">Email: <?php echo $comentario['email']; ?></p>
+                                        <p class="text-sm text-gray-500 mb-4">Mensaje: <?php echo $comentario['mensaje']; ?></p>
+                                        <p class="text-sm text-gray-500 mb-4">Fecha: <?php echo $comentario['comment_date']; ?></p>
+                                    </div>
+                                <?php } ?>
+                            </div>
                     <?php
                         } else {
                             // Mostrar un mensaje si no hay comentarios

@@ -1,4 +1,4 @@
-<?php include_once "navbarAdmin.php"; ?>
+<?php include_once "navbar.php"; ?>
 
 <div class="main-content">
     <div class="relative md:pt-32 pb-32 pt-12">
