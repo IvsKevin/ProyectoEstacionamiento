@@ -55,7 +55,7 @@
             $result = $this->connect();
             if ($result == true){
                 //echo "vammos bien";
-                $dataset = $this->execquery("SELECT * FROM client inner join user on client.fk_user = user.pk_user WHERE user.category = 'C'");
+                $dataset = $this->execquery("SELECT * FROM client INNER JOIN user on client.fk_user = user.pk_user WHERE user.category = 'C'");
             }
             else{
                 echo "algo fallo";
@@ -70,7 +70,7 @@
                 $dataset = $this->execquery("SELECT * FROM client WHERE fk_status = 1");
             }
             else{
-                echo "algo fallo";
+                //echo "algo fallo";
                 $dataset = "error";
             }
             return $dataset;
@@ -84,7 +84,7 @@
                 // print_r($dataset);
             }
             else{
-                echo "algo fallo";
+                //echo "algo fallo";
                 $dataset = "error";
             }
             return $dataset;
