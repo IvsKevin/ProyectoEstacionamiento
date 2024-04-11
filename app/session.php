@@ -23,6 +23,7 @@
         include(__DIR__."/../data/class/licenses.php");
         $license = new Licenses();
         $data = $license->getLicensesDuration($_SESSION['client_id']);
+        
         if ($data == "aprobado") {
             $licenciaVigente = true;
         } else {

@@ -112,10 +112,10 @@
         public function getAllPayments(){
             $result = $this->connect();
             if ($result == true){
-                $dataset = $this->execquery("SELECT payment.*, client.client_name, payment_Method.* 
+                $dataset = $this->execquery("SELECT payment.*, client.client_name, payment_method.* 
                                             FROM payment 
                                             INNER JOIN client ON payment.fk_client = client.pk_client 
-                                            INNER JOIN payment_method ON Payment.fk_method = payment_method.pk_method");
+                                            INNER JOIN payment_method ON payment.fk_method = payment_method.pk_method");
             }
             else {
                 $dataset = "error";

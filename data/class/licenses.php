@@ -59,7 +59,7 @@
                 }
             }
             else{
-                echo "algo fallo";
+                //echo "algo fallo";
                 $dataset = "error";
             }
             return $dataset;
