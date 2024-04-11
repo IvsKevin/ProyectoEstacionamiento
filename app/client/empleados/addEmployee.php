@@ -79,4 +79,3 @@ if ($id > 0) {
 } else {
     echo "No se pudo insertar el empleado.";
 }
-
