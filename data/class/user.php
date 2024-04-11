@@ -31,10 +31,10 @@
             $query = "select * from user where password='".$this->password."' and nickname = '".$this->nickname."' and category = 'A'";
             $result = $this->connect();
             if($result) {
-                //echo "todo bien"; 
+                ////echo "todo bien"; 
                 $dateSet = $this->execquery($query);
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $dateSet = "error";
             }
             return $dateSet;
@@ -43,10 +43,10 @@
             $query = "select * from user where password='".$this->password."' and nickname = '".$this->nickname."' and category = 'C'";
             $result = $this->connect();
             if($result) {
-                //echo "todo bien"; 
+                ////echo "todo bien"; 
                 $dateSet = $this->execquery($query);
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $dateSet = "error";
             }
             return $dateSet;
@@ -55,10 +55,10 @@
             $query = "select * from user where password='".$this->password."' and nickname = '".$this->nickname."'";
             $result = $this->connect();
             if($result) {
-                //echo "todo bien"; 
+                ////echo "todo bien"; 
                 $dateSet = $this->execquery($query);
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $dateSet = "error";
             }
             return $dateSet;
@@ -72,10 +72,10 @@
             WHERE nickname = '".$this->nickname."' AND l.accessCode = '$accessCode' AND u.accessCode = '$accessCode' AND l.fk_status = 1";
             $result = $this->connect();
             if($result) {
-                //echo "todo bien"; 
+                ////echo "todo bien"; 
                 $dateSet = $this->execquery($query);
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $dateSet = "error";
             }
             return $dateSet;
@@ -84,7 +84,7 @@
             $query = "SELECT * FROM user WHERE nickname ='".$this->nickname."' OR email = '".$this->email."'";
             $result = $this->connect();
             if($result) {
-                //echo "todo bien"; 
+                ////echo "todo bien"; 
                 $dateSet = $this->execquery($query);
                 // Verifica si hay filas devueltas
                 if ($dateSet->num_rows > 0) {
@@ -102,10 +102,10 @@
             $query = "INSERT INTO user (first_name, last_name, password, email, nickname, category) VALUES ('".$this->first_name."', '".$this->last_name."', '".$this->password."', '".$this->email."', '".$this->nickname."','C')";
             $result = $this->connect();
             if($result) {
-                echo "Ha funcionado el registro de usuario"; 
+                //echo "Ha funcionado el registro de usuario"; 
                 $newID = $this->execinsert($query);
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $newID = "error";
             }
             return $newID;
@@ -115,10 +115,10 @@
             $query = "UPDATE user SET accessCode = $accessCode WHERE pk_user = $this->id";
             $result = $this->connect();
             if($result) {
-                echo "Ha funcionado el registro de usuario"; 
+                //echo "Ha funcionado el registro de usuario"; 
                 $newID = $this->execinsert($query);
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $newID = "error";
             }
             return $newID;

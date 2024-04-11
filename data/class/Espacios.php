@@ -41,7 +41,7 @@
             WHERE ps.fk_parking = $pk_parking
             ORDER BY ps.spaces_number");
         } else {
-            echo "La consulta salió mal";
+            //echo "La consulta salió mal";
             $dataset = "error";
         }
         return $dataset;
@@ -56,7 +56,7 @@
             $visitResult = $this->execquery($visitQuery);
             return $visitResult;
         } else {
-            echo "La consulta de visita salió mal";
+            //echo "La consulta de visita salió mal";
             return null;
         }
     }
@@ -72,7 +72,7 @@
             $employeeResult = $this->execquery($employeeQuery);
             return $employeeResult;
         } else {
-            echo "La consulta de empleado salió mal";
+            //echo "La consulta de empleado salió mal";
             return null;
         }
     }
@@ -89,7 +89,7 @@
                 return $espaciosActuales = $i;
             }
         }else{
-            echo "La consulta salio mal";
+            //echo "La consulta salio mal";
             $espaciosActuales = 0;
         }
     }
@@ -122,7 +122,7 @@
                 return $espaciosActuales = $i;
             }
         }else{
-            echo "La consulta salio mal";
+            //echo "La consulta salio mal";
             $espaciosActuales = 0;
         }
     }
@@ -138,7 +138,7 @@
                 }
             } 
         }else{
-            //echo "La consulta salio mal";
+            ////echo "La consulta salio mal";
             $dataset = "error";
             return 0;
         }
@@ -155,7 +155,7 @@
     
         // Comprobar si el estacionamiento está lleno
         if ($maxSpaceNumber >= $capacidad) {
-            echo "El estacionamiento está lleno, no se pueden agregar más espacios.";
+            //echo "El estacionamiento está lleno, no se pueden agregar más espacios.";
             return false;
         }
     
@@ -166,10 +166,10 @@
         $query = "INSERT INTO parking_spaces (spaces_number, fk_status, fk_parking) VALUES ($newSpaceNumber, 1, $this->fk_parking)";
         $result = $this->execquery($query);
         if ($result) {
-            echo "Espacio creado exitosamente.";
+            //echo "Espacio creado exitosamente.";
             return true;
         } else {
-            echo "Ha ocurrido un error al crear el espacio.";
+            //echo "Ha ocurrido un error al crear el espacio.";
             return false;
         }
     }
@@ -180,9 +180,9 @@
             $result = $this->connect();
             if($result) {
                 $newID = $this->execquery($query);
-                echo "Ha funcionado la eliminacion de espacio"; 
+                //echo "Ha funcionado la eliminacion de espacio"; 
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $newID = 0;
             }
             return $newID;
@@ -192,9 +192,9 @@
             $result = $this->connect();
             if($result) {
                 $newID = $this->execquery($query);
-                echo "Ha funcionado la eliminacion de espacio"; 
+                //echo "Ha funcionado la eliminacion de espacio"; 
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $newID = 0;
             }
             return $newID;
@@ -204,9 +204,9 @@
             $result = $this->connect();
             if($result) {
                 $newID = $this->execquery($query);
-                echo "Ha funcionado la eliminacion de espacio"; 
+                //echo "Ha funcionado la eliminacion de espacio"; 
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $newID = 0;
             }
             return $newID;

@@ -50,7 +50,7 @@ class Visit extends conexion
         if ($result == true) {
             $dataset = $this->execquery($query);
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $dataset = "error";
         }
         return $dataset;
@@ -75,9 +75,9 @@ class Visit extends conexion
         $result = $this->connect();
         if ($result) {
             $newID = $this->execquery($query);
-            echo "Registro de visita exitoso";
+            //echo "Registro de visita exitoso";
         } else {
-            echo "Error al registrar visita";
+            //echo "Error al registrar visita";
             $newID = "error";
         }
         return $newID;
@@ -90,10 +90,10 @@ class Visit extends conexion
         $result = $this->connect();
         if ($result) {
             $result = $this->execquery($query);
-            echo "Actualización de visita exitosa";
+            //echo "Actualización de visita exitosa";
             return $this->id;
         } else {
-            echo "Error al actualizar visita";
+            //echo "Error al actualizar visita";
             return 0;
         }
     }
@@ -110,21 +110,21 @@ class Visit extends conexion
             $query_access_card = 'UPDATE Access_Card SET fk_status = 2 WHERE fk_visit = ' . $this->id . '';
 
             if ($updated_visit) {
-                echo "Eliminación de visita exitosa";
+                //echo "Eliminación de visita exitosa";
                 $result_access_card = $this->execquery($query_access_card);
                 if ($result_access_card) {
-                    echo "Estado de la tarjeta de acceso actualizado correctamente";
+                    //echo "Estado de la tarjeta de acceso actualizado correctamente";
                     return "bien";
                 } else {
-                    echo "Hubo un problema al actualizar el estado de la tarjeta de acceso";
+                    //echo "Hubo un problema al actualizar el estado de la tarjeta de acceso";
                     return "error";
                 }
             } else {
-                echo "Error al eliminar visita";
+                //echo "Error al eliminar visita";
                 return "error";
             }
         } else {
-            echo "Error al conectar con la base de datos";
+            //echo "Error al conectar con la base de datos";
             return "error";
         }
     }

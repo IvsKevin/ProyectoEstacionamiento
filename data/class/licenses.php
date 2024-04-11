@@ -97,7 +97,7 @@
                 $dataset = $this->execquery($query);
             }
             else{
-                echo "algo fallo";
+                //echo "algo fallo";
                 $dataset = "error";
             }
             return $dataset;
@@ -120,9 +120,9 @@
             $result = $this->connect();
             if($result) {
                 $newID = $this->execinsert($query);
-                echo "Ha funcionado el registro del pago"; 
+                //echo "Ha funcionado el registro del pago"; 
             } else {
-                echo "algo salio mal";
+                //echo "algo salio mal";
                 $newID = "error";
             }
             return $accessCode;

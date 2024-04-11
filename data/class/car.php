@@ -41,7 +41,7 @@ class Car extends conexion
         if ($result == true) {
             $dataset = $this->execquery($query);
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $dataset = "error";
         }
         return $dataset;
@@ -80,7 +80,7 @@ class Car extends conexion
         if ($result == true) {
             $dataset = $this->execquery($query);
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $dataset = "error";
         }
         return $dataset;
@@ -92,7 +92,7 @@ class Car extends conexion
         if ($result == true) {
             $dataset = $this->execquery($query);
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $dataset = "error";
         }
         return $dataset;
@@ -106,7 +106,7 @@ class Car extends conexion
             $row = mysqli_fetch_assoc($this->execquery($query));
             return $row['count'] > 0;
         } else {
-            echo "Algo falló al verificar el carro del empleado.";
+            //echo "Algo falló al verificar el carro del empleado.";
             return false;
         }
     }
@@ -126,7 +126,7 @@ class Car extends conexion
                 }
             }
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $consultado = 0;
         }
         return $consultado;
@@ -138,7 +138,7 @@ class Car extends conexion
         if ($result == true) {
             $dataset = $this->execquery($query);
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $dataset = "error";
         }
         return $dataset;
@@ -150,7 +150,7 @@ class Car extends conexion
         if ($result == true) {
             $dataset = $this->execquery($query);
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $dataset = "error";
         }
         return $dataset;
@@ -162,7 +162,7 @@ class Car extends conexion
         if ($result == true) {
             $dataset = $this->execquery($query);
         } else {
-            echo "algo fallo";
+            //echo "algo fallo";
             $dataset = "error";
         }
         return $dataset;
@@ -174,9 +174,9 @@ class Car extends conexion
         $result = $this->connect();
         if ($result) {
             $newID = $this->execquery($query);
-            echo "Ha funcionado el registro del carro";
+            //echo "Ha funcionado el registro del carro";
         } else {
-            echo "algo salio mal";
+            //echo "algo salio mal";
             $newID = "error";
         }
         return $newID;
@@ -186,10 +186,10 @@ class Car extends conexion
         $query = 'UPDATE car_Information SET fk_status = "' . $this->fk_status . '" WHERE pk_car = ' . $this->id . '';
         $result = $this->connect();
         if ($result) {
-            echo "Ha funcionado la actualizacion de usuario";
+            //echo "Ha funcionado la actualizacion de usuario";
             $newID = $this->execquery($query);
         } else {
-            echo "algo salio mal";
+            //echo "algo salio mal";
             $newID = "error";
         }
         return $newID;

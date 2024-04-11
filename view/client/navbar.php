@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
 <?php include_once(__DIR__ . '/../../app/session.php'); ?>
 <?php if(!isset($_SESSION['client_id'])) {
   header('Location:../../index.php');
 }?>
-
-
+<!DOCTYPE html>
+<html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
