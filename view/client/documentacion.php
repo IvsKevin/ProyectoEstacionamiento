@@ -9,7 +9,29 @@
                 </div>
             </div> -->
             <div class="overflow-x-auto">
-                <div>Proximamente...</div>
+                <div>
+                    <a href="#">
+                        <img src="../../assets/img/1.png" alt="Imagen 1">
+                    </a>
+                    <a href="#">
+                        <img src="../../assets/img/2.png" alt="Imagen 2">
+                    </a>
+                    <a href="#">
+                        <img src="../../assets/img/3.png" alt="Imagen 3">
+                    </a>
+                    <a href="#">
+                        <img src="../../assets/img/4.png" alt="Imagen 4">
+                    </a>
+                    <a href="#">
+                        <img src="../../assets/img/5.png" alt="Imagen 5">
+                    </a>
+                    <a href="#">
+                        <img src="../../assets/img/6.png" alt="Imagen 6">
+                    </a>
+                    <a href="#">
+                        <img src="../../assets/img/7.png" alt="Imagen 7">
+                    </a>
+                </div>
             </div>
         </div>
     </div>
