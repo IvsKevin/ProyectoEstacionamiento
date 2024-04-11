@@ -57,6 +57,11 @@
                         echo "<p class='text-center text-red-600 mt-8'>El canal especificado no existe.</p>";
                     }
                     ?>
+                    <div class="navbar rounded-box">
+                    <div class="flex-1 px-2 lg:flex-none">
+                        <a href="videos.php"><button class="btn h-8 min-h-8 btn-outline btn-info">Volver</button></a>
+                    </div>
+                </div>
                 </div>
                 <!--Contenido en tarjetas-->
             </div>

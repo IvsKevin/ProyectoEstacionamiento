@@ -35,8 +35,8 @@
                         } else {
                             // Mostrar un mensaje si no hay comentarios
                     ?>
-                            <div class="bg-white p-6 rounded-lg shadow-md">
-                                <p class="text-red-600">Aun no hay comentarios disponibles.</p>
+                            <div class="bg-gris-oscurito p-6 rounded-lg shadow-md">
+                                <p class="text-sm text-white-600 text-center">Aun no hay comentarios disponibles.</p>
                             </div>
                     <?php
                         }
