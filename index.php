@@ -5,7 +5,7 @@
 <!--Aqui comienza el cuerpo-->
 <main>
   <div class="relative pt-16 pb-32 flex content-center items-center justify-center" style="min-height: 75vh;">
-    <div class="absolute top-0 w-full h-full bg-center bg-cover" style='background-image: url("https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1267&amp;q=80");'>
+  <div class="absolute top-0 w-full h-full bg-center bg-cover" style='background-image: url("./assets/img/est.jpg?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80");'>
       <span id="blackOverlay" class="w-full h-full absolute opacity-75 bg-black"></span>
     </div>
     <div class="container relative mx-auto">
@@ -13,10 +13,10 @@
         <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
           <div class="pr-12">
             <h1 class="text-white font-semibold text-5xl">
-              Construye tu propio estacionamiento
+            Administra tu propio estacionamiento
             </h1>
             <p class="mt-4 text-lg text-gray-300">
-              Creamos este software personalizado para empresas con visión de futuro, ayudándolas a acelerar el crecimiento y convertirse en líderes tecnológicos.
+            El equipo creó un software personalizado para empresas con visión de futuro, asistiéndolas en la aceleración de su crecimiento y en su camino para convertirse en líderes tecnológicos.
             </p>
           </div>
         </div>
@@ -39,7 +39,7 @@
               </div>
               <h6 class="text-xl font-semibold">Software Premiado</h6>
               <p class="mt-2 mb-4 text-gray-600">
-                Divide los detalles sobre la gestion de tu estacionamiento libremente.
+                Divide los detalles sobre la gestión de tu estacionamiento libremente.
               </p>
             </div>
           </div>
@@ -50,9 +50,9 @@
               <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
                 <i class="fas fa-retweet"></i>
               </div>
-              <h6 class="text-xl font-semibold">Asesoria gratuita</h6>
+              <h6 class="text-xl font-semibold">Asesoría gratuita</h6>
               <p class="mt-2 mb-4 text-gray-600">
-                Parking Maneger cuenta con una buena atención al cliente las 24 horas del día
+                Parking Manager cuenta con una buena atención al cliente las 24 horas del día
                 y los 7 días de la semana.
               </p>
             </div>
@@ -64,7 +64,7 @@
               <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
                 <i class="fas fa-fingerprint"></i>
               </div>
-              <h6 class="text-xl font-semibold">Compañia verificada</h6>
+              <h6 class="text-xl font-semibold">Compañía verificada</h6>
               <p class="mt-2 mb-4 text-gray-600">
                 Contamos con todas las verificaciones necesarias para asegurar
                 que nuestros usuarios se sientan seguros.
@@ -79,7 +79,7 @@
             <i class="fas fa-user-friends text-xl"></i>
           </div>
           <h3 class="text-3xl mb-2 font-semibold leading-normal">
-            Utilizar Parking Manager te facilitara la gestion de tus estacionamientos
+            Utilizar Parking Manager te facilitará la gestión de tus estacionamientos.
           </h3>
           <p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
             Miles de usuarios confían en Parking Manager para simplificar la gestión de estacionamientos. Nuestra plataforma ofrece reservas en línea, seguimiento de ocupación en tiempo real y notificaciones automáticas, garantizando comodidad y eficiencia. </p>
@@ -310,7 +310,7 @@
             <div class="flex-auto p-5 lg:p-10">
               <h4 class="text-2xl font-semibold">Tienes problemas? Envianos tus dudas.</h4>
               <p class="leading-relaxed mt-1 mb-4 text-gray-600">
-                Llena este formulario y te responederemos en 24 horas.
+                Llena este formulario y te responderemos en 24 horas.
               </p>
               <form method="POST" action="app/admin/clientes/comentarios/insertar_comentario.php" class="mt-6">
                 <div class="relative w-full mb-3 mt-8">
