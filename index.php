@@ -1,6 +1,10 @@
-<?php session_start(); ?>
+<?php session_start(); 
+ini_set('display_errors', 'off');
+ini_set('log_errors', 'off');?>
 <?php include_once __DIR__ . "/app/session.php"; ?>
-<?php include_once "view/components/header.php"; ?>
+<?php include_once "view/components/header.php"; 
+?>
+
 
 <!--Aqui comienza el cuerpo-->
 <main>
