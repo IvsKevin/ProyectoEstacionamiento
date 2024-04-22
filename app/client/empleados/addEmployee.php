@@ -62,8 +62,41 @@ if ($id > 0) {
     
             // Insertar la tarjeta de acceso en la base de datos
             $insert_success = $access_card->insertAccessCard();
-    
+
             if ($insert_success) {
+                // Crear el JSON con la información del empleado y la tarjeta de acceso
+                $employee_data = array(
+                    'id' => $employee_id,
+                    'nombre' => $_POST["nombreEmpleado"],
+                    'apellidoPaterno' => $_POST["apPaternoEmpleado"],
+                    'apellidoMaterno' => $_POST["apMaternoEmpleado"],
+                    'telefono' => $_POST["tel"],
+                    'rol' => $_POST["rolEmpleado"],
+                    'client_id' => $_SESSION['client_id'],
+                    'tarjeta_acceso' => array(
+                        'QR_code' => $QR_code,
+                        'creation_date' => $creation_date,
+                        'end_date' => $end_date,
+                        'card_type' => 'Empleado',
+                        'employee_id' => $employee_id
+                    )
+                );
+
+                // Leer el contenido actual del archivo JSON
+                $json_data = file_get_contents('employee_data.json');
+                
+                // Decodificar el JSON existente en un array
+                $existing_data = json_decode($json_data, true);
+
+                // Agregar el nuevo empleado al array existente
+                $existing_data[] = $employee_data;
+
+                // Convertir el array actualizado a JSON
+                $json_employee_data = json_encode($existing_data, JSON_PRETTY_PRINT);
+
+                // Escribir el JSON actualizado en el archivo
+                file_put_contents('employee_data.json', $json_employee_data);
+
                 // Redirigir o mostrar un mensaje de éxito
                 header('Location: ../../../view/client/empleados.php?insercionExitosa=1');
                 exit(); // Finalizar el script después de redirigir
